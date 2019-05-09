@@ -1,0 +1,14 @@
+Sistema de inventario PHP, AJAX, Mysql 2.0
+
+Descripción del sistema
+Sistema control de inventario + carrito de compras. Tiene registro de clientes y productos, ademas de control de movimientos de saldo , kardex, sistema de pagos etc, el código esta orientada a objetos entre otras cosas, espero les sea útil, cualquier duda comenten y compartan para seguir subiendo mas y mejores sistemas.
+
+tutorial de como instalar el sistema : https://www.youtube.com/watch?v=oT81p8QFBk8
+
+usuario cliente: y@y.com
+
+clave:123456
+
+usuario Admin: yond1994@gmail.com
+
+clave:123

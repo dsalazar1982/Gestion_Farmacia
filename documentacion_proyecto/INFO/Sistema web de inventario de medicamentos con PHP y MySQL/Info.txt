@@ -1,0 +1,69 @@
+*************************************
+SISTEMA WEB DE INVENTARIO DE MEDICAMENTOS CON PHP Y MYSQL
+********************************************
+
+YESID SANCHEZ RAMOS  17:05:00
+
+Con este pequeño sistema de control de medicamentos se puede aprender a desarrollar una aplicación de inventario más compleja y robusta, además  se ha usado procesos para crear, leer, actualizar, eliminardatos de la base de datos MySQL, también permite realizar búsquedas utilizando el plugins para manipulación de datos (Datatables jQuery)  y finalmente para crear reportes en formato PDF se utilizando la librería html2pdf.
+
+Características principales de la aplicación:
+
+Características principales de la aplicación:
+
+Inicio de sesión:
+la página de inicio de sesión multiusuario. Hay tres niveles de usuario que Super Administrador, Gerente y almacén.
+
+Panel de control:
+Luego de haber iniciado sesión el sistema redirecciona al panel de control, en donde se puede tener acceso a los datos estadísticos del sistema.
+
+Datos de Medicamentos: 
+El sistema permite ingresar un nuevo producto al sistema a través de este módulo, así como visualizar los datos, editar y eliminar dichos datos del sistema.
+
+Registro de medicamentos:
+Este módulo permite ver el stock ingresado al inventario, así como también permite agregar o descargar stock de  nuestro inventario.
+
+Reporte de Stock de Medicamentos:
+Este modulo permite generar un reporte en formato PDF de las unidades en existencia dentro del sistema.
+
+Reporte registro de medicamentos:
+Este modulo permite generar un reporte en formato PDF de cada una de las transacciones registradas en el sistema, permitiendo hacer un filtro por rango de fecha.
+
+Administración de usuarios:
+En esta modulo se permite gestionar los usuarios registrado en el sistema, así como la opcion de poder agregar nuevos usuarios, editar los usuarios ya existentes, bloquear el acceso y eliminar los datos del usuario.
+
+Cambiar contraseña:
+Permite al usuario con rol de super administrador, poder cambiar la contraseña de los usuarios registrados dentro del sistema.
+
+Perfil de usuario:
+permite al usuario cambiar sus datos básicos de su cuenta, incluso se permite subir una imagen para poder usarla como avatar.
+
+
+Instalación en windows (servidor local)
+
+Descargar los archivos fuentes del sistema.
+
+Copiar y descomprimir el archivo en la carpeta c:\xampp\htdocs, al final tendrás una carpeta llamada “medisys”, a la cual podrás acceder desde el navegador como: http://localhost/medisys /.
+
+Crear una base de datos usando PHPMyAdmin accediendo a la url siguiente: http://localhost/phpmyadmin/. Para nuestro caso la hemos llamado a la base de datos con el nombre de: “medisys “, pero tu puedes nombrarla como desees.
+
+Importar las tablas de la base de datos para ello vamos a buscar el archivo “medisys.sql”en el directorio database de nuestro proyecto, una vez localizado procedemos a hacer la importación de los datos desde PHPMyAdmin.
+
+Configurar los datos de conexión a la base de datos editando el archivo de configuración que se encuentra en la siguiente ruta: http://localhost/medisys /config/database.php. Esto es la ruta que hemos utilizado para este ejemplo, pero de igual manera puedes colocarlo en la ruta que desees, solo recuerda localizar la carpeta config y dentro de dicho directorio el archivo database.php.
+
+Vista web: http://localhost/medisys/.
+
+Datos de acceso al sistema: usuario: admin y contraseña: admin.
+
+
+FUENTE
+https://programacionorintadaobjetos.blogspot.com/2017/09/sistema-web-de-inventario-de.html
+
+
+
+
+
+
+
+
+
+

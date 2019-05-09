@@ -1,0 +1,48 @@
+************************************
+SISTEMA PARA FARMACIAS DESARROLLADO CON PHP – MYSQL
+************************************
+
+ YESID SANCHEZ RAMOS  15:06:00
+
+El sistema de Inventario para farmacias es un software de oficina de farmacia, que cuenta con un diseño moderno de respuesta ideal para cualquier tipo de negocio de farmacia. Este sistema se puede utilizar para la gestión de datos de una farmacia. 
+
+A continuación una captura de como se ve el sistema corriendo en nuestro XAMPP sin ningún inconveniente.
+
+***************
+Características principales
+***************
+
+Diseño responsivo
+Carrito de compras integrado para la venta de productos
+Administración de medicamentos o productos
+Permite registrar, editar y eliminar los productos
+Adicionar productos al inventario
+Reporte de productos en inventario
+Listado de productos vendidos
+Listar y generar de reportes de ventas filtrandolos por fecha
+
+
+**************************************
+Instalación en windows (servidor local)
+************************************
+
+1. Descargar los archivos fuentes del sistema
+
+2. Copiar y descomprimir el archivo en la carpeta c:\xampp\htdocs, al final tendrás una carpeta llamada “inventario_farmacia”, a la cual podrás acceder desde el navegador como: http://localhost/inventario_farmacia/
+
+3. Crear una base de datos usando PHPMyAdmin accediendo a la url siguiente: http://localhost/phpmyadmin/
+
+4. Importar las tablas de la base de datos para ello vamos a buscar el archivo “inventario_farmacia.sql” , el cual se encuentra en el directorio principal de nuestro sistema, una vez localizado procedemos a hacer la importación de los datos desde PHPMyAdmin
+
+5. Configurar los datos de conexión a la base de datos editando el archivo de configuración: “Connection.php“,  que se encuentra en el directorio database de nuestro sistema.
+
+6. Vista web: http://localhost/inventario_farmacia/
+
+7. Datos de acceso por defecto: usuario: admin y contraseña: admin.
+
+
+FUENTE
+
+https://programacionorintadaobjetos.blogspot.com/2017/09/sistema-para-farmacias-desarrollado-con.html
+
+

@@ -1,0 +1,76 @@
+************************************
+SISTEMA DE INVENTARIO OPEN SOURCE CON PHP Y MYSQL
+*****************************************
+
+ YESID SANCHEZ RAMOS  17:31:00
+
+Es un sistema de inventario basado en la web, que te permitirá mantener el seguimiento de la cantidad de compra y precio de venta de los productos existentes en tu almacén o negocio. Al crear un nuevo producto, se puede vincular con una categoría, la cantidad, la imagen del producto, el precio de compra, el precio de venta; todo es controlado desde la aplicación ya que el sistema registra cada movimiento que se realiza en el inventario.
+
+La idea del sistema de inventario open source, es que pueda ser usado por una pequeña empresa, en donde el movimiento de inventario es relativamente bajo; ya que el sistema mantiene el principio de entradas y salidas, que son operaciones básicas dentro de un inventario. También puede ser programadores o diseñadores web que estén buscando aplicación que les sirva como guía para el desarrollo de un sistema mucho mas completo.
+
+************************
+Caracteristicas:
+************************
+
+Panel de control amigable:
+El sistema cuenta con un panel de control desde donde se contabilizan a manera de reporte los usuarios, categorías, productos y ventas registradas. Ademas muestra un pequeño reporte de los productos mas vendidos, ventas recientes y un listado de los productos recientemente agregados a la base de datos del sistema.
+
+Administración de grupos de usuarios:
+El sistema maneja 3 tipos de niveles de permisos, permitiendo así; desde el modulo de administración de grupos de usuarios la gestión de dichos grupos, permitiendo las operaciones de visualización, creación, edición y eliminación de los grupos.
+
+Administración de usuarios:
+Desde el modulo de administración de usuario se puede gestionar los usuarios, permitiendo también poder visualizarlos, crear nuevos usuarios, editar los datos de los usuarios y poder eliminarlos.
+
+Gestión de categorías:
+Permite el ingreso, edición y eliminación de categorías al sistema.
+
+Administración de productos:
+Desde el modulo de administración de productos podremos gestionar el inventario.
+
+Sección multimedia:
+En este modulo se permite la carga de imágenes al servidor, para que posteriormente sean asignadas a un producto.
+
+Gestión de ventas:
+Permite listar las ventas realizadas, con la posibilidad de ir agregando nuevas ventas. Cuando se realizan ventas el sistema automáticamente da salida del inventario las cantidades vendidas.
+
+Generación de reportes:
+El sistema permite generar 3 tipos de reportes: Reporte por rango de fechas, reportes mensuales y reporte de ventas diarias.
+
+Instalación en windows (servidor local)
+
+* Descargar el sistema
+* Creación de la base de datos:
+	Se debe crear manualmente una base de datos
+* Importación de datos:
+	Luego de haber creado la base de datos se procederá a importar el archivo  “oswa_inv.sql”  a la 	base de datos mysql creada . Esto debería configurar la estructura básica para el buen 	funcionamiento del sistema.
+*Modificar el archivo de conexión a la base de datos:
+	El cual se encuentra en la ruta siguiente: “includes/config.php”,  y  cambiar las variables 	para que coincidan con tu host, base de datos, nombre de usuario y contraseña.
+*Iniciar sesión:
+	Utiliza las credenciales siguientes para el inicio de sesión
+
+	Usuario: admin
+	Contraseña: admin
+
+	Usuario: special
+	Contraseña: special
+
+	Usuario: user
+	Contraseña: user
+
+FUENTE
+https://programacionorintadaobjetos.blogspot.com/2017/09/sistema-de-inventario-open-source-con.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

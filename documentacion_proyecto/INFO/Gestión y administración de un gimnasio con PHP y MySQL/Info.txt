@@ -1,0 +1,51 @@
+GESTIÓN Y ADMINISTRACIÓN DE UN GIMNASIO CON PHP Y MYSQL
+
+ YESID SANCHEZ RAMOS  14:12:00
+
+El sistema de gestión de gimnasio es un sistema desarrollado con PHP y MySQL, el cual permite administrar de una forma fácil y rápida la gestión de la remembraría del club de salud. Te puede ayudar a mantener registros de tus miembros y sus membresías, ya permite una comunicación fácil entre tu y los miembros.
+
+
+Características:
+
+Gestión de miembros
+
+Pago y Cobro Debido
+
+Una interfaz administrativa de fácil manejo.
+
+Crear / Editar / Eliminar planes de membresía
+
+Vencimiento del plan de miembro y estado de cuentas.
+
+Planes y análisis analíticos de ingresos y miembros
+
+Compatible con captura de fotos
+
+Editar / Eliminar / Ver detalles de los miembros
+
+Cuentas por cobrar
+
+Fácil integración con otros scripts
+
+
+
+Instalación en windows (servidor local)
+
+Descargar los archivos fuentes del sistema
+
+Copiar y descomprimir el archivo en la carpeta c:\xampp\htdocs, al final tendrás una carpeta llamada “gym”, a la cual podrás acceder desde el navegador como: http://localhost/gym/
+
+Crear una base de datos usando PHPMyAdmin accediendo a la url siguiente: http://localhost/phpmyadmin/
+
+Importar las tablas de la base de datos para ello vamos a buscar el archivo “db/dbgym.sql”, una vez localizado procedemos a hacer la importación de los datos desde PHPMyAdmin
+
+Configurar los datos de conexión a la base de datos editando el archivo de configuración que se encuentra en la siguiente ruta: include/db_conn.php
+
+Vista web: http://localhost/gym/
+
+Los datos de acceso por defecto para el administrador son: usuario: admin y contraseña: admin 
+
+Los datos de acceso por defecto para el cajero son: usuario: cajero y contraseña: cajero
+
+FUENTE
+https://programacionorintadaobjetos.blogspot.com/2017/09/gestion-y-administracion-de-un-gimnasio.html

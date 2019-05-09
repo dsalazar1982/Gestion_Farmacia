@@ -1,0 +1,9 @@
+sistema de control clinico php 5, Mysql
+
+Descripción del sistema
+este sistema intra-hospitalario fue un proyecto que realice para la universidad y decidí compartirlo espero les sea de ayuda, cualquier duda comenten 
+cambien el nombre de la carpeta de clinica2 a clinica solamente 
+nombre de la base de datos: clinica. 
+contraseña del root: 1234
+nombre e usuario es: demo
+la clave: demo

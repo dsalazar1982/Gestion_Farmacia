@@ -1,0 +1,28 @@
+SISTEMA DE REGISTRO DE TARJETAS SIM DESARROLLADO CON PHP Y MYSQL
+
+YESID SANCHEZ RAMOS  16:00:00
+
+El sistema de registro de tarjeta SIM  es un sistema PHP y MySQL para registrar las tarjetas SIM on-line desde  cualquier sitio, el sistema asimismo es capaz de hacer registro con móvil inteligente, android y aun en  tablets.
+
+Características
+
+El sistema contiene dos tipos de usuarios que son Administradores y Usuarios Estándar, cada usuario administrador puede iniciar sesión, crear y eliminar usuarios estándar, registro de datos de  tarjeta SIM, eliminar y actualizar toda la tarjeta SIM, registrar y actualizar la información de la cuenta. Los usuarios estándar sólo pueden iniciar sesión, registrar la tarjeta SIM, eliminar y actualizar el registro de la tarjeta SIM que él / ella haya registrado, actualizar la información de su cuenta.
+
+Instalación en windows (servidor local)
+
+Descargar los ficheros fuentes del sistema.
+
+Copiar y descomprimir el fichero en la carpeta c:\xampp\htdocs, al final vas a tener una carpeta llamada “sim_sistema”, a la que vas a poder acceder desde el navegador como: http://localhost/sim_sistema/.
+
+Crear una base de datos utilizando PHPMyAdmin accediendo a la url siguiente: http://localhost/phpmyadmin/. Para nuestro caso la hemos llamado a la base de datos con el nombre de: “test_airtel“, mas tu puedes nombrarla como desees.
+
+Importar las tablas de la base de datos para esto buscaremos el fichero “airtel.sql” en el directorio root de nuestro proyecto, una vez localizado procedemos a hacer la importación de los datos desde PHPMyAdmin.
+
+Configurar los datos de conexión a la base de datos editando el fichero de configuración que se encuentra en la siguiente ruta: http://localhost/sim_sistema/database_configuration.php.  Esto es la ruta que hemos empleado para este caso de ejemplo, mas sin embargo, tu puedes colocarlo en la ruta que desees, solo recuerda encontrar el fichero “database_configuration.php”
+
+Vista web: http://localhost/sim_sistema/
+
+Datos de acceso por defecto: usuario: admin y contraseña: 123456
+
+FUENTE
+https://programacionorintadaobjetos.blogspot.com/2017/09/sistema-de-registro-de-tarjetas-sim.html
