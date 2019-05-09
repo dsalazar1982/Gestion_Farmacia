@@ -1,8 +1,0 @@
-sistema php completo gratis, CMS sistema de gestión
-
-Descripción del sistema
-este es un sistema de gestión de contenidos (en inglés: Content Management System, más conocido por sus siglas CMS) es un programa informático que permite crear una estructura de soporte (framework) para la creación y administración de contenidos, principalmente en páginas web. el código esta gratis para que lo usen y lo personalicen a su antojo.
-
-user: y@y.com
-
-pass:123

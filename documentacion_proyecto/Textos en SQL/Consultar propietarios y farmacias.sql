@@ -1,1 +1,0 @@
-SELECT p.nombre_propietario, f.nombre_farmacia FROM tb_propietarios p INNER JOIN tb_farmacias f ON  f.id_propietario=p.id_propietario WHERE p.id_propietario=1

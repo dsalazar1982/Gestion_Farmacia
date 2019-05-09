@@ -1,4 +1,0 @@
-Catalogo Web Autoadministrable, PHP
-
-Descripción del sistema
-El Plan Catalogo Auto-administrable es ideal para quien desee dar a conocer sus productos, servicios o trabajos, separados por categorias y que se visualicen en formato de catalogo.
