@@ -1,7 +1,7 @@
 <?php
     require_once("modeloAbstractoDB.php");
 	
-    class Comuna extends ModeloAbstractoDB {
+    class Rol extends ModeloAbstractoDB {
 		private $id_rol;
 		private $nombre_rol;
 		

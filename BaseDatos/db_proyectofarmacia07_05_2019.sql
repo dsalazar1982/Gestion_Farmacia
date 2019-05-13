@@ -12,22 +12,22 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 
--- Volcando estructura de base de datos para db_proyectofamracia
-CREATE DATABASE IF NOT EXISTS `db_proyectofamracia` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish2_ci */;
-USE `db_proyectofamracia`;
+-- Volcando estructura de base de datos para db_proyectofarmacia
+CREATE DATABASE IF NOT EXISTS `db_proyectofarmacia` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish2_ci */;
+USE `db_proyectofarmacia`;
 
--- Volcando estructura para tabla db_proyectofamracia.tb_carousel
+-- Volcando estructura para tabla db_proyectofarmacia.tb_carousel
 CREATE TABLE IF NOT EXISTS `tb_carousel` (
   `id_carousel` int(11) NOT NULL AUTO_INCREMENT,
   `imagen` blob,
   PRIMARY KEY (`id_carousel`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofamracia.tb_carousel: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_carousel: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_carousel` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tb_carousel` ENABLE KEYS */;
 
--- Volcando estructura para tabla db_proyectofamracia.tb_ciudades
+-- Volcando estructura para tabla db_proyectofarmacia.tb_ciudades
 CREATE TABLE IF NOT EXISTS `tb_ciudades` (
   `id_ciudad` int(11) NOT NULL,
   `nombre_ciudad` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `tb_ciudades` (
   CONSTRAINT `fk_ciudades-paises` FOREIGN KEY (`id_pais`) REFERENCES `tb_paises` (`id_pais`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofamracia.tb_ciudades: ~1.026 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_ciudades: ~1.026 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_ciudades` DISABLE KEYS */;
 INSERT INTO `tb_ciudades` (`id_ciudad`, `nombre_ciudad`, `id_pais`) VALUES
 	(1000, 'INCA', 222),
@@ -1068,7 +1068,7 @@ INSERT INTO `tb_ciudades` (`id_ciudad`, `nombre_ciudad`, `id_pais`) VALUES
 	(99773, 'CUMARIBO', 205);
 /*!40000 ALTER TABLE `tb_ciudades` ENABLE KEYS */;
 
--- Volcando estructura para tabla db_proyectofamracia.tb_clientes
+-- Volcando estructura para tabla db_proyectofarmacia.tb_clientes
 CREATE TABLE IF NOT EXISTS `tb_clientes` (
   `id_cliente` int(11) NOT NULL,
   `nombre_cliente` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
@@ -1083,7 +1083,7 @@ CREATE TABLE IF NOT EXISTS `tb_clientes` (
   CONSTRAINT `fk_clientes-paises` FOREIGN KEY (`id_pais`) REFERENCES `tb_paises` (`id_pais`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofamracia.tb_clientes: ~7 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_clientes: ~7 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_clientes` DISABLE KEYS */;
 INSERT INTO `tb_clientes` (`id_cliente`, `nombre_cliente`, `direccion_cliente`, `telefono_cliente`, `id_pais`, `id_ciudad`) VALUES
 	(500651232, 'LA ECONOMIA DROGUERIA', 'AV. Guardia Peruana 1465, Distrito de Chorrillos 1', '2523438', 222, 9000),
@@ -1095,7 +1095,7 @@ INSERT INTO `tb_clientes` (`id_cliente`, `nombre_cliente`, `direccion_cliente`, 
 	(890900608, 'DROGUERIA CAFAM', 'CRA 100 #5 - 169', '3396666', 205, 5001);
 /*!40000 ALTER TABLE `tb_clientes` ENABLE KEYS */;
 
--- Volcando estructura para tabla db_proyectofamracia.tb_empleados
+-- Volcando estructura para tabla db_proyectofarmacia.tb_empleados
 CREATE TABLE IF NOT EXISTS `tb_empleados` (
   `id_empleado` int(11) NOT NULL,
   `nombre_empleado` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
@@ -1113,7 +1113,7 @@ CREATE TABLE IF NOT EXISTS `tb_empleados` (
   CONSTRAINT `fk_empleados-paises` FOREIGN KEY (`id_pais`) REFERENCES `tb_paises` (`id_pais`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofamracia.tb_empleados: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_empleados: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_empleados` DISABLE KEYS */;
 INSERT INTO `tb_empleados` (`id_empleado`, `nombre_empleado`, `apellido_empleado`, `cargo_empleado`, `id_pais`, `id_ciudad`, `direccion_empleado`, `telefono_empleado`, `email_empleado`) VALUES
 	(51828303, 'IRMA JANETH', 'SANABRIA GOMEZ', 'PROFESIONAL', 205, 11001, 'CLL 1 # 68 - 100', '318634213', 'IJSANABRIA@CORREO.COM'),
@@ -1122,14 +1122,14 @@ INSERT INTO `tb_empleados` (`id_empleado`, `nombre_empleado`, `apellido_empleado
 	(1117349420, 'MIGUEL ANGEL', 'CERQUERA RODRIGUEZ', 'PROFESIONAL', 205, 76001, 'CRA 104 # 25 - 12', '320523154', 'MACERQUERA@CORREO.COM');
 /*!40000 ALTER TABLE `tb_empleados` ENABLE KEYS */;
 
--- Volcando estructura para tabla db_proyectofamracia.tb_estados
+-- Volcando estructura para tabla db_proyectofarmacia.tb_estados
 CREATE TABLE IF NOT EXISTS `tb_estados` (
   `id_estado` int(11) NOT NULL,
   `nombre_estado` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`id_estado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofamracia.tb_estados: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_estados: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_estados` DISABLE KEYS */;
 INSERT INTO `tb_estados` (`id_estado`, `nombre_estado`) VALUES
 	(1, 'activo'),
@@ -1137,17 +1137,18 @@ INSERT INTO `tb_estados` (`id_estado`, `nombre_estado`) VALUES
 	(3, 'bloqueado');
 /*!40000 ALTER TABLE `tb_estados` ENABLE KEYS */;
 
--- Volcando estructura para tabla db_proyectofamracia.tb_facturas
+-- Volcando estructura para tabla db_proyectofarmacia.tb_facturas
 CREATE TABLE IF NOT EXISTS `tb_facturas` (
   `id_factura` int(11) NOT NULL,
   `id_cliente` int(11) DEFAULT NULL,
   `id_usuario` int(11) DEFAULT NULL,
   `fecha_factura` datetime NOT NULL,
   `valor_factura` int(11) NOT NULL,
-  `descuento_factura` int(11) NOT NULL,
+  `descuento_total` int(11) NOT NULL,
   `iva_factura` int(11) NOT NULL,
   `neto_factura` int(11) NOT NULL,
-  `id_formapago` int(11) NOT NULL,
+  `id_formapago` int(11) DEFAULT NULL,
+  `online` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`id_factura`),
   KEY `id_cliente` (`id_cliente`),
   KEY `id_usuario` (`id_usuario`),
@@ -1157,11 +1158,11 @@ CREATE TABLE IF NOT EXISTS `tb_facturas` (
   CONSTRAINT `fk_facturas-usuario` FOREIGN KEY (`id_usuario`) REFERENCES `tb_usuarios` (`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofamracia.tb_facturas: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_facturas: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_facturas` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tb_facturas` ENABLE KEYS */;
 
--- Volcando estructura para tabla db_proyectofamracia.tb_farmacias
+-- Volcando estructura para tabla db_proyectofarmacia.tb_farmacias
 CREATE TABLE IF NOT EXISTS `tb_farmacias` (
   `id_farmacia` int(11) NOT NULL,
   `nombre_farmacia` varchar(50) COLLATE utf8_spanish2_ci NOT NULL DEFAULT '',
@@ -1174,23 +1175,23 @@ CREATE TABLE IF NOT EXISTS `tb_farmacias` (
   KEY `id_ciudad` (`id_ciudad`),
   KEY `id_propietario` (`id_propietario`),
   KEY `id_usuario` (`id_usuario`),
-  CONSTRAINT `fk_facturas-usuarios` FOREIGN KEY (`id_usuario`) REFERENCES `tb_usuarios` (`id_usuario`),
   CONSTRAINT `fk_farmacias-ciudades` FOREIGN KEY (`id_ciudad`) REFERENCES `tb_ciudades` (`id_ciudad`),
-  CONSTRAINT `fk_farmacias-propietarios` FOREIGN KEY (`id_propietario`) REFERENCES `tb_propietarios` (`id_propietario`)
+  CONSTRAINT `fk_farmacias-propietarios` FOREIGN KEY (`id_propietario`) REFERENCES `tb_propietarios` (`id_propietario`),
+  CONSTRAINT `fk_farmacias-usuarios` FOREIGN KEY (`id_usuario`) REFERENCES `tb_usuarios` (`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofamracia.tb_farmacias: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_farmacias: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_farmacias` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tb_farmacias` ENABLE KEYS */;
 
--- Volcando estructura para tabla db_proyectofamracia.tb_formaspago
+-- Volcando estructura para tabla db_proyectofarmacia.tb_formaspago
 CREATE TABLE IF NOT EXISTS `tb_formaspago` (
   `id_formapago` int(11) NOT NULL,
   `nombre_formapago` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`id_formapago`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofamracia.tb_formaspago: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_formaspago: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_formaspago` DISABLE KEYS */;
 INSERT INTO `tb_formaspago` (`id_formapago`, `nombre_formapago`) VALUES
 	(1, 'efectivo'),
@@ -1198,7 +1199,28 @@ INSERT INTO `tb_formaspago` (`id_formapago`, `nombre_formapago`) VALUES
 	(3, 'tarjeta credito');
 /*!40000 ALTER TABLE `tb_formaspago` ENABLE KEYS */;
 
--- Volcando estructura para tabla db_proyectofamracia.tb_logs
+-- Volcando estructura para tabla db_proyectofarmacia.tb_inventario
+CREATE TABLE IF NOT EXISTS `tb_inventario` (
+  `id_inventario` int(11) NOT NULL AUTO_INCREMENT,
+  `id_producto` int(11) DEFAULT NULL,
+  `existencias_ini` int(11) DEFAULT NULL,
+  `entradas` int(11) DEFAULT NULL,
+  `salidas` int(11) DEFAULT NULL,
+  `stock` int(11) DEFAULT NULL,
+  `valor_unitario` int(11) DEFAULT NULL,
+  `valor_venta` int(11) DEFAULT NULL,
+  `fecha_registro` datetime DEFAULT NULL,
+  `observacion` varchar(100) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  PRIMARY KEY (`id_inventario`),
+  KEY `id_producto` (`id_producto`),
+  CONSTRAINT `fk_inventario-producto` FOREIGN KEY (`id_producto`) REFERENCES `tb_productos` (`id_producto`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+-- Volcando datos para la tabla db_proyectofarmacia.tb_inventario: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `tb_inventario` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tb_inventario` ENABLE KEYS */;
+
+-- Volcando estructura para tabla db_proyectofarmacia.tb_logs
 CREATE TABLE IF NOT EXISTS `tb_logs` (
   `id_log` int(11) NOT NULL AUTO_INCREMENT,
   `id_usuario` int(11) NOT NULL,
@@ -1209,16 +1231,17 @@ CREATE TABLE IF NOT EXISTS `tb_logs` (
   CONSTRAINT `fk_logs-usuarios` FOREIGN KEY (`id_usuario`) REFERENCES `tb_usuarios` (`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofamracia.tb_logs: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_logs: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_logs` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tb_logs` ENABLE KEYS */;
 
--- Volcando estructura para tabla db_proyectofamracia.tb_movimientosfacturas
+-- Volcando estructura para tabla db_proyectofarmacia.tb_movimientosfacturas
 CREATE TABLE IF NOT EXISTS `tb_movimientosfacturas` (
   `id_movimientofactura` int(11) NOT NULL AUTO_INCREMENT,
   `id_producto` int(11) DEFAULT NULL,
   `cantidad_producto` int(11) NOT NULL,
   `id_factura` int(11) DEFAULT NULL,
+  `descuento` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_movimientofactura`),
   KEY `id_producto` (`id_producto`),
   KEY `id_factura` (`id_factura`),
@@ -1226,11 +1249,11 @@ CREATE TABLE IF NOT EXISTS `tb_movimientosfacturas` (
   CONSTRAINT `fk_movimientofacturas-prodcutos` FOREIGN KEY (`id_producto`) REFERENCES `tb_productos` (`id_producto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofamracia.tb_movimientosfacturas: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_movimientosfacturas: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_movimientosfacturas` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tb_movimientosfacturas` ENABLE KEYS */;
 
--- Volcando estructura para tabla db_proyectofamracia.tb_nominas
+-- Volcando estructura para tabla db_proyectofarmacia.tb_nominas
 CREATE TABLE IF NOT EXISTS `tb_nominas` (
   `id_nomina` int(11) NOT NULL AUTO_INCREMENT,
   `id_empleado` int(11) DEFAULT NULL,
@@ -1251,11 +1274,29 @@ CREATE TABLE IF NOT EXISTS `tb_nominas` (
   CONSTRAINT `fk_nominas-empleados` FOREIGN KEY (`id_empleado`) REFERENCES `tb_empleados` (`id_empleado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofamracia.tb_nominas: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_nominas: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_nominas` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tb_nominas` ENABLE KEYS */;
 
--- Volcando estructura para tabla db_proyectofamracia.tb_paises
+-- Volcando estructura para tabla db_proyectofarmacia.tb_ofertas
+CREATE TABLE IF NOT EXISTS `tb_ofertas` (
+  `id_oferta` int(11) NOT NULL AUTO_INCREMENT,
+  `id_inventario` int(11) DEFAULT NULL,
+  `porce_descuento` double DEFAULT NULL,
+  `descuento` double DEFAULT NULL,
+  `valor_venta_oferta` int(11) DEFAULT NULL,
+  `fecha_inicio` datetime DEFAULT NULL,
+  `fecha_fin` datetime DEFAULT NULL,
+  PRIMARY KEY (`id_oferta`),
+  KEY `id_inventario` (`id_inventario`),
+  CONSTRAINT `fk_ofertas-inventario` FOREIGN KEY (`id_inventario`) REFERENCES `tb_inventario` (`id_inventario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+-- Volcando datos para la tabla db_proyectofarmacia.tb_ofertas: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `tb_ofertas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tb_ofertas` ENABLE KEYS */;
+
+-- Volcando estructura para tabla db_proyectofarmacia.tb_paises
 CREATE TABLE IF NOT EXISTS `tb_paises` (
   `id_pais` int(11) NOT NULL,
   `abreviatura_pais` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
@@ -1263,7 +1304,7 @@ CREATE TABLE IF NOT EXISTS `tb_paises` (
   PRIMARY KEY (`id_pais`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofamracia.tb_paises: ~199 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_paises: ~199 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_paises` DISABLE KEYS */;
 INSERT INTO `tb_paises` (`id_pais`, `abreviatura_pais`, `nombre_pais`) VALUES
 	(101, 'BFA', 'Burkina Faso'),
@@ -1467,14 +1508,14 @@ INSERT INTO `tb_paises` (`id_pais`, `abreviatura_pais`, `nombre_pais`) VALUES
 	(521, 'MNP', 'Islas Marianas');
 /*!40000 ALTER TABLE `tb_paises` ENABLE KEYS */;
 
--- Volcando estructura para tabla db_proyectofamracia.tb_presentaciones
+-- Volcando estructura para tabla db_proyectofarmacia.tb_presentaciones
 CREATE TABLE IF NOT EXISTS `tb_presentaciones` (
   `id_presentacion` int(11) NOT NULL,
   `nombre_presentacion` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`id_presentacion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofamracia.tb_presentaciones: ~6 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_presentaciones: ~6 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_presentaciones` DISABLE KEYS */;
 INSERT INTO `tb_presentaciones` (`id_presentacion`, `nombre_presentacion`) VALUES
 	(1, 'TABLETA'),
@@ -1485,14 +1526,11 @@ INSERT INTO `tb_presentaciones` (`id_presentacion`, `nombre_presentacion`) VALUE
 	(6, 'GOTAS');
 /*!40000 ALTER TABLE `tb_presentaciones` ENABLE KEYS */;
 
--- Volcando estructura para tabla db_proyectofamracia.tb_productos
+-- Volcando estructura para tabla db_proyectofarmacia.tb_productos
 CREATE TABLE IF NOT EXISTS `tb_productos` (
   `id_producto` int(11) NOT NULL,
   `nombre_prodcuto` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
-  `costo_producto` int(11) NOT NULL,
-  `precio_producto` int(11) NOT NULL,
   `foto_producto` blob,
-  `stcok_producto` int(11) NOT NULL,
   `id_presentacion` int(11) DEFAULT NULL,
   `id_farmacia` int(11) NOT NULL,
   PRIMARY KEY (`id_producto`),
@@ -1502,11 +1540,11 @@ CREATE TABLE IF NOT EXISTS `tb_productos` (
   CONSTRAINT `fk_productos-presentaciones` FOREIGN KEY (`id_presentacion`) REFERENCES `tb_presentaciones` (`id_presentacion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofamracia.tb_productos: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_productos: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_productos` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tb_productos` ENABLE KEYS */;
 
--- Volcando estructura para tabla db_proyectofamracia.tb_productosxproveedor
+-- Volcando estructura para tabla db_proyectofarmacia.tb_productosxproveedor
 CREATE TABLE IF NOT EXISTS `tb_productosxproveedor` (
   `id_productoxproveedor` int(11) NOT NULL AUTO_INCREMENT,
   `id_proveedor` int(11) DEFAULT NULL,
@@ -1518,11 +1556,11 @@ CREATE TABLE IF NOT EXISTS `tb_productosxproveedor` (
   CONSTRAINT `fk_productosxproveedor-proveedores` FOREIGN KEY (`id_proveedor`) REFERENCES `tb_proveedores` (`id_proveedor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofamracia.tb_productosxproveedor: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_productosxproveedor: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_productosxproveedor` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tb_productosxproveedor` ENABLE KEYS */;
 
--- Volcando estructura para tabla db_proyectofamracia.tb_propietarios
+-- Volcando estructura para tabla db_proyectofarmacia.tb_propietarios
 CREATE TABLE IF NOT EXISTS `tb_propietarios` (
   `id_propietario` int(11) NOT NULL,
   `nombre_propietario` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
@@ -1532,11 +1570,11 @@ CREATE TABLE IF NOT EXISTS `tb_propietarios` (
   PRIMARY KEY (`id_propietario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofamracia.tb_propietarios: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_propietarios: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_propietarios` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tb_propietarios` ENABLE KEYS */;
 
--- Volcando estructura para tabla db_proyectofamracia.tb_proveedores
+-- Volcando estructura para tabla db_proyectofarmacia.tb_proveedores
 CREATE TABLE IF NOT EXISTS `tb_proveedores` (
   `id_proveedor` int(11) NOT NULL,
   `nombre_proveedor` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
@@ -1551,18 +1589,18 @@ CREATE TABLE IF NOT EXISTS `tb_proveedores` (
   CONSTRAINT `fk_proveedores-paises` FOREIGN KEY (`id_pais`) REFERENCES `tb_paises` (`id_pais`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofamracia.tb_proveedores: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_proveedores: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_proveedores` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tb_proveedores` ENABLE KEYS */;
 
--- Volcando estructura para tabla db_proyectofamracia.tb_roles
+-- Volcando estructura para tabla db_proyectofarmacia.tb_roles
 CREATE TABLE IF NOT EXISTS `tb_roles` (
-  `id_rol` int(11) NOT NULL,
+  `id_rol` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_rol` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`id_rol`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofamracia.tb_roles: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_roles: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_roles` DISABLE KEYS */;
 INSERT INTO `tb_roles` (`id_rol`, `nombre_rol`) VALUES
 	(1, 'ADMINISTRADOR DE SISTEMAS'),
@@ -1572,7 +1610,22 @@ INSERT INTO `tb_roles` (`id_rol`, `nombre_rol`) VALUES
 	(5, 'INVITADO');
 /*!40000 ALTER TABLE `tb_roles` ENABLE KEYS */;
 
--- Volcando estructura para tabla db_proyectofamracia.tb_usuarios
+-- Volcando estructura para tabla db_proyectofarmacia.tb_rolesxpermisos
+CREATE TABLE IF NOT EXISTS `tb_rolesxpermisos` (
+  `id_rolxpermiso` int(50) NOT NULL AUTO_INCREMENT,
+  `id_rol` int(11) NOT NULL DEFAULT '0',
+  `modulo_rolxpermiso` varchar(50) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `estado_rolxpermiso` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_rolxpermiso`),
+  KEY `id_rol` (`id_rol`),
+  CONSTRAINT `fk_rolesxpermisos-roles` FOREIGN KEY (`id_rol`) REFERENCES `tb_roles` (`id_rol`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+-- Volcando datos para la tabla db_proyectofarmacia.tb_rolesxpermisos: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `tb_rolesxpermisos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tb_rolesxpermisos` ENABLE KEYS */;
+
+-- Volcando estructura para tabla db_proyectofarmacia.tb_usuarios
 CREATE TABLE IF NOT EXISTS `tb_usuarios` (
   `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
   `nickname_usuario` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
@@ -1591,7 +1644,7 @@ CREATE TABLE IF NOT EXISTS `tb_usuarios` (
   CONSTRAINT `fk_usuarios-roles` FOREIGN KEY (`id_rol`) REFERENCES `tb_roles` (`id_rol`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofamracia.tb_usuarios: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_usuarios: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_usuarios` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tb_usuarios` ENABLE KEYS */;
 
