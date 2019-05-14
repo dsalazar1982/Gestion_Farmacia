@@ -1,4 +1,4 @@
-<?php include_once ("./Funciones/sessiones.php"); ?>
+<?php //include_once ("./Funciones/sessiones.php"); ?>
 <body class="hold-transition skin-blue sidebar-mini">
 
 <div class="wrapper">
