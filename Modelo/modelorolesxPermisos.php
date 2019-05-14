@@ -4,8 +4,8 @@
     class Rolxpermiso extends ModeloAbstractoDB {
 		private $id_rolxpermiso;
         private $id_rol;
-        private $modulo_rolxpermiso
-        private $estado_rolxpermiso
+        private $modulo_rolxpermiso;
+        private $estado_rolxpermiso;
 		
 		function __construct() {
 			//$this->db_name = '';
