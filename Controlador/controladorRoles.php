@@ -1,8 +1,8 @@
 <?php
  
 require_once '../Modelo/modeloRoles.php';
-$datos = $_POST;
-switch ($_POST['accion']){
+$datos = $_GET;
+switch ($_GET['accion']){
     case 'editar':
         $rol = new Rol();
         $resultado = $rol->editar($datos);
@@ -61,7 +61,7 @@ switch ($_POST['accion']){
 
     case 'listar':
         $rol = new Rol();
-        $listado = $rol->lista();
+        $listado = $rol->listar();
         echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);    
         break;
 }

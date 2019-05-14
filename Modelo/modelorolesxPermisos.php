@@ -30,9 +30,9 @@
 		public function consultar($id_rol='') {
 			if($id_rol !=''):
 				$this->query = "
-				SELECT id_rol, nombre_id
-				FROM tb_roles
-				WHERE id_rol = '$id_rol'
+				SELECT id_rolxpermiso
+				FROM tb_rolesxpermisos
+				WHERE id_rol = '$id_rol' AND modulo_rolxpermiso = 1
 				";
 				$this->obtener_resultados_query();
 			endif;
@@ -43,15 +43,17 @@
 			endif;
 		}
 		
-		public function listar() {
+		public function listar($id_rol='') {
+	   if($id_rol != ''){
 			$this->query = "
-			SELECT id_rol, nombre_rol
+			SELECT estado_rolxpermiso
 			FROM tb_roles 
+			WHERE id_rol = '$id_rol'
 			";
 			
 			$this->obtener_resultados_query();
 			return $this->rows;
-			
+	   }	
 		}
 		public function nuevo($datos=array()) {
 			if(array_key_exists('id_rol', $datos)):
@@ -78,18 +80,38 @@
 			foreach ($datos as $campo=>$valor):
 				$$campo = $valor;
 			endforeach;
+			$cont = $id_rolxpermiso;
+			for($i=1;$i<=16;$i++){
+			if(isset ($_POST[''.$i.''])){	
 			$this->query = "
-			UPDATE tb_roles
-			SET nombre_rol ='$nombre_rol'
-			WHERE id_rol = '$id_rol'
+			UPDATE tb_rolesxpermisos
+			SET id_rol ='$id_rol',
+			modulo_rolxpermiso = '$i',
+			estado_rolxpermiso = 1
+			WHERE id_rolxpermiso = '$cont'
 			";
 			$resultado = $this->ejecutar_query_simple();
+			$cont++;
+			}
+			else{
+				$this->query = "
+				UPDATE tb_rolesxpermisos
+				SET id_rol ='$id_rol',
+				modulo_rolxpermiso = '$i',
+				estado_rolxpermiso = 0
+				WHERE id_rolxpermiso = '$cont'
+				";
+				$resultado = $this->ejecutar_query_simple();
+				$cont++;
+			}
+			}
+			$cont=0;
 			return $resultado;
 		}
 		
 		public function borrar($id_rol='') {
 			$this->query = "
-			DELETE FROM tb_roles
+			DELETE FROM tb_rolesxpermisos
 			WHERE id_rol = '$id_rol'
 			";
 			$resultado = $this->ejecutar_query_simple();

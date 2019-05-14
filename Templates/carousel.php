@@ -7,11 +7,11 @@
 	
     <div class="carousel-inner">
      <div class="carousel-item active" align="center">
-      <img src="dist/img/Carousel/serral.png" class="d-block w-100" alt="No disponible" style="height: 160px">
+      <img src="Recursos/img/Carousel/serral.png" class="d-block w-100" alt="No disponible" style="height: 160px">
     </div>
 	  
      <div class="carousel-item" align="center">
-      <img src="dist/img/Carousel/cilfa.png" class="d-block w-100" alt="No disponible" style="height: 160px">
+      <img src="Recursos/img/Carousel/cilfa.png" class="d-block w-100" alt="No disponible" style="height: 160px">
      </div>
     </div>
 	

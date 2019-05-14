@@ -4,7 +4,7 @@ $datos = $_POST;
 switch ($_POST['accion']){
     case 'editar':
         $rolxpermiso = new Rolxpermiso();
-        $resultado = $rol->editar($datos);
+        $resultado = $rolxpermiso->editar($datos);
         $respuesta = array(
                 'respuesta' => $resultado
             );
@@ -41,17 +41,16 @@ switch ($_POST['accion']){
         break;
 
     case 'consultar':
-        $rol = new Rol();
-        $rol->consultar($datos['codigo']);
+        $rolxpermiso = new Rolxpermiso();
+        $rolxpermiso->consultar($datos['codigo']);
 
-        if($rol->getId_rol() == null) {
+        if($rolxpermiso->getId_rolxpermiso() == null) {
             $respuesta = array(
                 'respuesta' => 'no existe'
             );
         }  else {
             $respuesta = array(
-                'codigo' => $rol->getId_rol(),
-                'nombre' => $rol->getNombre_rol(),
+                'codigo' => $rolxpermiso->getId_rolxpermiso(),
                 'respuesta' =>'existe'
             );
         }
@@ -59,8 +58,8 @@ switch ($_POST['accion']){
         break;
 
     case 'listar':
-        $rol = new Rol();
-        $listado = $rol->lista();
+        $rolxpermiso = new Rolxpermiso();
+        $listado = $rolxpermiso->lista($data['codigo']);
         echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);    
         break;
 }

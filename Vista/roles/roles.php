@@ -1,5 +1,6 @@
 <?php //include_once ("../../Funciones/sessiones.php"); ?>
-<h1>
+     
+     <h1>
         Gestión de
         <small>  Roles</small>
       </h1>
@@ -8,7 +9,6 @@
         <li class="active">Roles</li>
       </ol>
     </section>
-
     <!-- Main content -->
     <section class="content">
       <div class="row">
@@ -32,6 +32,7 @@
                 <tr>
                   <th>Identificador</th>
                   <th>Descripción</th>
+                  <th>Acciones</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -41,6 +42,7 @@
                 <tr>
                   <th>Identificador</th>
                   <th>Descripción</th>
+                  <th>Acciones</th>
                 </tr>
                 </tfoot>
               </table>
