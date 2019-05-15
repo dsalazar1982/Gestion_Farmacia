@@ -26,7 +26,7 @@
                         <label class="control-label col-sm-2" for="id_pais">Codigo:</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="id_pais" name="id_pais" placeholder="Ingrese Codigo"
-                            value = ""  data-validation="length alphanumeric" data-validation-length="3-12">
+                              data-validation="length alphanumeric" data-validation-length="3-12" required/>
                         </div>
                     </div>
 
@@ -34,7 +34,7 @@
                         <label class="control-label col-sm-2" for="nombre_pais">Nombre:</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="nombre_pais" name="nombre_pais" placeholder="Ingrese Nombre de Pais"
-                            value = "">
+                            value = "" required>
                         </div>
                     </div>
 					
@@ -43,7 +43,7 @@
                     <label class="control-label col-sm-2" for="abreviatura_pais">Abreviatura:</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="abreviatura_pais" name="abreviatura_pais" placeholder="Ingrese Abreviatura del Pais"
-                            value = "">
+                            value = "" required>
                         </div>
                     </div>
 
