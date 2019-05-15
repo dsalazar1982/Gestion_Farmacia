@@ -1,7 +1,7 @@
 var dt;
 
 function pais() {
-    $("#contenido").on("click", "button#actualizar", function() {
+    $(".content-header").on("click", "button#actualizar", function() {
         var datos = $("#fpais").serialize();
         $.ajax({
             type: "get",
@@ -32,7 +32,7 @@ function pais() {
         });
     })
 
-    $("#contenido").on("click", "a.borrar", function() {
+    $(".content-header").on("click", "a.borrar", function() {
         //Recupera datos del formulario
         var codigo = $(this).data("codigo");
 
@@ -83,7 +83,7 @@ function pais() {
 
     });
 
-    $("#contenido").on("click", "button.btncerrar2", function() {
+    $(".content-header").on("click", "button.btncerrar2", function() {
         $("#titulo").html("Listado de Paises");
         $("#nuevo-editar").html("");
         $("#nuevo-editar").removeClass("show");
@@ -93,13 +93,13 @@ function pais() {
 
     })
 
-    $("#contenido").on("click", "button.btncerrar", function() {
+    $(".content-header").on("click", "button.btncerrar", function() {
         $("#contenedor").removeClass("show");
         $("#contenedor").addClass("hide");
-        $("#contenido").html('')
+        $(".content-header").html('')
     })
 
-    $("#contenido").on("click", "button#nuevo", function() {
+    $(".content-header").on("click", "button#nuevo", function() {
         $("#titulo").html("Nuevo Pais");
         $("#nuevo-editar").load("./Vista/Paises/nuevoPais.php");
         $("#nuevo-editar").removeClass("hide");
@@ -108,7 +108,7 @@ function pais() {
         $("#pais").addClass("hide");
     })
 
-    $("#contenido").on("click", "button#grabar", function() {
+    $(".content-header").on("click", "button#grabar", function() {
         var codigo = document.forms["fpais"]["id_pais"].value;
         $.ajax({
             type: "get",
@@ -156,7 +156,7 @@ function pais() {
         });
     });
 
-    $("#contenido").on("click", "a.editar", function() {
+    $(".content-header").on("click", "a.editar", function() {
         $("#titulo").html("Editar Pais");
         //Recupera datos del fromulario
         var codigo = $(this).data("codigo");
@@ -180,8 +180,8 @@ function pais() {
                 })
             } else {
                 $("#id_pais").val(pais.codigo);
-                $("#nombre_pais").val(pais.nombre_pais);
-                $("#abreviatura_pais").val(pais.abreviatura_pais);
+                $("#nombre_pais").val(pais.pais);
+                $("#abreviatura_pais").val(pais.abreviatura);
 
             }
         });
@@ -189,11 +189,11 @@ function pais() {
 
 }
 $(document).ready(() => {
-    $("#contenido").off("click", "a.editar");
-    $("#contenido").off("click", "button#actualizar");
-    $("#contenido").off("click", "a.borrar");
-    $("#contenido").off("click", "button#nuevo");
-    $("#contenido").off("click", "button#grabar");
+    $(".content-header").off("click", "a.editar");
+    $(".content-header").off("click", "button#actualizar");
+    $(".content-header").off("click", "a.borrar");
+    $(".content-header").off("click", "button#nuevo");
+    $(".content-header").off("click", "button#grabar");
     $("#titulo").html("Listado de Pais");
     dt = $("#tabla").DataTable({
         "ajax": "./Controlador/controladorPais.php?accion=listar",

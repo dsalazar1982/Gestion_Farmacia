@@ -52,6 +52,7 @@ switch ($_GET['accion']){
             $respuesta = array(
                 'codigo' => $pais->getId_pais(),
                 'pais' => $pais->getNombre_pais(),
+                'Abreviatura' => $pais->getAbreviatura_pais(),
                 'respuesta' =>'existe'
             );
         }
