@@ -1,7 +1,7 @@
 # proyectofarmacia
 Aplicacion que permite la gestion de farmacias a nivel mundial, permite la creacion de paises, ciudades, farmacias, propietarios, productos, facturacion, gestion de nomina, entre otros procesos relacionados con la gestion de farmacias.
 
-`(Repositorio para elaborar el proyecto final de la materia Progrmacion IV, del [FCECEP](https://www.cecep.edu.co/),este es desarrollado en PHP con integracion de Boostrap, js, Ajax.)`
+`Repositorio para elaborar el proyecto final de la materia Progrmacion IV, del` [FCECEP](https://www.cecep.edu.co/)`, este es desarrollado en PHP con integracion de Boostrap, js, Ajax.`
 
 ## Modulos del proyecto
 
