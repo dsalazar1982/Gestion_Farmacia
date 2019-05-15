@@ -31,7 +31,7 @@
 		<li><a href="./Vista/Paises/pais.php"><i class="fa fa-globe"></i> <span>Paises</span></a></li>
 		<li><a href="#"><i class="fa  fa-plus-square"></i> <span>Productos</span></a></li>
 		<li><a href="#"><i class="fa fa-black-tie"></i> <span>Propietarios</span></a></li>
-		<li><a href="#"><i class="fa fa-flask"></i> <span>Proveedores</span></a></li>
+		<li><a href="./Vista/Proveedores/proveedor.php"><i class="fa fa-flask"></i> <span>Proveedores</span></a></li>
 		<li><a href="#"><i class="fa fa-user-plus"></i> <span>Usuarios</span></a></li>
 		<li><a href="./Vista/roles/roles.php"><i class="fa fa-users"></i> <span>Roles</span></a></li>
 	    <li><a href="#"><i class="fa fa-map-o"></i> <span>Carosuel</span></a></li>
