@@ -84,7 +84,7 @@ function proveedores() {
     });
 
     $(".content-header").on("click", "button.btncerrar2", function() {
-        $("#titulo").html("Listado de proveedoreses");
+        $("#titulo").html("Listado de proveedores");
         $("#nuevo-editar").html("");
         $("#nuevo-editar").removeClass("show");
         $("#nuevo-editar").addClass("hide");
@@ -101,7 +101,7 @@ function proveedores() {
 
     $(".content-header").on("click", "button#nuevo", function() {
         $("#titulo").html("Nuevo proveedor");
-        $("#nuevo-editar").load("./Vista/Proveedoreses/nuevoProveedor.php");
+        $("#nuevo-editar").load("./Vista/proveedores/nuevoProveedor.php");
         $("#nuevo-editar").removeClass("hide");
         $("#nuevo-editar").addClass("show");
         $("#proveedores").removeClass("show");
@@ -132,7 +132,7 @@ function proveedores() {
                             'success'
                         )
                         dt.ajax.reload();
-                        $("#titulo").html("Listado proveedoreses");
+                        $("#titulo").html("Listado proveedores");
                         $("#nuevo-editar").html("");
                         $("#nuevo-editar").removeClass("show");
                         $("#nuevo-editar").addClass("hide");
@@ -161,7 +161,7 @@ function proveedores() {
         //Recupera datos del fromulario
         var codigo = $(this).data("codigo");
 
-        $("#nuevo-editar").load("./Vista/Proveedoreses/editarProveedor.php");
+        $("#nuevo-editar").load("./Vista/proveedores/editarProveedor.php");
         $("#nuevo-editar").removeClass("hide");
         $("#nuevo-editar").addClass("show");
         $("#proveedores").removeClass("show");
@@ -179,12 +179,12 @@ function proveedores() {
                     text: 'proveedor no existe!'
                 })
             } else {
-                $("#id_proveedor").val(proveedores.codigo);
+                $("#codigo").val(proveedores.codigo);
                 $("#nombre_proveedor").val(proveedores.proveedor);
                 $("#direccion_proveedor").val(proveedores.direccion);
                 $("#telefono_proveedor").val(proveedores.telefono);
-                $("#id_ciudad").val(proveedores.ciudad);
-                $("#id_pais").val(proveedores.pais);
+                $("#nombre_ciudad").val(proveedores.ciudad);
+                $("#nombre_pais").val(proveedores.pais);
             }
         });
     })
@@ -204,8 +204,8 @@ $(document).ready(() => {
             { "data": "nombre_proveedor" },
             { "data": "direccion_proveedor" },
             { "data": "telefono_proveedor" },
-            { "data": "id_pais" },
-            { "data": "id_ciudad" },
+            { "data": "nombre_ciudad" },
+            { "data": "nombre_pais" },
             {
                 "data": "id_proveedor",
                 render: function(data) {

@@ -50,12 +50,12 @@ switch ($_GET['accion']){
             );
         }  else {
             $respuesta = array(
-                'codigo' => $pais->getId_proveedor(),
-                'nombre' => $pais->getNombre_proveedor(),
-                'direccion' => $pais->getDireccion_proveedor(),
-                'telefono' => $pais->getTelefono_proveedor(),
-                'ciudad' => $pais->getId_ciudad(),
-                'pais' => $pais->getId_pais(),
+                'codigo' => $proveedor->getId_proveedor(),
+                'nombre' => $proveedor->getNombre_proveedor(),
+                'direccion' => $proveedor->getDireccion_proveedor(),
+                'telefono' => $proveedor->getTelefono_proveedor(),
+                'ciudad' => $proveedor->getId_ciudad(),
+                'pais' => $proveedor->getId_pais(),
                 'respuesta' =>'existe'
             );
         }

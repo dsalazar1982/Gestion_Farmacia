@@ -27,13 +27,15 @@
 			return $this->telefono_proveedor;
 		}
 
+		public function getId_ciudad(){
+			return $this->id_ciudad;
+		}
+		
 		public function getId_pais(){
 			return $this->id_pais;
 		}
 
-		public function getId_ciudad(){
-			return $this->id_ciudad;
-		}
+		
 
 
 		
@@ -68,8 +70,11 @@
 		}
 		public function listaPais() {
 			$this->query = "
-			SELECT id_pais, nombre_pais, abreviatura_pais
-			FROM tb_paises as d order by nombre_pais
+			SELECT id_proveedor, nombre_proveedor, direccion_proveedor, telefono_proveedor, nombre_pais, nombre_ciudad
+			FROM tb_proveedores
+			INNER JOIN tb_paises ON tb_proveedores.id_pais=tb_paises.id_pais
+			INNER JOIN tb_ciudades ON tb_proveedores.id_ciudad=tb_ciudades.id_ciudad
+			order by nombre_proveedor
 			";
 			$this->obtener_resultados_query();
 			return $this->rows;
