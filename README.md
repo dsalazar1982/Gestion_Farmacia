@@ -29,4 +29,4 @@ Aplicacion que permite la gestion de farmacias a nivel mundial, permite la creac
 ``` 
  
 ## Herramientas
-Para el uso de la aplicacion debe crear en su sistema de base de datos local, la DB denominada "db_proyectofarmacia", esta puede ser creada por medio del Query **db_proyectofarmaciaAñoMesDia.sql** ubicaso en la carpeta BaseDatos de este poryecto.
+Para el uso de la aplicacion debe crear en su sistema de base de datos local, la DB denominada "db_proyectofarmacia", esta puede ser creada por medio del Query `**db_proyectofarmaciaAñoMesDia.sql**` ubicado en la carpeta BaseDatos de este poryecto.
