@@ -33,5 +33,5 @@
 	</table>
 
 </div><!-- /.box-body -->  
-<script src="../../Recursos/js/funcionesPais.js"></script>
+<script src="./Recursos/js/funcionesPais.js"></script>
 </div>

@@ -28,7 +28,7 @@
 		<li><a href="#"><i class="fa fa-table"></i> <span>Inventario</span></a></li>
 	   <li><a href="#"><i class="fa fa-hourglass-2"></i> <span>Ofertas</span></a></li>
 		<li><a href="#"><i class="fa fa-usd"></i> <span>Nomina</span></a></li>
-		<li><a href="#"><i class="fa fa-globe"></i> <span>Paises</span></a></li>
+		<li><a href="./Vista/Paises/pais.php"><i class="fa fa-globe"></i> <span>Paises</span></a></li>
 		<li><a href="#"><i class="fa  fa-plus-square"></i> <span>Productos</span></a></li>
 		<li><a href="#"><i class="fa fa-black-tie"></i> <span>Propietarios</span></a></li>
 		<li><a href="#"><i class="fa fa-flask"></i> <span>Proveedores</span></a></li>

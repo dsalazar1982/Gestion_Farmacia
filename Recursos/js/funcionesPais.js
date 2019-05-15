@@ -5,7 +5,7 @@ function pais() {
         var datos = $("#fpais").serialize();
         $.ajax({
             type: "get",
-            url: "../../Controlador/controladorPais.php",
+            url: "./Controlador/controladorPais.php",
             data: datos,
             dataType: "json"
         }).done(function(resultado) {
@@ -49,7 +49,7 @@ function pais() {
 
                 var request = $.ajax({
                     method: "get",
-                    url: "./php/pais/controladorPais.php",
+                    url: "./Controlador/controladorPais.php",
                     data: { codigo: codigo, accion: 'borrar' },
                     dataType: "json"
                 })
@@ -101,7 +101,7 @@ function pais() {
 
     $("#contenido").on("click", "button#nuevo", function() {
         $("#titulo").html("Nuevo Pais");
-        $("#nuevo-editar").load("./php/pais/nuevoPais.php");
+        $("#nuevo-editar").load("./Vista/Paises/nuevoPais.php");
         $("#nuevo-editar").removeClass("hide");
         $("#nuevo-editar").addClass("show");
         $("#pais").removeClass("show");
@@ -109,10 +109,10 @@ function pais() {
     })
 
     $("#contenido").on("click", "button#grabar", function() {
-        var codigo = document.forms["fpais"]["pais_codi"].value;
+        var codigo = document.forms["fpais"]["id_pais"].value;
         $.ajax({
             type: "get",
-            url: "./php/pais/controladorPais.php",
+            url: "./Controlador/controladorPais.php",
             data: { codigo: codigo, accion: 'consultar' },
             dataType: "json"
         }).done(function(pais) {
@@ -121,7 +121,7 @@ function pais() {
 
                 $.ajax({
                     type: "get",
-                    url: "./php/pais/controladorPais.php",
+                    url: "./Controlador/controladorPais.php",
                     data: datos,
                     dataType: "json"
                 }).done(function(resultado) {
@@ -161,14 +161,14 @@ function pais() {
         //Recupera datos del fromulario
         var codigo = $(this).data("codigo");
 
-        $("#nuevo-editar").load("./php/pais/editarPais.php");
+        $("#nuevo-editar").load("./Vista/Paises/editarPais.php");
         $("#nuevo-editar").removeClass("hide");
         $("#nuevo-editar").addClass("show");
         $("#pais").removeClass("show");
         $("#pais").addClass("hide");
         $.ajax({
             type: "get",
-            url: "./php/pais/controladorPais.php",
+            url: "./Controlador/controladorPais.php",
             data: { codigo: codigo, accion: 'consultar' },
             dataType: "json"
         }).done(function(pais) {
@@ -179,9 +179,9 @@ function pais() {
                     text: 'Pais no existe!'
                 })
             } else {
-                $("#pais_codi").val(pais.codigo);
-                $("#pais_nomb").val(pais.pais);
-                $("#pais_capi").val(pais.pais_capi);
+                $("#id_pais").val(pais.codigo);
+                $("#nombre_pais").val(pais.nombre_pais);
+                $("#abreviatura_pais").val(pais.abreviatura_pais);
 
             }
         });
@@ -196,20 +196,20 @@ $(document).ready(() => {
     $("#contenido").off("click", "button#grabar");
     $("#titulo").html("Listado de Pais");
     dt = $("#tabla").DataTable({
-        "ajax": "php/pais/controladorPais.php?accion=listar",
+        "ajax": "./Controlador/controladorPais.php?accion=listar",
         "columns": [
-            { "data": "pais_codi" },
-            { "data": "pais_nomb" },
-            { "data": "pais_capi" },
+            { "data": "id_pais" },
+            { "data": "nombre_pais" },
+            { "data": "abreviatura_pais" },
             {
-                "data": "pais_codi",
+                "data": "id_pais",
                 render: function(data) {
                     return '<a href="#" data-codigo="' + data +
                         '" class="btn btn-danger btn-sm borrar"> <i class="fa fa-trash"></i></a>'
                 }
             },
             {
-                "data": "pais_codi",
+                "data": "id_pais",
                 render: function(data) {
                     return '<a href="#" data-codigo="' + data +
                         '" class="btn btn-info btn-sm editar"> <i class="fa fa-edit"></i></a>';
