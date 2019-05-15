@@ -82,11 +82,15 @@
 			return $resultado;
 		}
 
-		public function identificarMayor(){
+		public function identificarM(){
+
 			$this->query = "
-			SELECT MAX(id_rol) 
-			FROM tb_roles";
+			SELECT MAX(id_rol) id_rol
+			FROM tb_roles
+			";
+
 			$this->obtener_resultados_query();
+
 			if(count($this->rows) == 1):
 				foreach ($this->rows[0] as $propiedad=>$valor):
 					$this->$propiedad = $valor;

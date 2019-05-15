@@ -12,7 +12,7 @@ switch ($_GET['accion']){
         break;
     case 'nuevo':
         $rolxpermiso = new Rolxpermiso();
-        $resultado = $rol->nuevo($datos);
+        $resultado = $rolxpermiso->nuevo($datos['codigo']);
         if($resultado > 0) {
             $respuesta = array(
                 'respuesta' => $resultado
@@ -26,8 +26,8 @@ switch ($_GET['accion']){
         break;
        
     case 'borrar':
-		$rol = new Rol();
-		$resultado = $rol->borrar($datos['codigo']);
+		$rolxpermiso = new Rolxpermiso();
+		$resultado = $rolxpermiso->borrar($datos['codigo']);
         if($resultado > 0) {
             $respuesta = array(
                 'respuesta' => 'correcto'

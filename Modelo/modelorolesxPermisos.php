@@ -55,25 +55,21 @@
 			return $this->rows;
 	   }	
 		}
-		public function nuevo($datos=array()) {
-			if(array_key_exists('id_rol', $datos)):
-				foreach ($datos as $campo=>$valor):
-					$$campo = $valor;
-				endforeach;
+		public function nuevo($id_rol=''){
+
 				$this->query = "
 					INSERT INTO tb_rolesxpermisos
 					(id_rolxpermiso, id_rol, modulo_rolxpermiso, estado_rolxpermiso)
 					VALUES
-                    (NULL,'$id_rol','ciudades',0),(NULL,'$id_rol','clientes',0),(NULL,'$id_rol','facturas',0),
-                    (NULL,'$id_rol','ventas',0),(NULL,'$id_rol','farmacias',0),(NULL,'$id_rol','inventario',0),
-                    (NULL,'$id_rol','ofertas',0),(NULL,'$id_rol','nomina',0),(NULL,'$id_rol','paises',0),
-                    (NULL,'$id_rol','productos',0),(NULL,'$id_rol','propietarios',0),(NULL,'$id_rol','proveedores',0),
-                    (NULL,'$id_rol','usuarios',0),(NULL,'$id_rol','roles',0),(NULL,'$id_rol','carousel',0),
-                    (NULL,'$id_rol','logs',0) 
+                    (NULL,'$id_rol',1,0),(NULL,'$id_rol',2,0),(NULL,'$id_rol',3,0),
+                    (NULL,'$id_rol',4,0),(NULL,'$id_rol',5,0),(NULL,'$id_rol',6,0),
+                    (NULL,'$id_rol',7,0),(NULL,'$id_rol',8,0),(NULL,'$id_rol',9,0),
+                    (NULL,'$id_rol',10,0),(NULL,'$id_rol',11,0),(NULL,'$id_rol',12,0),
+                    (NULL,'$id_rol',13,0),(NULL,'$id_rol',14,0),(NULL,'$id_rol',15,0),
+                    (NULL,'$id_rol',16,0) 
 					";
 					$resultado = $this->ejecutar_query_simple();
 					return $resultado;
-			endif;
 			
 		}
 		public function editar($datos=array()) {

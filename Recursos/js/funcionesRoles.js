@@ -50,14 +50,15 @@ function roles(){
             $.ajax({
             type:"get",
             url:"./Controlador/controladorRoles.php",
-            data: {accion:'identificarMayor'},
+            data: {accion:'identificarM'},
             dataType:"json"
             }).done(function(resultado){
+            var id_rol = resultado.id_rol;                 
             if(resultado.respuesta){
                 $.ajax({
                     type:"get",
                     url:"./Controlador/controladorrolesxPermisos.php",
-                    data: {codigo:resultado.id_rol, accion:'nuevo'},
+                    data: {codigo: id_rol, accion:'nuevo'},
                     dataType:"json"  
                 }).done(function(resultado){
                     if(resultado.respuesta){
@@ -68,10 +69,13 @@ function roles(){
                             dataType:"json"  
                         }).done(function(id_rolxpermiso){
                          if(id_rolxpermiso.respuesta == 'existe'){
+                            var datosrolyPerfi = new Array();
+                                datosrolyPerfi['id_rol'] = id_rol;
+                                datosrolyPerfi['id_rolxpermiso'] = id_rolxpermiso.codigo;
                             $.ajax({
                                 type:"get",
                                 url:"./Controlador/controladorrolesxPermisos.php",
-                                data: {codigo: id_rolxpermiso.codigo, accion:'editar'},
+                                data: {codigo: datosrolyPerfi, accion:'editar'},
                                 dataType:"json"
                             }).done(function (resultado){
                              if(resultado.respuesta){

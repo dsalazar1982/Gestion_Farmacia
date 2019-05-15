@@ -65,9 +65,9 @@ switch ($_GET['accion']){
         echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);    
         break;
     
-    case 'identificarMayor':
+    case 'identificarM':
         $rol = new Rol();
-        $rol->identificarMayor();
+        $rol->identificarM();
         if($rol -> getId_rol()==null){
             $respuesta = array(
                 'respuesta' => 'no existe'
@@ -75,9 +75,11 @@ switch ($_GET['accion']){
         }
         else{
             $respuesta = array(
-                'codigo' => $rol->getId_rol(),
+                'id_rol' => $rol->getId_rol(),
                 'respuesta' =>'existe'   
+            );   
         }
-    break;
+        echo json_encode($respuesta);
+        break;
 }
 ?>
