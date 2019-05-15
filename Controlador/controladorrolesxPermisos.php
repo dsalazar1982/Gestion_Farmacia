@@ -4,7 +4,7 @@ $datos = $_GET;
 switch ($_GET['accion']){
     case 'editar':
         $rolxpermiso = new Rolxpermiso();
-        $resultado = $rolxpermiso->editar($datos);
+        $resultado = $rolxpermiso->editar($datos['codigo'],$datos['codigoP'],$datos['codigoM'],$datos['codigoE']);
         $respuesta = array(
                 'respuesta' => $resultado
             );

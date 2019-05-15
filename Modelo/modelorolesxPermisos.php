@@ -2,6 +2,7 @@
     require_once("modeloAbstractoDB.php");
 	
     class Rolxpermiso extends ModeloAbstractoDB {
+
 		private $id_rolxpermiso;
         private $id_rol;
         private $modulo_rolxpermiso;
@@ -72,37 +73,19 @@
 					return $resultado;
 			
 		}
-		public function editar($datos=array()) {
-			foreach ($datos as $campo=>$valor):
-				$$campo = $valor;
-			endforeach;
-			$cont = $id_rolxpermiso;
-			for($i=1;$i<=16;$i++){
-			if(isset ($_POST[''.$i.''])){	
+		public function editar($id_rol='',$id_rolxpermiso='',$modulo_rolxpermiso='',$estado_rolxpermiso='') {
+
 			$this->query = "
 			UPDATE tb_rolesxpermisos
 			SET id_rol ='$id_rol',
-			modulo_rolxpermiso = '$i',
-			estado_rolxpermiso = 1
-			WHERE id_rolxpermiso = '$cont'
+			modulo_rolxpermiso = '$modulo_rolxpermiso',
+			estado_rolxpermiso = '$estado_rolxpermiso'
+			WHERE id_rolxpermiso = '$id_rolxpermiso'
 			";
 			$resultado = $this->ejecutar_query_simple();
-			$cont++;
-			}
-			else{
-				$this->query = "
-				UPDATE tb_rolesxpermisos
-				SET id_rol ='$id_rol',
-				modulo_rolxpermiso = '$i',
-				estado_rolxpermiso = 0
-				WHERE id_rolxpermiso = '$cont'
-				";
-				$resultado = $this->ejecutar_query_simple();
-				$cont++;
-			}
-			}
 			$cont=0;
 			return $resultado;
+	
 		}
 		
 		public function borrar($id_rol='') {

@@ -69,16 +69,28 @@ function roles(){
                             dataType:"json"  
                         }).done(function(id_rolxpermiso){
                          if(id_rolxpermiso.respuesta == 'existe'){
-                            var datosrolyPerfi = new Array();
-                                datosrolyPerfi['id_rol'] = id_rol;
-                                datosrolyPerfi['id_rolxpermiso'] = id_rolxpermiso.codigo;
-                            $.ajax({
-                                type:"get",
-                                url:"./Controlador/controladorrolesxPermisos.php",
-                                data: {codigo: datosrolyPerfi, accion:'editar'},
-                                dataType:"json"
-                            }).done(function (resultado){
-                             if(resultado.respuesta){
+                         var id_rolxpermiso = id_rolxpermiso.codigo;    
+                            for(var i=1; i <=16; i++){
+                             if($("#"+i+"R").prop('checked')){
+                                $.ajax({
+                                    type:"get",
+                                    url:"./Controlador/controladorrolesxPermisos.php",
+                                    data: {codigo: id_rol, codigoP: id_rolxpermiso, codigoM: i , codigoE: '1', accion:'editar'},
+                                    dataType:"json"
+                                }); 
+                                id_rolxpermiso++;
+                             }
+                             else{
+                                $.ajax({
+                                    type:"get",
+                                    url:"./Controlador/controladorrolesxPermisos.php",
+                                    data: {codigo: id_rol, codigoP: id_rolxpermiso, codigoM: i , codigoE: '0', accion:'editar'},
+                                    dataType:"json"
+                                });
+                                id_rolxpermiso++;
+                             }     
+                            }
+                            if(resultado.respuesta){
                                 swal({
                                     position: 'center',
                                     type: 'success',
@@ -96,7 +108,6 @@ function roles(){
                                     dt.page( 'last' ).draw( 'page' );
                                     dt.ajax.reload(null, false);  
                              }
-                            });
                          }
                         });  
                         } 
