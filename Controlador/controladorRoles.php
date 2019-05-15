@@ -64,5 +64,20 @@ switch ($_GET['accion']){
         $listado = $rol->listar();
         echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);    
         break;
+    
+    case 'identificarMayor':
+        $rol = new Rol();
+        $rol->identificarMayor();
+        if($rol -> getId_rol()==null){
+            $respuesta = array(
+                'respuesta' => 'no existe'
+            );
+        }
+        else{
+            $respuesta = array(
+                'codigo' => $rol->getId_rol(),
+                'respuesta' =>'existe'   
+        }
+    break;
 }
 ?>

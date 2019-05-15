@@ -1,7 +1,7 @@
 <?php
 require_once '../Modelo/modelorolesxPermisos.php';
-$datos = $_POST;
-switch ($_POST['accion']){
+$datos = $_GET;
+switch ($_GET['accion']){
     case 'editar':
         $rolxpermiso = new Rolxpermiso();
         $resultado = $rolxpermiso->editar($datos);
