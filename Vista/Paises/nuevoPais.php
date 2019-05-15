@@ -49,7 +49,7 @@
 
 					 <div class="form-group">        
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="button" id="grabar" class="btn btn-primary" data-toggle="tooltip" title="Grabar Pais">Grabar Capital</button>
+                            <button type="button" id="grabar" class="btn btn-primary" data-toggle="tooltip" title="Grabar Pais">Grabar Pais</button>
                             <button type="button" id="cerrar" class="btn btn-success btncerrar2" data-toggle="tooltip" title="Cancelar">Cancelar</button>
                         </div>
                     </div>
