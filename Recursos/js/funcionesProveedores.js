@@ -180,7 +180,7 @@ function proveedores() {
                 })
             } else {
                 $("#codigo").val(proveedores.codigo);
-                $("#nombre_proveedor").val(proveedores.proveedor);
+                $("#nombre_proveedor").val(proveedores.nombre);
                 $("#direccion_proveedor").val(proveedores.direccion);
                 $("#telefono_proveedor").val(proveedores.telefono);
                 $("#nombre_ciudad").val(proveedores.ciudad);

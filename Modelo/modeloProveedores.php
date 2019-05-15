@@ -111,10 +111,10 @@
 			return $resultado;
 		}
 		
-		public function borrar($id_pais='') {
+		public function borrar($id_proveedor='') {
 			$this->query = "
-			DELETE FROM tb_paises
-			WHERE id_pais = '$id_pais'
+			DELETE FROM tb_proveedores
+WHERE id_proveedor = '$id_proveedor'
 			";
 			$resultado = $this->ejecutar_query_simple();
 
