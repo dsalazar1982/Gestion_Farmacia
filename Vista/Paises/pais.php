@@ -21,7 +21,7 @@
 			<tr>
 				<th class="text-center">Codigo</th>
 				<th class="text-center">Nombre</th>
-				<th class="text-center">Codigo Capital</th>
+				<th class="text-center">Abreviatura</th>
 				<th>&nbsp;</th>
 				<th>&nbsp;</th>
 			</tr>
@@ -33,5 +33,5 @@
 	</table>
 
 </div><!-- /.box-body -->  
-<script src="js/funcionesPais.js"></script>
+<script src="../../Recursos/js/funcionesPais.js"></script>
 </div>

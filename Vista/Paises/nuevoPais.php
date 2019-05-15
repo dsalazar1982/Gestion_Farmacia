@@ -23,26 +23,26 @@
 
 
  					<div class="form-group">
-                        <label class="control-label col-sm-2" for="pais_codi">Codigo:</label>
+                        <label class="control-label col-sm-2" for="id_pais">Codigo:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="pais_codi" name="pais_codi" placeholder="Ingrese Codigo"
+                            <input type="text" class="form-control" id="id_pais" name="id_pais" placeholder="Ingrese Codigo"
                             value = ""  data-validation="length alphanumeric" data-validation-length="3-12">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="pais_nomb">Nombre:</label>
+                        <label class="control-label col-sm-2" for="nombre_pais">Nombre:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="pais_nomb" name="pais_nomb" placeholder="Ingrese Nombre de Pais"
+                            <input type="text" class="form-control" id="nombre_pais" name="nombre_pais" placeholder="Ingrese Nombre de Pais"
                             value = "">
                         </div>
                     </div>
 					
 					
                     <div class="form-group">
-                    <label class="control-label col-sm-2" for="pais_capi">Capital:</label>
+                    <label class="control-label col-sm-2" for="abreviatura_pais">Abreviatura:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="pais_capi" name="pais_capi" placeholder="Ingrese Nombre de la capital"
+                            <input type="text" class="form-control" id="abreviatura_pais" name="abreviatura_pais" placeholder="Ingrese Abreviatura del Pais"
                             value = "">
                         </div>
                     </div>
