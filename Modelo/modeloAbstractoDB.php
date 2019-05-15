@@ -8,7 +8,7 @@
 		protected $rows = array();
 		private $conexion;
 		
-		# m�todos abstractos para Gesti�n de clases que hereden
+		# metodos abstractos para Gestion de clases que hereden
 		abstract protected function consultar();
 		abstract protected function nuevo();
 		abstract protected function editar();
@@ -16,7 +16,7 @@
 		abstract protected function listar();
 		
 		
-		# los siguientes m�todos pueden definirse con exactitud y no son abstractos
+		# los siguientes metodos pueden definirse con exactitud y no son abstractos
 		# Conectar a la base de datos
 		private function abrir_conexion() {
 			$this->conexion = 
