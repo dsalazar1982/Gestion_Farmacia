@@ -5,10 +5,10 @@ function roles(){
             "columns": [
                 { "data": "id_rol"} ,
                 { "data": "nombre_rol" },
-              { "data": "id_rol",
+                { "data": "id_rol",
                   render: function (data) {
                             return '<a href="#" data-codigo="'+ data + 
-                                   '" class="btn btn-danger btn-sm borrar"> <i class="fa fa-trash"></i></a>'
+                                   '" class="btn btn-danger btn-sm borrar"> <i class="fa fa-trash"></i></a> '
                             +      '<a href="#" data-codigo="'+ data + 
                                    '" class="btn btn-info btn-sm editar"> <i class="fa fa-edit"></i></a>'
                   }
@@ -56,33 +56,41 @@ function roles(){
             dataType:"json"  
         }).done(function(resultado){
             if(resultado.respuesta){
-            $.ajax({
-                type:"post",
-                url:"./Controlador/controladorrolesxPermisos.php",
-                data: {codigo: id_rol, accion:'editar'},
-                dataType:"json"
-            }).done(function (resultado){
-             if(resultado.respuesta){
-                swal({
-                    position: 'center',
-                    type: 'success',
-                    title: 'El rol fue grabado con éxito',
-                    showConfirmButton: false,
-                    timer: 1200
-                })     
-                    $(".box-title").html("Listado de Roles");
-                    $(".box #nuevo").show();
-                    $("#editar").html('');
-                    $("#editar").addClass('hide');
-                    $("#editar").removeClass('show');
-                    $("#listado").addClass('show');
-                    $("#listado").removeClass('hide');
-                    dt.page( 'last' ).draw( 'page' );
-                    dt.ajax.reload(null, false);  
-             }
-            });
-        
-            }
+                $.ajax({
+                    type:"post",
+                    url:"./Controlador/controladorrolesxPermisos.php",
+                    data: {codigo: id_rol, accion:'consultar'},
+                    dataType:"json"  
+                }).done(function(id_rolxpermiso){
+                 if(id_rolxpermiso.respuesta == 'existe'){
+                    $.ajax({
+                        type:"post",
+                        url:"./Controlador/controladorrolesxPermisos.php",
+                        data: {codigo: id_rolxpermiso.codigo, accion:'editar'},
+                        dataType:"json"
+                    }).done(function (resultado){
+                     if(resultado.respuesta){
+                        swal({
+                            position: 'center',
+                            type: 'success',
+                            title: 'El rol fue grabado con éxito',
+                            showConfirmButton: false,
+                            timer: 1200
+                        })     
+                            $(".box-title").html("Listado de Roles");
+                            $(".box #nuevo").show();
+                            $("#editar").html('');
+                            $("#editar").addClass('hide');
+                            $("#editar").removeClass('show');
+                            $("#listado").addClass('show');
+                            $("#listado").removeClass('hide');
+                            dt.page( 'last' ).draw( 'page' );
+                            dt.ajax.reload(null, false);  
+                     }
+                    });
+                 }
+                });  
+                } 
         });       
                          
            } else {
@@ -109,29 +117,37 @@ function roles(){
         }).done(function( resultado ) {
             if(resultado.respuesta){  
             var id_rol = document.forms["frol"]["id_rol"].value;  
-            $.ajax({
-                type:"post",
-                url:"./Controlador/controladorrolesxPermisos.php",
-                data: {codigo: id_rol, accion:'editar'},
-                dataType:"json"
-            }).done(function (resultado){
-             if(resultado.respuesta){
-                swal({
-                    position: 'center',
-                    type: 'success',
-                    title: 'Se actualizaron los datos correctamente',
-                    showConfirmButton: false,
-                    timer: 1500
-                }) 
-                $(".box-title").html("Listado de Roles");
-                $("#editar").html('');
-                $("#editar").addClass('hide');
-                $("#editar").removeClass('show');
-                $("#listado").addClass('show');
-                $("#listado").removeClass('hide');
-                dt.ajax.reload(null, false);   
-             }
-             });  
+           $.ajax({
+            url:"./Controlador/controladorrolesxPermisos.php",
+            data: {codigo: id_rol, accion:'consultar'},
+            dataType:"json"    
+           }).done(function(id_rolxpermiso){
+            if(id_rolxpermiso.respuesta == 'existe'){
+                $.ajax({
+                    type:"post",
+                    url:"./Controlador/controladorrolesxPermisos.php",
+                    data: {codigo: id_rolxpermiso.codigo, accion:'editar'},
+                    dataType:"json"
+                }).done(function (resultado){
+                 if(resultado.respuesta){
+                    swal({
+                        position: 'center',
+                        type: 'success',
+                        title: 'Se actualizaron los datos correctamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }) 
+                    $(".box-title").html("Listado de Roles");
+                    $("#editar").html('');
+                    $("#editar").addClass('hide');
+                    $("#editar").removeClass('show');
+                    $("#listado").addClass('show');
+                    $("#listado").removeClass('hide');
+                    dt.ajax.reload(null, false);   
+                 }
+                 });     
+            }
+         }); 
            } else {
               swal({
                 type: 'error',
@@ -233,21 +249,24 @@ function roles(){
                       $("#nombre_rol").val(rol.nombre);
                   }
           });
-          $.ajax({
-              type:"post",
-              url:"./Controlador/controladorrolesxPermisos.php",
-              data: {codigo: codigo, accion:'consultar'},
-              dataType:"json"
-          }).done(function( rolesxpermisos ) {
-             for(i=1;i<=16;i++) {                 
-             if(rolesxpermisos.i == 1){
-              $("#"+i+"").prop('checked',true);
-             } 
-             else { 
-              $("#"+i+"").prop('checked',false); 
-             }
-            }
-          });
+                $.ajax({
+                    type:"post",
+                    url:"./Controlador/controladorrolesxPermisos.php",
+                    data: {codigo: codigo, accion:'listar'},
+                    dataType:"json"
+                }).done(function( resultado ) {
+                    var i = 1;
+                    $.each(resultado.data, function (index, value) {       
+                            if(value.estado_rolxpermiso == 1){
+                             $("#"+i+"").prop('checked',true);
+                            } 
+                            else { 
+                             $("#"+i+"").prop('checked',false);
+                        i++;      
+                        }
+                    i=0;
+                    });
+                });
       });
   })
 }

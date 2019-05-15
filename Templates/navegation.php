@@ -14,8 +14,12 @@
     </div>
 
    <ul class="sidebar-menu" data-widget="tree">
-    <li class="header">Menu</li>
-  
+    <li class="treeview">
+          <a href="#">
+            <i class="fa fa-cogs"></i>
+            <span>Menu</span>
+    </a>
+    <ul class="treeview-menu">
         <li class="active"><a href="#"><i class="fa fa-globe"></i> <span>Ciudades</span></a></li>
         <li><a href="#"><i class="fa fa-user"></i> <span>Clientes</span></a></li>
         <li><a href="#"><i class="fa fa-calculator"></i> <span>Facturas</span></a></li>
@@ -29,9 +33,11 @@
 		<li><a href="#"><i class="fa fa-black-tie"></i> <span>Propietarios</span></a></li>
 		<li><a href="#"><i class="fa fa-flask"></i> <span>Proveedores</span></a></li>
 		<li><a href="#"><i class="fa fa-user-plus"></i> <span>Usuarios</span></a></li>
-		<li><a href="#"><i class="fa fa-users"></i> <span>Roles</span></a></li>
+		<li><a href="./Vista/roles/roles.php"><i class="fa fa-users"></i> <span>Roles</span></a></li>
 	    <li><a href="#"><i class="fa fa-map-o"></i> <span>Carosuel</span></a></li>
 	    <li><a href="#"><i class="fa fa-safari"></i> <span>Logs</span></a></li>
-      </ul>    
+    </ul>  
+    </li>
+    
   </section>
  </aside>
