@@ -11,76 +11,74 @@ function proveedores() {
         }).done(function(resultado) {
             if (resultado.respuesta) {
                 swal(
-                    'Actualizado!',
-                    'Se actualizaron los datos correctamente',
-                    'success'
-                )
+                    "Actualizado!",
+                    "Se actualizaron los datos correctamente",
+                    "success"
+                );
                 dt.ajax.reload();
                 $("#titulo").html("Listado proveedores");
                 $("#nuevo-editar").html("");
                 $("#nuevo-editar").removeClass("show");
                 $("#nuevo-editar").addClass("hide");
                 $("#proveedores").removeClass("hide");
-                $("#proveedores").addClass("show")
+                $("#proveedores").addClass("show");
             } else {
                 swal({
-                    type: 'error',
-                    title: 'Oops...',
-                    text: 'Something went wrong!'
-                })
+                    type: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!"
+                });
             }
         });
-    })
+    });
 
     $(".content-header").on("click", "a.borrar", function() {
         //Recupera datos del formulario
         var codigo = $(this).data("codigo");
 
         swal({
-            title: '¿Está seguro?',
+            title: "¿Está seguro?",
             text: "¿Realmente desea borrar el proveedor con codigo : " + codigo + " ?",
-            type: 'warning',
+            type: "warning",
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, Borrarlo!'
-        }).then((decision) => {
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, Borrarlo!"
+        }).then(decision => {
             if (decision.value) {
-
                 var request = $.ajax({
                     method: "get",
                     url: "./Controlador/controladorProveedores.php",
-                    data: { codigo: codigo, accion: 'borrar' },
+                    data: { codigo: codigo, accion: "borrar" },
                     dataType: "json"
-                })
+                });
 
                 request.done(function(resultado) {
-                    if (resultado.respuesta == 'correcto') {
+                    if (resultado.respuesta == "correcto") {
                         swal(
-                            'Borrado!',
-                            'El proveedor con codigo : ' + codigo + ' fue borrado',
-                            'success'
-                        )
+                            "Borrado!",
+                            "El proveedor con codigo : " + codigo + " fue borrado",
+                            "success"
+                        );
                         dt.ajax.reload();
                     } else {
                         swal({
-                            type: 'error',
-                            title: 'Oops...',
-                            text: 'Something went wrong!'
-                        })
+                            type: "error",
+                            title: "Oops...",
+                            text: "Something went wrong!"
+                        });
                     }
                 });
 
                 request.fail(function(jqXHR, textStatus) {
                     swal({
-                        type: 'error',
-                        title: 'Oops...',
-                        text: 'Something went wrong!' + textStatus
-                    })
+                        type: "error",
+                        title: "Oops...",
+                        text: "Something went wrong!" + textStatus
+                    });
                 });
             }
-        })
-
+        });
     });
 
     $(".content-header").on("click", "button.btncerrar2", function() {
@@ -90,14 +88,13 @@ function proveedores() {
         $("#nuevo-editar").addClass("hide");
         $("#proveedores").removeClass("hide");
         $("#proveedores").addClass("show");
-
-    })
+    });
 
     $(".content-header").on("click", "button.btncerrar", function() {
         $("#contenedor").removeClass("show");
         $("#contenedor").addClass("hide");
-        $(".content-header").html('')
-    })
+        $(".content-header").html("");
+    });
 
     $(".content-header").on("click", "button#nuevo", function() {
         $("#titulo").html("Nuevo proveedor");
@@ -106,14 +103,14 @@ function proveedores() {
         $("#nuevo-editar").addClass("show");
         $("#proveedores").removeClass("show");
         $("#proveedores").addClass("hide");
-    })
+    });
 
     $(".content-header").on("click", "button#grabar", function() {
         var codigo = document.forms["fproveedores"]["id_proveedor"].value;
         $.ajax({
             type: "get",
             url: "./Controlador/controladorProveedores.php",
-            data: { codigo: codigo, accion: 'consultar' },
+            data: { codigo: codigo, accion: "consultar" },
             dataType: "json"
         }).done(function(proveedores) {
             if (proveedores.respuesta == "no existe") {
@@ -126,32 +123,28 @@ function proveedores() {
                     dataType: "json"
                 }).done(function(resultado) {
                     if (resultado.respuesta) {
-                        swal(
-                            'Grabado!!',
-                            'El registro se grabó correctamente',
-                            'success'
-                        )
+                        swal("Grabado!!", "El registro se grabó correctamente", "success");
                         dt.ajax.reload();
                         $("#titulo").html("Listado proveedores");
                         $("#nuevo-editar").html("");
                         $("#nuevo-editar").removeClass("show");
                         $("#nuevo-editar").addClass("hide");
                         $("#proveedores").removeClass("hide");
-                        $("#proveedores").addClass("show")
+                        $("#proveedores").addClass("show");
                     } else {
                         swal({
-                            type: 'error',
-                            title: 'Oops...',
-                            text: 'Something went wrong!'
-                        })
+                            type: "error",
+                            title: "Oops...",
+                            text: "Something went wrong!"
+                        });
                     }
                 });
             } else {
                 swal({
-                    type: 'error',
-                    title: 'Oops...',
-                    text: 'El proveedor ya existe!!!!!'
-                })
+                    type: "error",
+                    title: "Oops...",
+                    text: "El proveedor ya existe!!!!!"
+                });
             }
         });
     });
@@ -169,15 +162,15 @@ function proveedores() {
         $.ajax({
             type: "get",
             url: "./Controlador/controladorProveedores.php",
-            data: { codigo: codigo, accion: 'consultar' },
+            data: { codigo: codigo, accion: "consultar" },
             dataType: "json"
         }).done(function(proveedores) {
             if (proveedores.respuesta === "no existe") {
                 swal({
-                    type: 'error',
-                    title: 'Oops...',
-                    text: 'proveedor no existe!'
-                })
+                    type: "error",
+                    title: "Oops...",
+                    text: "proveedor no existe!"
+                });
             } else {
                 $("#codigo").val(proveedores.codigo);
                 $("#nombre_proveedor").val(proveedores.nombre);
@@ -187,8 +180,7 @@ function proveedores() {
                 $("#nombre_pais").val(proveedores.pais);
             }
         });
-    })
-
+    });
 }
 $(document).ready(() => {
     $(".content-header").off("click", "a.editar");
@@ -198,26 +190,32 @@ $(document).ready(() => {
     $(".content-header").off("click", "button#grabar");
     $("#titulo").html("Listado de proveedores");
     dt = $("#tabla").DataTable({
-        "ajax": "./Controlador/controladorProveedores.php?accion=listar",
-        "columns": [
-            { "data": "id_proveedor" },
-            { "data": "nombre_proveedor" },
-            { "data": "direccion_proveedor" },
-            { "data": "telefono_proveedor" },
-            { "data": "nombre_ciudad" },
-            { "data": "nombre_pais" },
+        ajax: "./Controlador/controladorProveedores.php?accion=listar",
+        columns: [
+            { data: "id_proveedor" },
+            { data: "nombre_proveedor" },
+            { data: "direccion_proveedor" },
+            { data: "telefono_proveedor" },
+            { data: "nombre_ciudad" },
+            { data: "nombre_pais" },
             {
-                "data": "id_proveedor",
+                data: "id_proveedor",
                 render: function(data) {
-                    return '<a href="#" data-codigo="' + data +
+                    return (
+                        '<a href="#" data-codigo="' +
+                        data +
                         '" class="btn btn-danger btn-sm borrar"> <i class="fa fa-trash"></i></a>'
+                    );
                 }
             },
             {
-                "data": "id_proveedor",
+                data: "id_proveedor",
                 render: function(data) {
-                    return '<a href="#" data-codigo="' + data +
-                        '" class="btn btn-info btn-sm editar"> <i class="fa fa-edit"></i></a>';
+                    return (
+                        '<a href="#" data-codigo="' +
+                        data +
+                        '" class="btn btn-info btn-sm editar"> <i class="fa fa-edit"></i></a>'
+                    );
                 }
             }
         ]
