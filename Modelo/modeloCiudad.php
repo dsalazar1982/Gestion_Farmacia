@@ -23,8 +23,9 @@
 		public function consultar($id_ciudad='') {
 			if($id_ciudad != ''):
 				$this->query = "
-				SELECT id_ciudad, nombre_ciudad, id_pais
+				SELECT id_ciudad, nombre_ciudad, nombre_pais
 				FROM tb_ciudades
+				INNER JOIN tb_paises ON tb_ciudades.id_pais=tb_paises.id_pais
 				WHERE id_ciudad = '$id_ciudad'
 				";
 				$this->obtener_resultados_query();
@@ -38,16 +39,20 @@
 		
 		public function listar() {
 			$this->query = "
-			SELECT id_ciudad, nombre_ciudad, id_pais
-			FROM tb_ciudades ORDER BY nombre_ciudad
+			SELECT id_ciudad, nombre_ciudad, nombre_pais
+			FROM tb_ciudades 
+			INNER JOIN tb_paises ON tb_ciudades.id_pais=tb_paises.id_pais
+			ORDER BY nombre_ciudad
 			";
 			$this->obtener_resultados_query();
 			return $this->rows;
 		}
 		public function listaCiudad() {
 			$this->query = "
-			SELECT id_ciudad, nombre_ciudad, id_pais
-			FROM tb_ciudades ORDER BY nombre_ciudad
+			SELECT id_ciudad, nombre_ciudad, nombre_pais
+			FROM tb_ciudades 
+			INNER JOIN tb_paises ON tb_paises.id_pais=tb_ciudades.id_pais
+			ORDER BY nombre_ciudad
 			";
 			$this->obtener_resultados_query();
 			return $this->rows;

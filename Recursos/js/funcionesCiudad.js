@@ -102,6 +102,20 @@ function ciudad() {
         $("#nuevo-editar").addClass("show");
         $("#ciudad").removeClass("show");
         $("#ciudad").addClass("hide");
+        $.ajax({
+            type: "get",
+            url: "./Controlador/controladorPais.php",
+            data: { accion: 'listar' },
+            dataType: "json"
+        }).done(function(resultado) {
+            //console.log(resultado.data)
+            // DATOS DE PAIS
+            $("#id_pais option").remove()
+            $("#id_pais").append("<option selecte value=''>Seleccione un pais</option>")
+            $.each(resultado.data, function(index, value) {
+                $("#id_pais").append("<option value='" + value.id_pais + "'>" + value.nombre_pais + "</option>")
+            });
+        });
     });
 
     $(".content-header").on("click", "button#actualizar", function() {
@@ -192,7 +206,7 @@ $(document).ready(() => {
         columns: [
             { data: "id_ciudad" },
             { data: "nombre_ciudad" },
-            { data: "id_pais" },
+            { data: "nombre_pais" },
             {
                 data: "id_ciudad",
                 render: function(data) {

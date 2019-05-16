@@ -20,7 +20,7 @@
 		<thead>
 			<tr>
 				<th class="text-center">Codigo</th>
-				<th class="text-center">Nombre</th>
+				<th class="text-center">Proveedor</th>
 				<th class="text-center">Direccion</th>
 				<th class="text-center">Telefono</th>
 				<th class="text-center">Ciudad</th>

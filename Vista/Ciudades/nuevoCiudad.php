@@ -50,7 +50,7 @@
 
 <div class="form-group">        
    <div class="col-sm-offset-2 col-sm-10">
-       <button type="button" id="actualizar" data-toggle="tooltip" title="Actualizar Ciudad" class="btn btn-primary">Actualizar</button>
+       <button type="button" id="actualizar" data-toggle="tooltip" title="Grabar Ciudad" class="btn btn-primary">Grabar Ciudad</button>
        <button type="button" id="cancelar" data-toggle="tooltip" title="Cancelar Edición" class="btn btn-success btncerrar2">Cancelar</button>
    </div>
 
