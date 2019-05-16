@@ -128,28 +128,44 @@ function roles(){
   });
 
   $("#editar").on("click","button#actualizar",function(){
-       var datos=$("#frol").serialize();
-       console.log(datos);
+       var id_rol = document.forms["frol"]["id_rol"].value;
+       var nombre_rol = document.forms["frol"]["nombre_rol"].value; 
+      // console.log(datos);
        $.ajax({
-          type:"post",
+          type:"get",
           url:"./Controlador/controladorRoles.php",
-          data: datos,
+          data: {codigo: id_rol, codigoN: nombre_rol, accion: 'editar'},
           dataType:"json"
         }).done(function( resultado ) {
             if(resultado.respuesta){  
-            var id_rol = document.forms["frol"]["id_rol"].value;  
            $.ajax({
+            type:"get",   
             url:"./Controlador/controladorrolesxPermisos.php",
             data: {codigo: id_rol, accion:'consultar'},
             dataType:"json"    
            }).done(function(id_rolxpermiso){
             if(id_rolxpermiso.respuesta == 'existe'){
-                $.ajax({
-                    type:"post",
-                    url:"./Controlador/controladorrolesxPermisos.php",
-                    data: {codigo: id_rolxpermiso.codigo, accion:'editar'},
-                    dataType:"json"
-                }).done(function (resultado){
+                var id_rolxpermiso = id_rolxpermiso.codigo;    
+                for(var i=1; i <=16; i++){
+                 if($("#"+i+"P").prop('checked')){
+                    $.ajax({
+                        type:"get",
+                        url:"./Controlador/controladorrolesxPermisos.php",
+                        data: {codigo: id_rol, codigoP: id_rolxpermiso, codigoM: i , codigoE: '1', accion:'editar'},
+                        dataType:"json"
+                    }); 
+                    id_rolxpermiso++;
+                 }
+                 else{
+                    $.ajax({
+                        type:"get",
+                        url:"./Controlador/controladorrolesxPermisos.php",
+                        data: {codigo: id_rol, codigoP: id_rolxpermiso, codigoM: i , codigoE: '0', accion:'editar'},
+                        dataType:"json"
+                    });
+                    id_rolxpermiso++;
+                 }     
+                }
                  if(resultado.respuesta){
                     swal({
                         position: 'center',
@@ -166,7 +182,6 @@ function roles(){
                     $("#listado").removeClass('hide');
                     dt.ajax.reload(null, false);   
                  }
-                 });     
             }
          }); 
            } else {
@@ -254,7 +269,7 @@ function roles(){
      $("#listado").removeClass('show');
      $("#editar").load("./Vista/roles/editarRol.php",function(){
           $.ajax({
-              type:"post",
+              type:"get",
               url:"./Controlador/controladorRoles.php",
               data: {codigo: codigo, accion:'consultar'},
               dataType:"json"
@@ -271,23 +286,25 @@ function roles(){
                   }
           });
                 $.ajax({
-                    type:"post",
+                    type:"get",
                     url:"./Controlador/controladorrolesxPermisos.php",
                     data: {codigo: codigo, accion:'listar'},
                     dataType:"json"
                 }).done(function( resultado ) {
                     var i = 1;
                     $.each(resultado.data, function (index, value) {       
-                            if(value.estado_rolxpermiso == 1){
-                             $("#"+i+"").prop('checked',true);
-                            } 
-                            else { 
-                             $("#"+i+"").prop('checked',false);
-                        i++;      
-                        }
-                    i=0;
-                    });
-                });
+                       // console.log(index+":"+value.estado_rolxpermiso);       
+                       if(value.estado_rolxpermiso == 1){
+                        ($("#"+i+"P").prop('checked',true));
+                        i++;
+                       } 
+                       else{
+                        ($("#"+i+"P").prop('checked',false));  
+                        i++;
+                       }
+                    }); 
+                });  
+          
       });
   })
 }

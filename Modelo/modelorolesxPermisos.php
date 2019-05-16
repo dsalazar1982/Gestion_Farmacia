@@ -48,10 +48,9 @@
 	   if($id_rol != ''){
 			$this->query = "
 			SELECT estado_rolxpermiso
-			FROM tb_roles 
+			FROM tb_rolesxpermisos 
 			WHERE id_rol = '$id_rol'
-			";
-			
+			";	
 			$this->obtener_resultados_query();
 			return $this->rows;
 	   }	
@@ -83,7 +82,7 @@
 			WHERE id_rolxpermiso = '$id_rolxpermiso'
 			";
 			$resultado = $this->ejecutar_query_simple();
-			$cont=0;
+			
 			return $resultado;
 	
 		}

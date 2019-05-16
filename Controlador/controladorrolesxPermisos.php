@@ -59,7 +59,7 @@ switch ($_GET['accion']){
 
     case 'listar':
         $rolxpermiso = new Rolxpermiso();
-        $listado = $rolxpermiso->lista($data['codigo']);
+        $listado = $rolxpermiso->listar($datos['codigo']);
         echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);    
         break;
 }

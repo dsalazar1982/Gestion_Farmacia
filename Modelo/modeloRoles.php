@@ -20,7 +20,7 @@
 		public function consultar($id_rol='') {
 			if($id_rol !=''):
 				$this->query = "
-				SELECT id_rol, nombre_id
+				SELECT id_rol, nombre_rol
 				FROM tb_roles
 				WHERE id_rol = '$id_rol'
 				";
@@ -59,13 +59,11 @@
 			endif;
 			
 		}
-		public function editar($datos=array()) {
-			foreach ($datos as $campo=>$valor):
-				$$campo = $valor;
-			endforeach;
+		public function editar($id_rol='',$nombre_rol='') {
+
 			$this->query = "
 			UPDATE tb_roles
-			SET nombre_rol ='$nombre_rol'
+			SET nombre_rol = '$nombre_rol'
 			WHERE id_rol = '$id_rol'
 			";
 			$resultado = $this->ejecutar_query_simple();

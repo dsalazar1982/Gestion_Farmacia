@@ -5,7 +5,7 @@ $datos = $_GET;
 switch ($_GET['accion']){
     case 'editar':
         $rol = new Rol();
-        $resultado = $rol->editar($datos);
+        $resultado = $rol->editar($datos['codigo'],$datos['codigoN']);
         $respuesta = array(
                 'respuesta' => $resultado
             );
