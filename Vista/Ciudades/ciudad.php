@@ -1,13 +1,13 @@
 <div id="nuevo-editar" class="hide">
-		<!-- div para cargar el formulario para una nuevo pais o editar una pais -->
+		<!-- div para cargar el formulario para una nueva ciudad o editar una ciudad -->
 </div>
 
-<div id="pais">
+<div id="ciudad">
 <div class="box-header">
     <i class="ion ion-clipboard"></i>
      <!-- tools box -->
     <div class="pull-right box-tools">
-    	<button class="btn btn-info btn-sm" id="nuevo"  data-toggle="tooltip" title="Nueva pais"><i class="fa fa-plus" aria-hidden="true"></i></button> 
+    	<button class="btn btn-info btn-sm" id="nuevo"  data-toggle="tooltip" title="Nueva ciudad"><i class="fa fa-plus" aria-hidden="true"></i></button> 
     	<button class="btn btn-info btn-sm btncerrar"  data-toggle="tooltip" title="Ocultar"><i class="fa fa-times"></i></button>
 
     </div><!-- /. tools -->
@@ -20,8 +20,8 @@
 		<thead>
 			<tr>
 				<th class="text-center">Codigo</th>
+				<th class="text-center">Ciudad</th>
 				<th class="text-center">Pais</th>
-				<th class="text-center">Abreviatura</th>
 				<th>&nbsp;</th>
 				<th>&nbsp;</th>
 			</tr>
@@ -33,5 +33,5 @@
 	</table>
 
 </div><!-- /.box-body -->  
-<script src="./Recursos/js/funcionesPais.js"></script>
+<script src="./Recursos/js/funcionesCiudad.js"></script>
 </div>
