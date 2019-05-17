@@ -25,7 +25,7 @@
                         <label class="control-label col-sm-2" for="id_propietario">Codigo:</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="id_propietario" name="id_propietario" placeholder="Ingrese documento propietario"
-                            value = "">
+                            value = "" readonly="true">
                         </div>
                     </div>
 
