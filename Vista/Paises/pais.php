@@ -1,10 +1,11 @@
 <div id="nuevo-editar" class="hide">
 		<!-- div para cargar el formulario para una nuevo pais o editar una pais -->
-</div>
+</div> 
 
 <div id="pais">
 <div class="box-header">
-    <i class="ion ion-clipboard"></i>
+<h1 class="alert alert-success" role="alert">PAISES</h1>
+	<!--<i class="ion ion-clipboard"></i>-->
      <!-- tools box -->
     <div class="pull-right box-tools">
     	<button class="btn btn-info btn-sm" id="nuevo"  data-toggle="tooltip" title="Nueva pais"><i class="fa fa-plus" aria-hidden="true"></i></button> 
