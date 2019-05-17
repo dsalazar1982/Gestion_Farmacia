@@ -16,7 +16,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="nombre_rol">Descripción:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="nombre_rol" name="nombre_rol"
+                            <input type="text" class="form-control" id="nombre_rol" name="nombre_rol" placeholder="Ingrese la descripcion del rol"
                             value = "">
                         </div>
                     </div>

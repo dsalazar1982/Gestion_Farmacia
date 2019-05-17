@@ -151,7 +151,7 @@ function roles(){
                     $.ajax({
                         type:"get",
                         url:"./Controlador/controladorrolesxPermisos.php",
-                        data: {codigo: id_rol, codigoP: id_rolxpermiso, codigoM: i , codigoE: '1', accion:'editar'},
+                        data: {codigo: id_rol, codigoP: id_rolxpermiso, codigoM: i, codigoE: '1', accion:'editar'},
                         dataType:"json"
                     }); 
                     id_rolxpermiso++;
@@ -209,7 +209,7 @@ function roles(){
       }).then((decision) => {
               if (decision.value) {
                   var request = $.ajax({
-                      method: "post",                  
+                      method: "get",                  
                       url: "./Controlador/controladorrolesxPermisos.php",
                       data: {codigo: codigo, accion:'borrar'},
                       dataType: "json"
@@ -217,7 +217,7 @@ function roles(){
                   request.done(function( resultado ) {
                       if(resultado.respuesta == 'correcto'){
                         var request = $.ajax({
-                            method: "post",                  
+                            method: "get",                  
                             url: "./Controlador/controladorRoles.php",
                             data: {codigo: codigo, accion:'borrar'},
                             dataType: "json"

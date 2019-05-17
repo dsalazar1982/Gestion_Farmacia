@@ -60,13 +60,14 @@
 			
 		}
 		public function editar($id_rol='',$nombre_rol='') {
-
+		
 			$this->query = "
 			UPDATE tb_roles
 			SET nombre_rol = '$nombre_rol'
 			WHERE id_rol = '$id_rol'
 			";
 			$resultado = $this->ejecutar_query_simple();
+			
 			return $resultado;
 		}
 		
