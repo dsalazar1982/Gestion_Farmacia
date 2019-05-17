@@ -30,7 +30,7 @@
 
 		
 		public function consultar($id_propietario='') {
-			if($id_ciudad != ''):
+			if($id_propietario != ''):
 				$this->query = "
 				SELECT id_propietario, nombre_propietario, apellido_propietario, direccion_propietario, telefono_propietario
 				FROM tb_propietarios
@@ -98,7 +98,7 @@
 			return $resultado;
 		}
 		
-		public function borrar($id_ciudad='') {
+		public function borrar($id_propietario='') {
 			$this->query = "
 			DELETE FROM tb_propietarios
 			WHERE id_propietario = '$id_propietario'
