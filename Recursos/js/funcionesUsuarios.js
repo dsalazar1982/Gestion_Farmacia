@@ -21,7 +21,7 @@ function usuarios(){
     });
 
   $("#editar").on("click",".btncerrar", function(){
-      $(".box-title").html("Listado de Comunas");
+      $(".box-title").html("Listado de Usuarios");
       $("#editar").addClass('hide');
       $("#editar").removeClass('show');
       $("#listado").addClass('show');
@@ -31,7 +31,7 @@ function usuarios(){
 
   $(".box").on("click","#nuevo", function(){
       $(this).hide();
-      $(".box-title").html("Crear Comuna");
+      $(".box-title").html("Crear Usuario");
       $("#editar").addClass('show');
       $("#editar").removeClass('hide');
       $("#listado").addClass('hide');
@@ -104,7 +104,7 @@ function usuarios(){
                                     showConfirmButton: false,
                                     timer: 1200
                                 })     
-                                    $(".box-title").html("Listado de Comunas");
+                                    $(".box-title").html("Listado de Usuarios");
                                     $(".box #nuevo").show();
                                     $("#editar").html('');
                                     $("#editar").addClass('hide');
@@ -155,7 +155,7 @@ function usuarios(){
                         showConfirmButton: false,
                         timer: 1500
                     }) 
-                    $(".box-title").html("Listado de Comunas");
+                    $(".box-title").html("Listado de Usuarios");
                     $("#editar").html('');
                     $("#editar").addClass('hide');
                     $("#editar").removeClass('show');
@@ -180,7 +180,7 @@ function usuarios(){
       
       swal({
             title: '¿Está seguro?',
-            text: "¿Realmente desea borrar la comuna con codigo : " + codigo + " ?",
+            text: "¿Realmente desea borrar el usuario con codigo : " + codigo + " ?",
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -243,46 +243,103 @@ function usuarios(){
      //$("#titulo").html("Editar Comuna");
      //Recupera datos del fromulario
      var codigo = $(this).data("codigo");
-     var municipio;
-     $(".box-title").html("Actualizar Comuna")
+     var estado, rol , id_usuario;
+     $(".box-title").html("Actualizar Usuario")
      $("#editar").addClass('show');
      $("#editar").removeClass('hide');
      $("#listado").addClass('hide');
      $("#listado").removeClass('show');
-     $("#editar").load("./Vistas/Comuna/editarComuna.php",function(){
+     $("#editar").load("./Vistas/Usuarios/editarUsuario.php",function(){
           $.ajax({
               type:"get",
-              url:"./Controlador/controladorComuna.php",
+              url:"./Controlador/controladorUsuarios.php",
               data: {codigo: codigo, accion:'consultar'},
               dataType:"json"
-              }).done(function( comuna ) {        
-                  if(comuna.respuesta === "no existe"){
+              }).done(function( usuario ) {        
+                  if(usuario.respuesta === "no existe"){
                       swal({
                       type: 'error',
                       title: 'Oops...',
                       text: 'Comuna no existe!'                         
                       })
                   } else {
-                      $("#comu_codi").val(comuna.codigo);                   
-                      $("#comu_nomb").val(comuna.comuna);
-                      municipio = comuna.municipio;
+                      $("#id_usuario").val(usuario.codigo);                   
+                      $("#nickname_usuario").val(usuario.nickname);
+                      $("#clave_usuario").val(usuario.clave);
+                      estado = usuario.estado;
+                      rol = usuario.rol;
+                      id_usuario = usuario.codigo;
+                      $("#fechacreacion_usuario").val(usuario.fecha);
                   }
           });
 
           $.ajax({
               type:"get",
-              url:"./Controlador/controladorMunicipio.php",
+              url:"./Controlador/controladorEstado.php",
               data: {accion:'listar'},
               dataType:"json"
           }).done(function( resultado ) {                      
               $.each(resultado.data, function (index, value) { 
-              if(municipio === value.muni_codi){
-                  $("#editar #muni_codi").append("<option selected value='" + value.muni_codi + "'>" + value.muni_nomb + "</option>")
+              if(estado === value.id_estado){
+                  $("#editar #id_estado").append("<option selected value='" + value.id_estado + "'>" + value.nombre_estado + "</option>")
               }else {
-                  $("#editar #muni_codi").append("<option value='" + value.muni_codi + "'>" + value.muni_nomb + "</option>")
+                  $("#editar #id_estado").append("<option value='" + value.id_estado + "'>" + value.nombre_estado + "</option>")
               }
               });
           });
+          $.ajax({
+            type:"get",
+            url:"./Controlador/controladorRoles.php",
+            data: {accion:'listar'},
+            dataType:"json"
+        }).done(function( resultado ) {                      
+            $.each(resultado.data, function (index, value) { 
+            if(rol === value.id_rol){
+                $("#editar #id_rol").append("<option selected value='" + value.id_rol + "'>" + value.nombre_rol + "</option>")
+            }else {
+                $("#editar #id_rol").append("<option value='" + value.id_rol + "'>" + value.nombre_rol + "</option>")
+            }
+            });
+        });
+        $.ajax({
+            type:"get",
+            url:"./Controlador/controladorusuariosxEmpleados.php",
+            data: {codigo: id_usuario, accion:'consultar'},
+            dataType:"json"
+        }).done(function( id_empleado ) {
+          if(id_empleado.respuesta == 'existe'){
+            $.ajax({
+                type:"get",
+                url:"./Controlador/controladorusuariosxEmpleados.php",
+                data: {codigo: id_empleado.codigo, accion:'consultar'},
+                dataType:"json"
+                }).done(function( usuariosxempleados ) {        
+                    if(usuariosxempleados.respuesta === "no existe"){
+                        swal({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'Comuna no existe!'                         
+                        })
+                    } else {
+                        empleado = usuariosxempleados.empleado;   
+                    }
+            });
+            $.ajax({
+                type:"get",
+                url:"./Controlador/controladorEmpleados.php",
+                data: {accion:'listar'},
+                dataType:"json"
+            }).done(function( resultado ) {                      
+                $.each(resultado.data, function (index, value) { 
+                if(empleado === value.id_empleado){
+                    $("#editar #id_empleado").append("<option selected value='" + value.id_empleado + "'>" + value.nombre_empleado+" "+value.apellido_empleado + "</option>")
+                }else {
+                    $("#editar #id_empleado").append("<option value='" + value.id_empleado + "'>" + value.nombre_empleado+" "+value.apellido_empleado + "</option>")
+                }
+                });
+            });
+          }
+        });
       });
   })
 }
