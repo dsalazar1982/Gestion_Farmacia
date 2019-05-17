@@ -4,7 +4,8 @@
 
 <div id="ciudad">
 <div class="box-header">
-    <i class="ion ion-clipboard"></i>
+    <!--<i class="ion ion-clipboard"></i>-->
+	<h1 class="alert alert-success" role="alert">CIUDADES</h1>
      <!-- tools box -->
     <div class="pull-right box-tools">
     	<button class="btn btn-info btn-sm" id="nuevo"  data-toggle="tooltip" title="Nueva ciudad"><i class="fa fa-plus" aria-hidden="true"></i></button> 

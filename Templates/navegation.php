@@ -20,7 +20,7 @@
             <span>Menu</span>
     </a>
     <ul class="treeview-menu">
-        <li><a href="#"><i class="fa fa-globe"></i> <span>Ciudades</span></a></li>
+        <li><a href="./Vista/Ciudades/ciudad.php"><i class="fa fa-globe"></i> <span>Ciudades</span></a></li>
         <li><a href="#"><i class="fa fa-user"></i> <span>Clientes</span></a></li>
         <li><a href="#"><i class="fa fa-calculator"></i> <span>Facturas</span></a></li>
 	    <li><a href="#"><i class="fa  fa-money"></i> <span>Ventas</span></a></li>
