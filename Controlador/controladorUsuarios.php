@@ -68,5 +68,22 @@ switch ($_GET['accion']){
         $listado = $usuario->listar();
         echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);    
         break;
+
+    case 'identificarM':
+        $usuario = new Usuario();
+        $usuario->identificarM();
+        if($usuario -> getId_usuario()==null){
+            $respuesta = array(
+                'respuesta' => 'no existe'
+                );
+            }
+        else{
+            $respuesta = array(
+                'id_usuario' => $usuario->getId_usuario(),
+                'respuesta' =>'existe'   
+                );   
+            }
+        echo json_encode($respuesta);
+        break; 
 }
 ?>

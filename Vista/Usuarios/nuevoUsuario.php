@@ -66,6 +66,20 @@
                         </div>                    
                     </div>
 
+                    <div class="form-group">
+                        <label class="control-label col-sm-1" for="id_empleado">Empleado:</label>
+                        <div class="input-group col-sm-10">
+                            <select class="form-control" id="id_empleado" name="id_empleado">
+                            <option value="" selected>Seleccione ...</option>
+								<?php foreach($listaRol as $fila){ ?>
+								<option value="<?php echo trim($fila['id_empleado']); ?>" >
+								<?php echo utf8_encode(trim($fila['nombre_completo'])); ?> </option>
+
+								<?php } ?>
+							</select>	
+                        </div>
+                    </div>
+
 					 <div class="form-group">        
                         <div class="col-sm-offset-2 col-sm-10">
                             <button type="button" id="grabar" class="btn btn-primary" data-toggle="tooltip" title="Grabar Comuna">Grabar Comuna</button>

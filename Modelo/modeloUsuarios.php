@@ -110,7 +110,22 @@
 
 			return $resultado;
 		}
-		
+
+		public function identificarM(){
+
+			$this->query = "
+			SELECT MAX(id_usuario) id_usuario
+			FROM tb_usuarios
+			";
+
+			$this->obtener_resultados_query();
+
+			if(count($this->rows) == 1):
+				foreach ($this->rows[0] as $propiedad=>$valor):
+					$this->$propiedad = $valor;
+				endforeach;
+			endif;
+		}
 		function __destruct() {
 			//unset($this);
 		}
