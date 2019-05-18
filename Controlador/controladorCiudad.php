@@ -52,7 +52,7 @@ switch ($_GET['accion']){
             $respuesta = array(
                 'codigo' => $ciudad->getId_ciudad(),
                 'ciudad' => $ciudad->getNombre_ciudad(),
-                'pais' => $ciudad->getNombre_pais(),
+                'pais' => $ciudad->getId_pais(),
                 'respuesta' =>'existe'
             );
         }

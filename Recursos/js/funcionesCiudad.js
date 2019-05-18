@@ -5,6 +5,7 @@ function ciudad() {
         $("#titulo").html("Editar Ciudad");
         //Recupera datos del fromulario
         var codigo = $(this).data("codigo");
+        var pais;
 
         $("#nuevo-editar").load("./Vista/Ciudades/editarCiudad.php");
         $("#nuevo-editar").removeClass("hide");
@@ -26,8 +27,25 @@ function ciudad() {
             } else {
                 $("#id_ciudad").val(ciudad.codigo);
                 $("#nombre_ciudad").val(ciudad.ciudad);
-                $("#id_pais").append("<option value='" + ciudad.id_pais + "'>" + ciudad.pais + "</option>")
+                pais = ciudad.pais;
             }
+        });
+
+        $.ajax({
+            type: "get",
+            url: "./Controlador/controladorPais.php",
+            data: { accion: 'listar' },
+            dataType: "json"
+        }).done(function(resultado) {
+            $("#id_pais option").remove();
+            $.each(resultado.data, function(index, value) {
+
+                if (pais === value.id_pais) {
+                    $("#id_pais").append("<option selected value='" + value.id_pais + "'>" + value.nombre_pais + "</option>")
+                } else {
+                    $("#id_pais").append("<option value='" + value.id_pais + "'>" + value.nombre_pais + "</option>")
+                }
+            });
         });
     });
 
@@ -197,7 +215,6 @@ function ciudad() {
             }
         });
     });
-
 
 }
 $(document).ready(() => {
