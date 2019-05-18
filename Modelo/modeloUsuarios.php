@@ -56,7 +56,7 @@
 		public function listar() {
 			$this->query = "
             SELECT u.id_usuario, u.nickname_usuario, u.clave_usuario, e.nombre_estado , r.nombre_rol, 
-            u.fechacreacion_usaurio 
+            u.fechacreacion_usuario 
             FROM tb_usuarios u 
             INNER JOIN tb_estados e ON (u.id_estado = e.id_estado) 
             INNER JOIN tb_roles r ON (u.id_rol = r.id_rol);
@@ -76,7 +76,7 @@
 					INSERT INTO tb_usuarios
 					(id_usuario, nickname_usuario, clave_usuario, id_estado, id_rol, fechacreacion_usuario)
 					VALUES
-					(NULL, '$nickname_usuario', '$clave_usuario','$id_estado','$id_rol',NOW())
+					(NULL, '$nickname_usuario', '$clave_usuario','$id_estado','$id_rol','$fechacreacion_usuario')
 					";
 					$resultado = $this->ejecutar_query_simple();
 					return $resultado;

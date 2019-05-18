@@ -1,6 +1,6 @@
 <?php
  
-require_once '../Modelo/modeloUsuario.php';
+require_once '../Modelo/modeloUsuarios.php';
 $datos = $_GET;
 switch ($_GET['accion']){
     case 'editar':

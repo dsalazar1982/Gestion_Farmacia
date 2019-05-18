@@ -1,13 +1,13 @@
 function usuarios(){
-
+    
     var dt = $("#tabla").DataTable({
             "ajax": "./Controlador/controladorUsuarios.php?accion=listar",
             "columns": [
                 { "data": "id_usuario"} ,
                 { "data": "nickname_usuario" },
                 { "data": "clave_usuario" },
-                { "data": "id_estado" },
-                { "data": "id_rol" },
+                { "data": "nombre_estado" },
+                { "data": "nombre_rol" },
                 { "data": "fechacreacion_usuario" },
               { "data": "id_usuario",
                   render: function (data) {
@@ -20,6 +20,7 @@ function usuarios(){
             ]
     });
 
+    
   $("#editar").on("click",".btncerrar", function(){
       $(".box-title").html("Listado de Usuarios");
       $("#editar").addClass('hide');
@@ -36,7 +37,7 @@ function usuarios(){
       $("#editar").removeClass('hide');
       $("#listado").addClass('hide');
       $("#listado").removeClass('show');
-      $("#editar").load('./Vistas/Usuarios/nuevoUsuario.php', function(){
+      $("#editar").load('./Vista/Usuarios/nuevoUsuario.php', function(){            
           $.ajax({
              type:"get",
              url:"./Controlador/controladorEstados.php",
@@ -60,15 +61,14 @@ function usuarios(){
          $.ajax({
             type:"get",
             url:"./Controlador/controladorEmpleados.php",
-            data: {accion:'listar'},
+            data: {accion:'listarE'},
             dataType:"json"
          }).done(function( resultado ) {                    ;
              $.each(resultado.data, function (index, value) { 
-               $("#editar #id_empleado").append("<option value='" + value.id_empleado + "'>" + value.nombre_completo + "</option>")
+               $("#editar #id_empleado").append("<option value='" + value.id_empleado + "'>" + value.nombre_empleado+" "+value.apellido_empleado +"</option>")
              });
          });
       });
-      
   })
 
   $("#editar").on("click","button#grabar",function(){
@@ -84,7 +84,7 @@ function usuarios(){
             if(resultado.respuesta){
                 $.ajax({
                     type:"get",
-                    url:"./Controlador/controladorRoles.php",
+                    url:"./Controlador/controladorUsuarios.php",
                     data: {accion:'identificarM'},
                     dataType:"json"
                     }).done(function(resultado){
@@ -249,7 +249,7 @@ function usuarios(){
      $("#editar").removeClass('hide');
      $("#listado").addClass('hide');
      $("#listado").removeClass('show');
-     $("#editar").load("./Vistas/Usuarios/editarUsuario.php",function(){
+     $("#editar").load("./Vista/Usuarios/editarUsuario.php",function(){
           $.ajax({
               type:"get",
               url:"./Controlador/controladorUsuarios.php",
@@ -327,7 +327,7 @@ function usuarios(){
             $.ajax({
                 type:"get",
                 url:"./Controlador/controladorEmpleados.php",
-                data: {accion:'listar'},
+                data: {accion:'listarE'},
                 dataType:"json"
             }).done(function( resultado ) {                      
                 $.each(resultado.data, function (index, value) { 

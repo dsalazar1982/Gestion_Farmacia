@@ -7,7 +7,7 @@
             <div class="panel-body">    
                 <form class="form-horizontal" role="form"  id="fusuario">
  					<div class="form-group">
-                        <label class="control-label col-sm-1" for="id_usuario">Identificador:</label>
+                        <label class="control-label col-sm-1" for="id_usuario">Codigo:</label>
                         <div class="input-group col-sm-10">
                             <input type="text" class="form-control " id="id_usuario" name="id_usuario" placeholder="Automatico"
                             value = "" readonly="true"  data-validation="length alphanumeric" data-validation-length="3-12">
@@ -25,7 +25,7 @@
 					<div class="form-group">
                         <label class="control-label col-sm-1" for="clave_usuario">Clave:</label>
                         <div class="input-group col-sm-10">
-                            <input type="text" class="form-control" id="clave_usuario" name="clave_usuario" placeholder="Ingrese Clave"
+                            <input type="password" class="form-control" id="clave_usuario" name="clave_usuario" placeholder="Ingrese Clave"
                             value = "">
                         </div>                    
                     </div>
@@ -61,7 +61,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-1" for="fechacreacion_usuario">Fecha creacion:</label>
                         <div class="input-group col-sm-10">
-                            <input type="text" class="form-control" id="fechacreacion_usuario" name="fechacreacion_usuario"
+                            <input type="date" class="form-control" id="fechacreacion_usuario" name="fechacreacion_usuario"
                             value = "">
                         </div>                    
                     </div>

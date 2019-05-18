@@ -7,18 +7,19 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   
-  <link rel="stylesheet" href="Recursos/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./Recursos/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="Recursos/bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./Recursos/bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="Recursos/bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="./Recursos/bower_components/Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="Recursos/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="./Recursos/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
-  <link rel="stylesheet" href="Recursos/dist/css/skins/skin-blue.min.css">
-
+  <link rel="stylesheet" href="./Recursos/dist/css/skins/skin-blue.min.css">
+  
+ <!--<link href="./Recursos/css/base/jquery-ui-1.9.2.custom.css" rel="stylesheet">-->
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
