@@ -26,9 +26,7 @@ function ciudad() {
             } else {
                 $("#id_ciudad").val(ciudad.codigo);
                 $("#nombre_ciudad").val(ciudad.ciudad);
-                /* AQUI FUE*/
                 $("#id_pais").append("<option value='" + ciudad.id_pais + "'>" + ciudad.pais + "</option>")
-                $("#id_pais").val(ciudad.pais);
             }
         });
     });
