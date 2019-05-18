@@ -18,7 +18,7 @@
                         <label class="control-label col-sm-1" for="nickname_usuario">Nickname:</label>
                         <div class="input-group col-sm-10">
                             <input type="text" class="form-control" id="nickname_usuario" name="nickname_usuario" placeholder="Ingrese Nickname"
-                            value = "">
+                            value = "">  
                         </div>                    
                     </div>
 					
@@ -27,6 +27,9 @@
                         <div class="input-group col-sm-10">
                             <input type="password" class="form-control" id="clave_usuario" name="clave_usuario" placeholder="Ingrese Clave"
                             value = "">
+                            <span class="input-group-btn">
+                            <button class="btn btn-info btn-flat ocultarC" type="button"><i class="fa fa-eye"></i></button>  
+                            </span> 
                         </div>                    
                     </div>
 

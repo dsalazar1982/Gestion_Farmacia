@@ -12,15 +12,21 @@ function usuarios(){
               { "data": "id_usuario",
                   render: function (data) {
                             return '<a href="#" data-codigo="'+ data + 
-                                   '" class="btn btn-danger btn-sm borrar"> <i class="fa fa-trash"></i></a>'
+                                   '"class="btn btn-danger btn-sm borrar"> <i class="fa fa-trash"></i></a>'
                             +      '<a href="#" data-codigo="'+ data + 
                                    '"class="btn btn-info btn-sm editar"> <i class="fa fa-edit"></i></a>'
                   }
               }
             ]
     });
-
-    
+$("#editar").on("click",function(){
+    $(".ocultarC").mousedown(function(){ 
+        $("#clave_usuario").removeAttr('type');
+    });
+    $(".ocultarC").mouseup(function(){
+        $("#clave_usuario").attr('type','password');
+    });
+});
   $("#editar").on("click",".btncerrar", function(){
       $(".box-title").html("Listado de Usuarios");
       $("#editar").addClass('hide');

@@ -27,6 +27,9 @@
                         <div class="input-group col-sm-10">
                             <input type="password" class="form-control" id="clave_usuario" name="clave_usuario" placeholder="Ingrese Clave"
                             value = "">
+                            <span class="input-group-btn">
+                            <button class="btn btn-info btn-flat ocultarC" type="button"><i class="fa fa-eye"></i></button>  
+                            </span> 
                         </div>                    
                     </div>
 
