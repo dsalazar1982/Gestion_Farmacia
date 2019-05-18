@@ -54,16 +54,7 @@
 			$this->obtener_resultados_query();
 			return $this->rows;
 		}
-		public function listaCiudad() {
-			$this->query = "
-			SELECT id_propietario, nombre_propietario, apellido_propietario, direccion_propietario, telefono_propietario
-			FROM tb_propietarios 
-			ORDER BY nombre_propietario
-			";
-			$this->obtener_resultados_query();
-			return $this->rows;
-		}
-		
+
 		public function nuevo($datos=array()) {
 			if(array_key_exists('id_propietario', $datos)):
 				foreach ($datos as $campo=>$valor):

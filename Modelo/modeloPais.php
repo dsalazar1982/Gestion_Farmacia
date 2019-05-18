@@ -44,15 +44,7 @@
 			$this->obtener_resultados_query();
 			return $this->rows;
 		}
-		public function listaPais() {
-			$this->query = "
-			SELECT id_pais, nombre_pais, abreviatura_pais
-			FROM tb_paises as d order by nombre_pais
-			";
-			$this->obtener_resultados_query();
-			return $this->rows;
-		}
-		
+
 		public function nuevo($datos=array()) {
 			if(array_key_exists('id_pais', $datos)):
 				foreach ($datos as $campo=>$valor):
