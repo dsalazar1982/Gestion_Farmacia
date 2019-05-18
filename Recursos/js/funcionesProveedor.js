@@ -1,11 +1,11 @@
 var dt;
 
-function pais() {
+function proveedor() {
     $(".content-header").on("click", "button#actualizar", function() {
-        var datos = $("#fpais").serialize();
+        var datos = $("#fproveedor").serialize();
         $.ajax({
             type: "get",
-            url: "./Controlador/controladorPais.php",
+            url: "./Controlador/controladorProveedor.php",
             data: datos,
             dataType: "json"
         }).done(function(resultado) {
@@ -16,12 +16,12 @@ function pais() {
                     'success'
                 )
                 dt.ajax.reload();
-                $("#titulo").html("Listado Pais");
+                $("#titulo").html("Listado Proveedor");
                 $("#nuevo-editar").html("");
                 $("#nuevo-editar").removeClass("show");
                 $("#nuevo-editar").addClass("hide");
-                $("#pais").removeClass("hide");
-                $("#pais").addClass("show")
+                $("#proveedor").removeClass("hide");
+                $("#proveedor").addClass("show")
             } else {
                 swal({
                     type: 'error',
@@ -38,7 +38,7 @@ function pais() {
 
         swal({
             title: '¿Está seguro?',
-            text: "¿Realmente desea borrar el pais con codigo : " + codigo + " ?",
+            text: "¿Realmente desea borrar el proveedor con codigo : " + codigo + " ?",
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -49,7 +49,7 @@ function pais() {
 
                 var request = $.ajax({
                     method: "get",
-                    url: "./Controlador/controladorPais.php",
+                    url: "./Controlador/controladorProveedor.php",
                     data: { codigo: codigo, accion: 'borrar' },
                     dataType: "json"
                 })
@@ -58,7 +58,7 @@ function pais() {
                     if (resultado.respuesta == 'correcto') {
                         swal(
                             'Borrado!',
-                            'El pais con codigo : ' + codigo + ' fue borrado',
+                            'El proveedor con codigo : ' + codigo + ' fue borrado',
                             'success'
                         )
                         dt.ajax.reload();
@@ -84,12 +84,12 @@ function pais() {
     });
 
     $(".content-header").on("click", "button.btncerrar2", function() {
-        $("#titulo").html("Listado de Paises");
+        $("#titulo").html("Listado de Proveedores");
         $("#nuevo-editar").html("");
         $("#nuevo-editar").removeClass("show");
         $("#nuevo-editar").addClass("hide");
-        $("#pais").removeClass("hide");
-        $("#pais").addClass("show");
+        $("#proveedor").removeClass("hide");
+        $("#proveedor").addClass("show");
 
     })
 
@@ -100,28 +100,28 @@ function pais() {
     })
 
     $(".content-header").on("click", "button#nuevo", function() {
-        $("#titulo").html("Nuevo Pais");
-        $("#nuevo-editar").load("./Vista/Paises/nuevoPais.php");
+        $("#titulo").html("Nuevo Proveedor");
+        $("#nuevo-editar").load("./Vista/Paises/nuevoProveedor.php");
         $("#nuevo-editar").removeClass("hide");
         $("#nuevo-editar").addClass("show");
-        $("#pais").removeClass("show");
-        $("#pais").addClass("hide");
+        $("#proveedor").removeClass("show");
+        $("#proveedor").addClass("hide");
     })
 
     $(".content-header").on("click", "button#grabar", function() {
-        var codigo = document.forms["fpais"]["id_pais"].value;
+        var codigo = document.forms["fproveedor"]["id_proveedor"].value;
         $.ajax({
             type: "get",
-            url: "./Controlador/controladorPais.php",
+            url: "./Controlador/controladorProveedor.php",
             data: { codigo: codigo, accion: 'consultar' },
             dataType: "json"
-        }).done(function(pais) {
-            if (pais.respuesta == "no existe") {
-                var datos = $("#fpais").serialize();
+        }).done(function(proveedor) {
+            if (proveedor.respuesta == "no existe") {
+                var datos = $("#fproveedor").serialize();
 
                 $.ajax({
                     type: "get",
-                    url: "./Controlador/controladorPais.php",
+                    url: "./Controlador/controladorProveedor.php",
                     data: datos,
                     dataType: "json"
                 }).done(function(resultado) {
@@ -132,12 +132,12 @@ function pais() {
                             'success'
                         )
                         dt.ajax.reload();
-                        $("#titulo").html("Listado paises");
+                        $("#titulo").html("Listado proveedores");
                         $("#nuevo-editar").html("");
                         $("#nuevo-editar").removeClass("show");
                         $("#nuevo-editar").addClass("hide");
-                        $("#pais").removeClass("hide");
-                        $("#pais").addClass("show")
+                        $("#provedor").removeClass("hide");
+                        $("#proveedor").addClass("show")
                     } else {
                         swal({
                             type: 'error',
@@ -150,39 +150,41 @@ function pais() {
                 swal({
                     type: 'error',
                     title: 'Oops...',
-                    text: 'El pais ya existe!!!!!'
+                    text: 'El proveedor ya existe!!!!!'
                 })
             }
         });
     });
 
     $(".content-header").on("click", "a.editar", function() {
-        $("#titulo").html("Editar Pais");
+        $("#titulo").html("Editar Proveedor");
         //Recupera datos del fromulario
         var codigo = $(this).data("codigo");
 
-        $("#nuevo-editar").load("./Vista/Paises/editarPais.php");
+        $("#nuevo-editar").load("./Vista/Proveedor/editarProveedor.php");
         $("#nuevo-editar").removeClass("hide");
         $("#nuevo-editar").addClass("show");
-        $("#pais").removeClass("show");
-        $("#pais").addClass("hide");
+        $("#proveedor").removeClass("show");
+        $("#proveedor").addClass("hide");
         $.ajax({
             type: "get",
-            url: "./Controlador/controladorPais.php",
+            url: "./Controlador/controladorProveedor.php",
             data: { codigo: codigo, accion: 'consultar' },
             dataType: "json"
-        }).done(function(pais) {
-            if (pais.respuesta === "no existe") {
+        }).done(function(proveedor) {
+            if (proveedor.respuesta === "no existe") {
                 swal({
                     type: 'error',
                     title: 'Oops...',
-                    text: 'Pais no existe!'
+                    text: 'Proveedor no existe!'
                 })
             } else {
-                $("#id_pais").val(pais.codigo);
-                $("#nombre_pais").val(pais.pais);
-                $("#abreviatura_pais").val(pais.abreviatura);
-
+                $("#id_priveedor").val(proveedor.codigo);
+                $("#nombre_proveedor").val(proveedor.proveedor);
+                $("#direccion_proveedor").val(proveedor.direccion);
+                $("#telefono_proveedor").val(proveedor.telefono);
+                $("#id_pais").val(proveedor.pais);
+                $("#id_ciudad").val(proveedor.ciudad);
             }
         });
     })
@@ -194,22 +196,25 @@ $(document).ready(() => {
     $(".content-header").off("click", "a.borrar");
     $(".content-header").off("click", "button#nuevo");
     $(".content-header").off("click", "button#grabar");
-    $("#titulo").html("Listado de Pais");
+    $("#titulo").html("Listado de Proveedores");
     dt = $("#tabla").DataTable({
-        "ajax": "./Controlador/controladorPais.php?accion=listar",
+        "ajax": "./Controlador/controladorProveedor.php?accion=listar",
         "columns": [
+            { "data": "id_proveedor" },
+            { "data": "nombre_proveedor" },
+            { "data": "direccion_proveedor" },
+            { "data": "telefono_proveedor" },
+            { "data": "id_ciudad" },
             { "data": "id_pais" },
-            { "data": "nombre_pais" },
-            { "data": "abreviatura_pais" },
             {
-                "data": "id_pais",
+                "data": "id_proveedor",
                 render: function(data) {
                     return '<a href="#" data-codigo="' + data +
                         '" class="btn btn-danger btn-sm borrar"> <i class="fa fa-trash"></i></a>'
                 }
             },
             {
-                "data": "id_pais",
+                "data": "id_proveedor",
                 render: function(data) {
                     return '<a href="#" data-codigo="' + data +
                         '" class="btn btn-info btn-sm editar"> <i class="fa fa-edit"></i></a>';
@@ -218,5 +223,5 @@ $(document).ready(() => {
         ]
     });
 
-    pais();
+    proveedor();
 });

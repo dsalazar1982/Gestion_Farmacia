@@ -2,7 +2,7 @@
 		<!-- div para cargar el formulario para una nuevo proveedor o editar una proveedor -->
 </div>
 
-<div id="proveedores">
+<div id="proveedor">
 <div class="box-header">
     <i class="ion ion-clipboard"></i>
      <!-- tools box -->
@@ -36,5 +36,5 @@
 	</table>
 
 </div><!-- /.box-body -->  
-<script src="./Recursos/js/funcionesProveedores.js"></script>
+<script src="./Recursos/js/funcionesProveedor.js"></script>
 </div>

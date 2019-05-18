@@ -1,31 +1,53 @@
 <?php
 	require_once('modeloAbstractoDB.php');
-	class Pais extends ModeloAbstractoDB {
+	class Proveedor extends ModeloAbstractoDB {
+		public $id_proveedor;
+		public $nombre_proveedor;
+		public $direccion_proveedor;
+		public $telefono_proveedor;
 		public $id_pais;
-		public $nombre_pais;
-		public $abreviatura_pais;
+		public $id_ciudad;
 		
 		function __construct() {
 		}
 		
-		public function getId_pais(){
-			return $this->id_pais;
+		public function getId_proveedor()
+		{
+				return $this->id_proveedor;
 		}
 
-		public function getNombre_pais(){
-			return $this->nombre_pais;
+		public function getNombre_proveedor()
+		{
+				return $this->nombre_proveedor;
 		}
 
-		public function getAbreviatura_pais(){
-			return $this->abreviatura_pais;
+		public function getDireccion_proveedor()
+		{
+				return $this->direccion_proveedor;
 		}
-		
-		public function consultar($id_pais='') {
-			if($id_pais != ''):
+
+		public function getTelefono_proveedor()
+		{
+				return $this->telefono_proveedor;
+		}
+
+		public function getId_pais()
+		{
+				return $this->id_pais;
+		}
+
+		public function getId_ciudad()
+		{
+				return $this->id_ciudad;
+		}
+
+
+		public function consultar($id_proveedor='') {
+			if($id_proveedor != ''):
 				$this->query = "
-				SELECT id_pais, nombre_pais, abreviatura_pais
-				FROM tb_paises
-				WHERE id_pais = '$id_pais'
+				SELECT id_proveedor, nombre_proveedor, direccion_proveedor, telefono_proveedor, id_ciudad, id_pais
+				FROM tb_proveedores
+				WHERE id_proveedor = '$id_proveedor'
 				";
 				$this->obtener_resultados_query();
 			endif;
@@ -38,33 +60,30 @@
 		
 		public function listar() {
 			$this->query = "
-			SELECT id_pais, nombre_pais, abreviatura_pais
-			FROM tb_paises ORDER BY nombre_pais
+			SELECT id_proveedor, nombre_proveedor, direccion_proveedor, telefono_proveedor, id_ciudad, id_pais
+			FROM tb_proveedores
+			ORDER BY nombre_proveedor
 			";
 			$this->obtener_resultados_query();
 			return $this->rows;
 		}
-		public function listaPais() {
-			$this->query = "
-			SELECT id_pais, nombre_pais, abreviatura_pais
-			FROM tb_paises as d order by nombre_pais
-			";
-			$this->obtener_resultados_query();
-			return $this->rows;
-		}
-		
+
 		public function nuevo($datos=array()) {
-			if(array_key_exists('id_pais', $datos)):
+			if(array_key_exists('id_proveedor', $datos)):
 				foreach ($datos as $campo=>$valor):
 					$$campo = $valor;
 				endforeach;
+				$id_proveedor= utf8_decode($id_proveedor);
+				$nombre_proveedor= utf8_decode($nombre_proveedor);
+				$direccion_proveedor= utf8_decode($direccion_proveedor);
+				$telefono_proveedor= utf8_decode($telefono_proveedor);
 				$id_pais= utf8_decode($id_pais);
-				$nombre_pais= utf8_decode($nombre_pais);
+				$id_ciudad= utf8_decode($id_ciudad);
 				$this->query = "
-				INSERT INTO tb_paises
-				(id_pais, nombre_pais, abreviatura_pais)
+				INSERT INTO tb_proveedores
+				(id_proveedor, nombre_proveedor, direccion_proveedor, telefono_proveedor, id_pais, id_ciudad)
 				VALUES
-				('$id_pais', '$nombre_pais', '$abreviatura_pais')
+				('$id_proveedor', '$nombre_proveedor', '$direccion_proveedor', '$telefono_proveedor', '$id_pais', '$id_ciudad')
 				";
 				$resultado = $this->ejecutar_query_simple();
 				return $resultado;
@@ -76,18 +95,18 @@
 				$$campo = $valor;
 			endforeach;
 			$this->query = "
-			UPDATE tb_paises
-			SET nombre_pais='$nombre_pais', abreviatura_pais='$abreviatura_pais'
-			WHERE id_pais = '$id_pais'
+			UPDATE tb_proveedores
+			SET nombre_proveedor='$nombre_proveedor', direccion_proveedor='$direccion_proveedor', telefono_proveedor='$telefono_proveedor', id_pais='$id_pais', id_ciudad='$id_ciudad'
+			WHERE id_proveedor = '$id_proveedor'
 			";
 			$resultado = $this->ejecutar_query_simple();
 			return $resultado;
 		}
 		
-		public function borrar($id_pais='') {
+		public function borrar($id_proveedor='') {
 			$this->query = "
-			DELETE FROM tb_paises
-			WHERE id_pais = '$id_pais'
+			DELETE FROM tb_proveedores
+			WHERE id_proveedor = '$id_proveedor'
 			";
 			$resultado = $this->ejecutar_query_simple();
 

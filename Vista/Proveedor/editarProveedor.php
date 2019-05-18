@@ -23,37 +23,65 @@
                     <form class="form-horizontal" role="form" id="fpais">
 
 
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="id_pais">Codigo:</label>
+
+                    <div class="form-group">
+                            <label class="control-label col-sm-2" for="id_proveedor">Codigo:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="id_pais" name="id_pais"
-                                    placeholder="Ingrese Codigo" value="" readonly="true">
+                                <input type="text" class="form-control" id="id_proveedor" name="id_proveedor"
+                                    placeholder="Ingrese Codigo" data-validation="length alphanumeric"
+                                    data-validation-length="3-12" required />
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="nombre_pais">Nombre:</label>
+                            <label class="control-label col-sm-2" for="nombre_proveedor">Nombre:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="nombre_pais" name="nombre_pais"
-                                    placeholder="Ingrese Nombre del Pais" value="">
+                                <input type="text" class="form-control" id="nombre_proveedor" name="nombre_proveedor"
+                                    placeholder="Ingrese Nombre de Proveedor" value="" required>
                             </div>
                         </div>
 
 
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="abreviatura_pais">Abreviatura:</label>
+                            <label class="control-label col-sm-2" for="direccion_proveedor">Direccion:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="abreviatura_pais" name="abreviatura_pais"
-                                    placeholder="Ingrese Abreviatura del Pais" value="">
+                                <input type="text" class="form-control" id="direccion_proveedor" name="direccion_proveedor"
+                                    placeholder="Ingrese Direccion de Proveedor" value="" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="telefono_proveedor">Telefono:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="telefono_proveedor" name="telefono_proveedor"
+                                    placeholder="Ingrese Telefono de Proveedor" value="" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="id_pais">Pais:</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="id_pais" name="id_pais">
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="id_ciudad">Ciudad:</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="id_ciudad" name="id_ciudad">
+
+                                </select>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="button" id="actualizar" data-toggle="tooltip" title="Actualizar Pais"
+                                <button type="button" id="actualizar" data-toggle="tooltip" title="Actualizar Proveedor"
                                     class="btn btn-primary">Actualizar</button>
                                 <button type="button" id="cancelar" data-toggle="tooltip" title="Cancelar Edición"
-                                    class="btn btn-success btncerrar2"> Cancelar </button>
+                                    class="btn btn-success btncerrar2">Cancelar</button>
                             </div>
 
                         </div>
