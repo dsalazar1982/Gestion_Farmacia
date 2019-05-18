@@ -3,6 +3,9 @@
 	
     class Estado extends ModeloAbstractoDB {
         
+        function __construct() {
+		}
+
         public function consultar() {
 		
         }

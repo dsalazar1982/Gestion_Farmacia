@@ -14,7 +14,7 @@ function usuarios(){
                             return '<a href="#" data-codigo="'+ data + 
                                    '" class="btn btn-danger btn-sm borrar"> <i class="fa fa-trash"></i></a>'
                             +      '<a href="#" data-codigo="'+ data + 
-                                   '" class="btn btn-info btn-sm editar"> <i class="fa fa-edit"></i></a>'
+                                   '"class="btn btn-info btn-sm editar"> <i class="fa fa-edit"></i></a>'
                   }
               }
             ]
@@ -72,62 +72,74 @@ function usuarios(){
   })
 
   $("#editar").on("click","button#grabar",function(){
-    var datos=$("#fusuario").serialize();
     var id_empleado = document.forms['fusuario']['id_empleado'].value;
-    //console.log(datos);
-    $.ajax({
-          type:"get",
-          url:"./Controlador/controladorUsuarios.php",
-          data: datos,
-          dataType:"json"
-        }).done(function( resultado ) {
-            if(resultado.respuesta){
+    var nickname_usuario = document.forms['fusuario']['nickname_usuario'].value;
+    var clave_usuario = document.forms['fusuario']['clave_usuario'].value;
+    var id_estado = document.forms['fusuario']['id_estado'].value;
+    var id_rol =    document.forms['fusuario']['id_rol'].value; 
+    var fechacreacion_usuario = document.forms['fusuario']['fechacreacion_usuario'].value;
+            $.ajax({
+                type:"get",
+                url:"./Controlador/controladorUsuarios.php",
+                data: {pass: clave_usuario, accion:'generarContraseña'},
+                dataType:"json"
+                }).done(function(resultado){
+                var clave_usuario = resultado.respuesta;
                 $.ajax({
                     type:"get",
                     url:"./Controlador/controladorUsuarios.php",
-                    data: {accion:'identificarM'},
+                    data: {codigoA: nickname_usuario, codigoB: clave_usuario, codigoC: id_estado,
+                    codigoD: id_rol, codigoE: fechacreacion_usuario, accion:'nuevo'},
                     dataType:"json"
-                    }).done(function(resultado){
-                    var id_usuario = resultado.id_usuario;
-                    if(resultado.respuesta){
-                        $.ajax({
-                            type:"get",
-                            url:"./Controlador/controladorusuariosxEmpleados.php",
-                            data: {codigo: id_empleado, codigoU: id_usuario, accion:'nuevo'},
-                            dataType:"json"
-                            }).done(function(resultado){
-                            if(resultado.respuesta){
-                                swal({
-                                    position: 'center',
-                                    type: 'success',
-                                    title: 'La comuna fue grabada con éxito',
-                                    showConfirmButton: false,
-                                    timer: 1200
-                                })     
-                                    $(".box-title").html("Listado de Usuarios");
-                                    $(".box #nuevo").show();
-                                    $("#editar").html('');
-                                    $("#editar").addClass('hide');
-                                    $("#editar").removeClass('show');
-                                    $("#listado").addClass('show');
-                                    $("#listado").removeClass('hide');
-                                    dt.page( 'last' ).draw( 'page' );
-                                    dt.ajax.reload(null, false);       
-                            }    
-                            });     
-                    }    
-                    });                  
-           } else {
-              swal({
-                  position: 'center',
-                  type: 'error',
-                  title: 'Ocurrió un erro al grabar',
-                  showConfirmButton: false,
-                  timer: 1500
-              });
-             
-          }
-      });
+                  }).done(function( resultado ) {
+                      if(resultado.respuesta){
+                          $.ajax({
+                              type:"get",
+                              url:"./Controlador/controladorUsuarios.php",
+                              data: {accion:'identificarM'},
+                              dataType:"json"
+                              }).done(function(resultado){
+                              var id_usuario = resultado.id_usuario;
+                              if(resultado.respuesta){
+                                  $.ajax({
+                                      type:"get",
+                                      url:"./Controlador/controladorusuariosxEmpleados.php",
+                                      data: {codigo: id_empleado, codigoU: id_usuario, accion:'nuevo'},
+                                      dataType:"json"
+                                      }).done(function(resultado){
+                                      if(resultado.respuesta){
+                                          swal({
+                                              position: 'center',
+                                              type: 'success',
+                                              title: 'La comuna fue grabada con éxito',
+                                              showConfirmButton: false,
+                                              timer: 1200
+                                          })     
+                                              $(".box-title").html("Listado de Usuarios");
+                                              $(".box #nuevo").show();
+                                              $("#editar").html('');
+                                              $("#editar").addClass('hide');
+                                              $("#editar").removeClass('show');
+                                              $("#listado").addClass('show');
+                                              $("#listado").removeClass('hide');
+                                              dt.page( 'last' ).draw( 'page' );
+                                              dt.ajax.reload(null, false);       
+                                      }    
+                                      });     
+                              }    
+                              });  
+                     } else {
+                        swal({
+                            position: 'center',
+                            type: 'error',
+                            title: 'Ocurrió un erro al grabar',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                       
+                    }
+                });
+                });  
   });
 
   $("#editar").on("click","button#actualizar",function(){
@@ -243,7 +255,7 @@ function usuarios(){
      //$("#titulo").html("Editar Comuna");
      //Recupera datos del fromulario
      var codigo = $(this).data("codigo");
-     var estado, rol , id_usuario;
+     var estado, rol;
      $(".box-title").html("Actualizar Usuario")
      $("#editar").addClass('show');
      $("#editar").removeClass('hide');
@@ -268,78 +280,63 @@ function usuarios(){
                       $("#clave_usuario").val(usuario.clave);
                       estado = usuario.estado;
                       rol = usuario.rol;
-                      id_usuario = usuario.codigo;
-                      $("#fechacreacion_usuario").val(usuario.fecha);
+                      $("#fechacreacion_usuario").val(usuario.fecha); 
+                      var codigoU = usuario.codigo;
+
+                      $.ajax({
+                        type:"get",
+                        url:"./Controlador/controladorEstados.php",
+                        data: {accion:'listar'},
+                        dataType:"json"
+                    }).done(function( resultado ) {                      
+                        $.each(resultado.data, function (index, value) { 
+                        if(estado === value.id_estado){
+                            $("#editar #id_estado").append("<option selected value='" + value.id_estado + "'>" + value.nombre_estado + "</option>")
+                        }else {
+                            $("#editar #id_estado").append("<option value='" + value.id_estado + "'>" + value.nombre_estado + "</option>")
+                        }
+                        });
+                    });
+                    $.ajax({
+                      type:"get",
+                      url:"./Controlador/controladorRoles.php",
+                      data: {accion:'listar'},
+                      dataType:"json"
+                  }).done(function( resultado ) {                      
+                      $.each(resultado.data, function (index, value) { 
+                      if(rol === value.id_rol){
+                          $("#editar #id_rol").append("<option selected value='" + value.id_rol + "'>" + value.nombre_rol + "</option>")
+                      }else {
+                          $("#editar #id_rol").append("<option value='" + value.id_rol + "'>" + value.nombre_rol + "</option>")
+                      }
+                      });
+                  });
+                  $.ajax({
+                      type:"get",
+                      url:"./Controlador/controladorusuariosxEmpleados.php",
+                      data: {codigo: codigoU, accion:'consultar'},
+                      dataType:"json"
+                  }).done(function( id_empleado ) {
+                    if(id_empleado.respuesta == 'existe'){
+                      empleado = id_empleado.empleado;
+                      $.ajax({
+                          type:"get",
+                          url:"./Controlador/controladorEmpleados.php",
+                          data: {accion:'listarE'},
+                          dataType:"json"
+                      }).done(function( resultado ) {                      
+                          $.each(resultado.data, function (index, value) { 
+                          if(empleado === value.id_empleado){
+                              $("#editar #id_empleado").append("<option selected value='" + value.id_empleado + "'>" + value.nombre_empleado+" "+value.apellido_empleado + "</option>")
+                          }else {
+                              $("#editar #id_empleado").append("<option value='" + value.id_empleado + "'>" + value.nombre_empleado+" "+value.apellido_empleado + "</option>")
+                          }
+                          });
+                      });
+                    }
+                  });
                   }
           });
-
-          $.ajax({
-              type:"get",
-              url:"./Controlador/controladorEstado.php",
-              data: {accion:'listar'},
-              dataType:"json"
-          }).done(function( resultado ) {                      
-              $.each(resultado.data, function (index, value) { 
-              if(estado === value.id_estado){
-                  $("#editar #id_estado").append("<option selected value='" + value.id_estado + "'>" + value.nombre_estado + "</option>")
-              }else {
-                  $("#editar #id_estado").append("<option value='" + value.id_estado + "'>" + value.nombre_estado + "</option>")
-              }
-              });
-          });
-          $.ajax({
-            type:"get",
-            url:"./Controlador/controladorRoles.php",
-            data: {accion:'listar'},
-            dataType:"json"
-        }).done(function( resultado ) {                      
-            $.each(resultado.data, function (index, value) { 
-            if(rol === value.id_rol){
-                $("#editar #id_rol").append("<option selected value='" + value.id_rol + "'>" + value.nombre_rol + "</option>")
-            }else {
-                $("#editar #id_rol").append("<option value='" + value.id_rol + "'>" + value.nombre_rol + "</option>")
-            }
-            });
-        });
-        $.ajax({
-            type:"get",
-            url:"./Controlador/controladorusuariosxEmpleados.php",
-            data: {codigo: id_usuario, accion:'consultar'},
-            dataType:"json"
-        }).done(function( id_empleado ) {
-          if(id_empleado.respuesta == 'existe'){
-            $.ajax({
-                type:"get",
-                url:"./Controlador/controladorusuariosxEmpleados.php",
-                data: {codigo: id_empleado.codigo, accion:'consultar'},
-                dataType:"json"
-                }).done(function( usuariosxempleados ) {        
-                    if(usuariosxempleados.respuesta === "no existe"){
-                        swal({
-                        type: 'error',
-                        title: 'Oops...',
-                        text: 'Comuna no existe!'                         
-                        })
-                    } else {
-                        empleado = usuariosxempleados.empleado;   
-                    }
-            });
-            $.ajax({
-                type:"get",
-                url:"./Controlador/controladorEmpleados.php",
-                data: {accion:'listarE'},
-                dataType:"json"
-            }).done(function( resultado ) {                      
-                $.each(resultado.data, function (index, value) { 
-                if(empleado === value.id_empleado){
-                    $("#editar #id_empleado").append("<option selected value='" + value.id_empleado + "'>" + value.nombre_empleado+" "+value.apellido_empleado + "</option>")
-                }else {
-                    $("#editar #id_empleado").append("<option value='" + value.id_empleado + "'>" + value.nombre_empleado+" "+value.apellido_empleado + "</option>")
-                }
-                });
-            });
-          }
-        });
       });
   })
 }

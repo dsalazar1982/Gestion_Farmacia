@@ -42,18 +42,16 @@ switch ($_GET['accion']){
         break;
 
     case 'consultar':
-        $comuna = new Comuna();
-        $comuna->consultar($datos['codigo']);
+        $usuarioxempleado = new Usuarioxempleado();
+        $usuarioxempleado->consultar($datos['codigo']);
 
-        if($comuna->getComu_codi() == null) {
+        if($usuarioxempleado->getId_usuarioxempleado() == null) {
             $respuesta = array(
                 'respuesta' => 'no existe'
             );
         }  else {
             $respuesta = array(
-                'codigo' => $comuna->getComu_codi(),
-                'comuna' => $comuna->getComu_nomb(),
-                'municipio' =>$comuna->getMuni_codi(),
+                'empleado' => $usuarioxempleado->getId_empleado(),
                 'respuesta' =>'existe'
             );
         }

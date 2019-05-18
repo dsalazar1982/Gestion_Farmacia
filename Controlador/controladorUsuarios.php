@@ -13,7 +13,8 @@ switch ($_GET['accion']){
         break;
     case 'nuevo':
         $usuario = new Usuario();
-        $resultado = $usuario->nuevo($datos);
+        $resultado = $usuario->nuevo($datos['codigoA'],$datos['codigoB'],$datos['codigoC'],$datos['codigoD'],
+        $datos['codigoE']);
         if($resultado > 0) {
             $respuesta = array(
                 'respuesta' => $resultado
@@ -85,5 +86,14 @@ switch ($_GET['accion']){
             }
         echo json_encode($respuesta);
         break; 
+
+        case 'generarContraseña':
+        $usuario = new Usuario();
+        $resultado = $usuario->generarContraseña($datos['pass']);  
+        $respuesta = array(
+            'respuesta' => $resultado
+        );
+        echo json_encode($respuesta);
+        break;
 }
 ?>

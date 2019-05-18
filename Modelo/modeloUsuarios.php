@@ -40,9 +40,9 @@
 		public function consultar($id_usuario='') {
 			if($id_usuario !=''):
 				$this->query = "
-                SELECT id_usuario, nickname_usuario, clave_usuario, id_estado, id_rol, fechacreacion_usaurio 
+                SELECT id_usuario, nickname_usuario, clave_usuario, id_estado, id_rol, fechacreacion_usuario 
                 FROM tb_usuarios 
-                WHERE = '$id_usuario'
+                WHERE id_usuario = '$id_usuario'
 				";
 				$this->obtener_resultados_query();
 			endif;
@@ -67,20 +67,18 @@
 			
 		}
 		
-		public function nuevo($datos=array()) {
-			if(array_key_exists('id_usuario', $datos)):
-				foreach ($datos as $campo=>$valor):
-					$$campo = $valor;
-				endforeach;
-				$this->query = "
-					INSERT INTO tb_usuarios
-					(id_usuario, nickname_usuario, clave_usuario, id_estado, id_rol, fechacreacion_usuario)
-					VALUES
-					(NULL, '$nickname_usuario', '$clave_usuario','$id_estado','$id_rol','$fechacreacion_usuario')
-					";
-					$resultado = $this->ejecutar_query_simple();
-					return $resultado;
-			endif;
+		public function nuevo($nickname_usuario='',$clave_usuario='',$id_estado='',$id_rol='',
+		$fechacreacion_usuario='') {
+			
+			$this->query = "
+				INSERT INTO tb_usuarios
+				(id_usuario, nickname_usuario, clave_usuario, id_estado, id_rol, fechacreacion_usuario)
+				VALUES
+				(NULL, '$nickname_usuario', '$clave_usuario','$id_estado','$id_rol','$fechacreacion_usuario')
+				";
+				$resultado = $this->ejecutar_query_simple();
+				return $resultado;
+		 
 			
 		}
 		
@@ -126,6 +124,16 @@
 				endforeach;
 			endif;
 		}
+
+		public function generarContraseña($clave_usuario=''){
+			$opciones = [
+				'cost' => 12,
+			];
+			$resultado = password_hash($clave_usuario, PASSWORD_BCRYPT, $opciones);
+		
+			return $resultado;
+		}
+
 		function __destruct() {
 			//unset($this);
 		}

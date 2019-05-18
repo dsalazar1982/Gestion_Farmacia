@@ -22,12 +22,12 @@
 			return $this->id_usuario;
 		}
 
-		public function consultar($comu_codi='') {
-			if($comu_codi !=''):
+		public function consultar($id_usuario='') {
+			if($id_usuario !=''):
 				$this->query = "
-				SELECT comu_codi, comu_nomb, muni_codi
-				FROM tb_comuna
-				WHERE comu_codi = '$comu_codi' order by comu_codi
+				SELECT id_usuarioxempleado, id_empleado
+				FROM tb_usuarioxempleado
+				WHERE id_usuario = '$id_usuario'
 				";
 				$this->obtener_resultados_query();
 			endif;
