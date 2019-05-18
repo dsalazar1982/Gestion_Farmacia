@@ -54,9 +54,9 @@
 			
 				$this->query = "
 					INSERT INTO tb_usuarioxempleado
-					(id_usuarioxempleado, id_empleado, id_usuario)
+					(id_usuarioxempleado, id_empleado, id_usuario, update_at)
 					VALUES
-					(NULL, '$id_empleado', '$id_usuario')
+					(NULL, '$id_empleado', '$id_usuario', NOW())
 					";
 					$resultado = $this->ejecutar_query_simple();
 					return $resultado;
@@ -64,16 +64,14 @@
 			
 		}
 		
-		public function editar($datos=array()) {
-			foreach ($datos as $campo=>$valor):
-				$$campo = $valor;
-			endforeach;
+		public function editar($id_usuarioxempleado='',$id_empleado='',$id_usuario='') {
+		  
 			$this->query = "
-			UPDATE tb_comuna
-			SET comu_nomb ='$comu_nomb',
-			muni_codi ='$muni_codi',
+			UPDATE tb_usuarioxempleado
+			SET id_empleado ='$id_empleado',
+			id_usuario ='$id_usuario',
 			update_at = NOW()
-			WHERE comu_codi = '$comu_codi'
+			WHERE id_usuarioxempleado = '$id_usuarioxempleado'
 			";
 			$resultado = $this->ejecutar_query_simple();
 			return $resultado;

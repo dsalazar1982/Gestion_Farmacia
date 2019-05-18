@@ -25,10 +25,13 @@
 					<div class="form-group">
                         <label class="control-label col-sm-1" for="clave_usuario">Clave:</label>
                         <div class="input-group col-sm-10">
-                            <input type="password" class="form-control" id="clave_usuario" name="clave_usuario" placeholder="Ingrese Clave"
+                            <input type="password" readonly="true" class="form-control" id="clave_usuario" name="clave_usuario" placeholder="Ingrese Clave"
                             value = "">
                             <span class="input-group-btn">
                             <button class="btn btn-info btn-flat ocultarC" type="button"><i class="fa fa-eye"></i></button>  
+                            </span> 
+                            <span class="input-group-btn">
+                            <button class="btn btn-info btn-flat" type="button" id="desbloqueo"><i class="fa fa-unlock-alt"></i></button>  
                             </span> 
                         </div>                    
                     </div>
@@ -85,7 +88,7 @@
 
 					 <div class="form-group">        
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="button" id="grabar" class="btn btn-primary" data-toggle="tooltip" title="Grabar Comuna">Grabar Comuna</button>
+                            <button type="button" id="actualizar" class="btn btn-primary" data-toggle="tooltip" title="Actualizar Usuario">Actualizar Usuario</button>
                             <button type="button" id="cerrar" class="btn btn-success btncerrar" data-toggle="tooltip" title="Cancelar">Cancelar</button>
                         </div>
                     </div>

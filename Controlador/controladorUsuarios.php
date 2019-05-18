@@ -11,6 +11,17 @@ switch ($_GET['accion']){
             );
         echo json_encode($respuesta);
         break;
+
+    case 'editarconC':
+        $usuario = new Usuario();
+        $resultado = $usuario->editarconC($datos['codigoF'],$datos['codigoG'],$datos['codigoH'],$datos['codigoI'],
+        $datos['codigoJ'],$datos['codigoK']);
+        $respuesta = array(
+                'respuesta' => $resultado
+            );
+        echo json_encode($respuesta);
+    break;   
+
     case 'nuevo':
         $usuario = new Usuario();
         $resultado = $usuario->nuevo($datos['codigoA'],$datos['codigoB'],$datos['codigoC'],$datos['codigoD'],

@@ -4,13 +4,14 @@ require_once '../Modelo/modelousuariosxEmpleados.php';
 $datos = $_GET;
 switch ($_GET['accion']){
     case 'editar':
-        $comuna = new Comuna();
-        $resultado = $comuna->editar($datos);
+        $usuarioxempleado = new Usuarioxempleado();
+        $resultado = $usuarioxempleado->editar($datos['codigoA'],$datos['codigoB'],$datos['codigoC']);
         $respuesta = array(
                 'respuesta' => $resultado
             );
         echo json_encode($respuesta);
         break;
+        
     case 'nuevo':
         $usuarioxempleado = new Usuarioxempleado();
         $resultado = $usuarioxempleado->nuevo($datos['codigo'],$datos['codigoU']);
@@ -25,7 +26,7 @@ switch ($_GET['accion']){
         }
         echo json_encode($respuesta);
         break;
-       
+
     case 'borrar':
 		$comuna = new Comuna();
 		$resultado = $comuna->borrar($datos['codigo']);
@@ -51,6 +52,7 @@ switch ($_GET['accion']){
             );
         }  else {
             $respuesta = array(
+                'usuarioxempleado' => $usuarioxempleado->getId_usuarioxempleado(),
                 'empleado' => $usuarioxempleado->getId_empleado(),
                 'respuesta' =>'existe'
             );

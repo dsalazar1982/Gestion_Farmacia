@@ -27,6 +27,12 @@ $("#editar").on("click",function(){
         $("#clave_usuario").attr('type','password');
     });
 });
+
+$("#editar").on("click","#desbloqueo",function(){
+  $("#clave_usuario").removeAttr('readonly');
+  $("#clave_usuario").val('');
+});
+
   $("#editar").on("click",".btncerrar", function(){
       $(".box-title").html("Listado de Usuarios");
       $("#editar").addClass('hide');
@@ -149,20 +155,30 @@ $("#editar").on("click",function(){
   });
 
   $("#editar").on("click","button#actualizar",function(){
-       var datos=$("#fusuario").serialize();
-     // console.log(datos);
-       $.ajax({
-          type:"get",
-          url:"./Controlador/controladorUsuarios.php",
-          data: datos,
-          dataType:"json"
-        }).done(function( resultado ) {
- 
-            if(resultado.respuesta){    
+     if($("#clave_usuario").attr('readonly')){
+     var datos=$("#fusuario").serialize();
+     var id_usuario = document.forms['fusuario']['id_usuario'].value;
+     $.ajax({
+        type:"get",
+        url:"./Controlador/controladorUsuarios.php",
+        data: datos,
+        dataType:"json"
+      }).done(function( resultado ) {
+          if(resultado.respuesta){    
+            $.ajax({
+                type:"get",
+                url:"./Controlador/controladorusuariosxEmpleados.php",
+                data: {codigo: id_usuario, accion:'consultar'},
+                dataType:"json"
+              }).done(function( resultado ) {
+               if(resultado.respuesta == 'existe'){
+                var id_usuarioxempleado = resultado.usuarioxempleado;
+                var id_empleado = resultado.empleado; 
+         
                 $.ajax({
                     type:"get",
                     url:"./Controlador/controladorusuariosxEmpleados.php",
-                    data: datos,
+                    data: {codigoA: id_usuarioxempleado, codigoB:id_empleado, codigoC: id_usuario, accion:'editar'},
                     dataType:"json"
                   }).done(function( resultado ) {
                    if(resultado.respuesta){
@@ -182,14 +198,85 @@ $("#editar").on("click",function(){
                     dt.ajax.reload(null, false);       
                    }
                   }); 
-           } else {
-              swal({
-                type: 'error',
-                title: 'Oops...',
-                text: 'Something went wrong!'                         
-              })
-          }
-      });
+               }
+            });    
+         } else {
+            swal({
+              type: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!'                         
+            })
+        }
+    });
+     }else{
+        var id_usuario = document.forms['fusuario']['id_usuario'].value;
+        var id_empleado = document.forms['fusuario']['id_empleado'].value;
+        var nickname_usuario = document.forms['fusuario']['nickname_usuario'].value;
+        var clave_usuario = document.forms['fusuario']['clave_usuario'].value;
+        var id_estado = document.forms['fusuario']['id_estado'].value;
+        var id_rol =    document.forms['fusuario']['id_rol'].value; 
+        var fechacreacion_usuario = document.forms['fusuario']['fechacreacion_usuario'].value;
+        $.ajax({
+            type:"get",
+            url:"./Controlador/controladorUsuarios.php",
+            data: {pass: clave_usuario, accion:'generarContraseña'},
+            dataType:"json"
+            }).done(function(resultado){
+            var clave_usuario = resultado.respuesta;
+            $.ajax({
+                type:"get",
+                url:"./Controlador/controladorUsuarios.php",
+                data: {codigoF: id_usuario, codigoG: nickname_usuario, codigoH: clave_usuario, codigoI: id_estado,
+                codigoJ: id_rol, codigoK: fechacreacion_usuario, accion:'editarconC'},
+                dataType:"json"
+              }).done(function( resultado ) {
+                  if(resultado.respuesta){    
+                    $.ajax({
+                        type:"get",
+                        url:"./Controlador/controladorusuariosxEmpleados.php",
+                        data: {codigo: id_usuario, accion:'consultar'},
+                        dataType:"json"
+                      }).done(function( resultado ) {
+                       if(resultado.respuesta == 'existe'){
+                        var id_usuarioxempleado = resultado.usuarioxempleado;
+                        var id_empleado = resultado.empleado; 
+                 
+                        $.ajax({
+                            type:"get",
+                            url:"./Controlador/controladorusuariosxEmpleados.php",
+                            data: {codigoA: id_usuarioxempleado, codigoB:id_empleado, codigoC: id_usuario, accion:'editar'},
+                            dataType:"json"
+                          }).done(function( resultado ) {
+                           if(resultado.respuesta){
+                            swal({
+                                position: 'center',
+                                type: 'success',
+                                title: 'Se actaulizaron los datos correctamente',
+                                showConfirmButton: false,
+                                timer: 1500
+                            }) 
+                            $(".box-title").html("Listado de Usuarios");
+                            $("#editar").html('');
+                            $("#editar").addClass('hide');
+                            $("#editar").removeClass('show');
+                            $("#listado").addClass('show');
+                            $("#listado").removeClass('hide');
+                            dt.ajax.reload(null, false);       
+                           }
+                          }); 
+                       }
+                    });    
+                 } else {
+                    swal({
+                      type: 'error',
+                      title: 'Oops...',
+                      text: 'Something went wrong!'                         
+                    })
+                }
+            });
+            });
+     } 
+       
   })
 
   $(".box-body").on("click","a.borrar",function(){

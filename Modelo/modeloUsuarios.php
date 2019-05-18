@@ -98,6 +98,22 @@
 			$resultado = $this->ejecutar_query_simple();
 			return $resultado;
 		}
+
+		public function editarconC($id_usuario='',$nickname_usuario='',$clave_usuario='',$id_estado='',
+		$id_rol='',$fechacreacion_usuario='') {
+			
+			$this->query = "
+			UPDATE tb_usuarios
+			SET nickname_usuario ='$nickname_usuario',
+            clave_usuario ='$clave_usuario',
+            id_estado ='$id_estado',
+            id_rol ='$id_rol',
+			fechacreacion_usuario = NOW()
+			WHERE id_usuario = '$id_usuario'
+			";
+			$resultado = $this->ejecutar_query_simple();
+			return $resultado;
+		}
 		
 		public function borrar($id_usuario='') {
 			$this->query = "
