@@ -1,34 +1,34 @@
 var dt;
 
-function ciudad() {
+function propietario() {
     $(".content-header").on("click", "a.editar", function() {
-        $("#titulo").html("Editar Ciudad");
+        $("#titulo").html("Editar Propietario");
         //Recupera datos del fromulario
         var codigo = $(this).data("codigo");
 
-        $("#nuevo-editar").load("./Vista/Ciudades/editarCiudad.php");
+        $("#nuevo-editar").load("./Vista/Propietario/editarPropietario.php");
         $("#nuevo-editar").removeClass("hide");
         $("#nuevo-editar").addClass("show");
-        $("#ciudad").removeClass("show");
-        $("#ciudad").addClass("hide");
+        $("#propietario").removeClass("show");
+        $("#propietario").addClass("hide");
         $.ajax({
             type: "get",
-            url: "./Controlador/controladorCiudad.php",
+            url: "./Controlador/controladorPropietario.php",
             data: { codigo: codigo, accion: "consultar" },
             dataType: "json"
-        }).done(function(ciudad) {
-            if (ciudad.respuesta === "no existe") {
+        }).done(function(propietario) {
+            if (propietario.respuesta === "no existe") {
                 swal({
                     type: "error",
                     title: "Oops...",
-                    text: "Ciudad no existe!"
+                    text: "Propietario no existe!"
                 });
             } else {
-                $("#id_ciudad").val(ciudad.codigo);
-                $("#nombre_ciudad").val(ciudad.ciudad);
-                /* AQUI FUE*/
-                $("#id_pais").append("<option value='" + ciudad.id_pais + "'>" + ciudad.pais + "</option>")
-                $("#id_pais").val(ciudad.pais);
+                $("#id_propietario").val(propietario.codigo);
+                $("#nombre_propietario").val(propietario.nombre);
+                $("#apellido_propietario").val(propietario.apellido);
+                $("#direccion_propietario").val(propietario.direccion);
+                $("#telefono_propietario").val(propietario.telefono);
             }
         });
     });
@@ -39,7 +39,7 @@ function ciudad() {
 
         swal({
             title: "¿Está seguro?",
-            text: "¿Realmente desea borrar la ciudad con codigo : " + codigo + " ?",
+            text: "¿Realmente desea borrar el propietario con codigo : " + codigo + " ?",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -49,7 +49,7 @@ function ciudad() {
             if (decision.value) {
                 var request = $.ajax({
                     method: "get",
-                    url: "./Controlador/controladorCiudad.php",
+                    url: "./Controlador/controladorPropietario.php",
                     data: { codigo: codigo, accion: "borrar" },
                     dataType: "json"
                 });
@@ -58,7 +58,7 @@ function ciudad() {
                     if (resultado.respuesta == "correcto") {
                         swal(
                             "Borrado!",
-                            "La ciudad con codigo : " + codigo + " fue borrada",
+                            "El propietario con codigo : " + codigo + " fue borrado",
                             "success"
                         );
                         dt.ajax.reload();
@@ -89,46 +89,31 @@ function ciudad() {
     });
 
     $(".content-header").on("click", "button.btncerrar2", function() {
-        $("#titulo").html("Listado de Ciudades");
+        $("#titulo").html("Listado de Propietarios");
         $("#nuevo-editar").html("");
         $("#nuevo-editar").removeClass("show");
         $("#nuevo-editar").addClass("hide");
-        $("#ciudad").removeClass("hide");
-        $("#ciudad").addClass("show");
+        $("#propietario").removeClass("hide");
+        $("#propietario").addClass("show");
     });
 
     $(".content-header").on("click", "button#nuevo", function() {
         $("#titulo").html("Nueva ciudad");
-        $("#nuevo-editar").load("./Vista/Ciudades/nuevoCiudad.php");
+        $("#nuevo-editar").load("./Vista/Propietario/nuevoPropietario.php");
         $("#nuevo-editar").removeClass("hide");
         $("#nuevo-editar").addClass("show");
-        $("#ciudad").removeClass("show");
-        $("#ciudad").addClass("hide");
-        $.ajax({
-            type: "get",
-            url: "./Controlador/controladorPais.php",
-            data: { accion: 'listar' },
-            dataType: "json"
-        }).done(function(resultado) {
-            //console.log(resultado.data)
-            // DATOS DE PAIS
-            $("#id_pais option").remove()
-            $("#id_pais").append("<option selecte value=''>Seleccione un pais</option>")
-            $.each(resultado.data, function(index, value) {
-                $("#id_pais").append("<option value='" + value.id_pais + "'>" + value.nombre_pais + "</option>")
-            });
-        });
+        $("#propietario").removeClass("show");
+        $("#propietario").addClass("hide");
     });
 
     $(".content-header").on("click", "button#actualizar", function() {
-        var datos = $("#fciudad").serialize();
+        var datos = $("#fpropietario").serialize();
         $.ajax({
             type: "get",
-            url: "./Controlador/controladorCiudad.php",
+            url: "./Controlador/controladorpropietario.php",
             data: datos,
             dataType: "json"
         }).done(function(resultado) {
-
             if (resultado.respuesta) {
                 swal(
                     "Actualizado!",
@@ -136,12 +121,12 @@ function ciudad() {
                     "success"
                 );
                 dt.ajax.reload();
-                $("#titulo").html("Listado Ciudad");
+                $("#titulo").html("Listado Propietarios");
                 $("#nuevo-editar").html("");
                 $("#nuevo-editar").removeClass("show");
                 $("#nuevo-editar").addClass("hide");
-                $("#ciudad").removeClass("hide");
-                $("#ciudad").addClass("show");
+                $("#propietario").removeClass("hide");
+                $("#propietario").addClass("show");
             } else {
                 swal({
                     type: "error",
@@ -153,54 +138,49 @@ function ciudad() {
     });
 
     $(".content-header").on("click", "button#grabar", function() {
-        var codigo = document.forms["fciudad"]["id_ciudad"].value;
+        var codigo = document.forms["fpropietario"]["id_propietario"].value;
+
         $.ajax({
             type: "get",
-            url: "./Controlador/controladorCiudad.php",
-            data: { codigo: codigo, accion: 'consultar' },
+            url: "./Controlador/controladorPropietario.php",
+            data: { codigo: codigo, accion: "consultar" },
             dataType: "json"
-        }).done(function(ciudad) {
-            if (ciudad.respuesta == "no existe") {
-                var datos = $("#fciudad").serialize();
+        }).done(function(propietario) {
+            if (propietario.respuesta == "no existe") {
+                var datos = $("#fpropietario").serialize();
 
                 $.ajax({
                     type: "get",
-                    url: "./Controlador/controladorCiudad.php",
+                    url: "./Controlador/controladorPropietario.php",
                     data: datos,
                     dataType: "json"
                 }).done(function(resultado) {
                     if (resultado.respuesta) {
-                        swal(
-                            'Grabado!!',
-                            'El registro se grabó correctamente',
-                            'success'
-                        )
+                        swal("Grabado!!", "El registro se grabó correctamente", "success");
                         dt.ajax.reload();
-                        $("#titulo").html("Listado ciudades");
+                        $("#titulo").html("Listado propietarios");
                         $("#nuevo-editar").html("");
                         $("#nuevo-editar").removeClass("show");
                         $("#nuevo-editar").addClass("hide");
-                        $("#ciudad").removeClass("hide");
-                        $("#ciudad").addClass("show")
+                        $("#propietario").removeClass("hide");
+                        $("#propietario").addClass("show");
                     } else {
                         swal({
-                            type: 'error',
-                            title: 'Oops...',
-                            text: 'Something went wrong!'
-                        })
+                            type: "error",
+                            title: "Oops...",
+                            text: "Something went wrong!"
+                        });
                     }
                 });
             } else {
                 swal({
-                    type: 'error',
-                    title: 'Oops...',
-                    text: 'La ciudad ya existe!!!!!'
-                })
+                    type: "error",
+                    title: "Oops...",
+                    text: "El propietario ya existe!!!!!"
+                });
             }
         });
     });
-
-
 }
 $(document).ready(() => {
     $(".content-header").off("click", "a.editar");
@@ -208,15 +188,17 @@ $(document).ready(() => {
     $(".content-header").off("click", "a.borrar");
     $(".content-header").off("click", "button#nuevo");
     $(".content-header").off("click", "button#grabar");
-    $("#titulo").html("Listado de Ciudades");
+    $("#titulo").html("Listado de Propietarios");
     dt = $("#tabla").DataTable({
-        ajax: "./Controlador/controladorCiudad.php?accion=listar",
+        ajax: "./Controlador/controladorPropietario.php?accion=listar",
         columns: [
-            { data: "id_ciudad" },
-            { data: "nombre_ciudad" },
-            { data: "nombre_pais" },
+            { data: "id_propietario" },
+            { data: "nombre_propietario" },
+            { data: "apellido_propietario" },
+            { data: "direccion_propietario" },
+            { data: "telefono_propietario" },
             {
-                data: "id_ciudad",
+                data: "id_propietario",
                 render: function(data) {
                     return (
                         '<a href="#" data-codigo="' +
@@ -226,7 +208,7 @@ $(document).ready(() => {
                 }
             },
             {
-                data: "id_ciudad",
+                data: "id_propietario",
                 render: function(data) {
                     return (
                         '<a href="#" data-codigo="' +
@@ -238,5 +220,5 @@ $(document).ready(() => {
         ]
     });
 
-    ciudad();
+    propietario();
 });

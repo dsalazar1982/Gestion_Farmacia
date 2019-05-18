@@ -1,19 +1,19 @@
 <?php
  
-require_once '../Modelo/modeloPais.php';
+require_once '../Modelo/modeloPropietario.php';
 $datos = $_GET;
 switch ($_GET['accion']){
     case 'editar':
-        $pais = new Pais();
-		$resultado = $pais->editar($datos);
+        $propietario = new Propietario();
+		$resultado = $propietario->editar($datos);
         $respuesta = array(
                 'respuesta' => $resultado
             );
         echo json_encode($respuesta);
         break;
     case 'nuevo':
-        $pais = new Pais();
-		$resultado = $pais->nuevo($datos);
+        $propietario = new Propietario();
+		$resultado = $propietario->nuevo($datos);
         if($resultado > 0) {
             $respuesta = array(
                 'respuesta' => 'correcto'
@@ -26,8 +26,8 @@ switch ($_GET['accion']){
         echo json_encode($respuesta);
         break;
     case 'borrar':
-		$pais = new Pais();
-		$resultado = $pais->borrar($datos['codigo']);
+		$propietario = new Propietario();
+		$resultado = $propietario->borrar($datos['codigo']);
         if($resultado > 0) {
             $respuesta = array(
                 'respuesta' => 'correcto'
@@ -41,18 +41,20 @@ switch ($_GET['accion']){
         break;
 
     case 'consultar':
-        $pais = new Pais();
-        $pais->consultar($datos['codigo']);
+        $propietario = new Propietario();
+        $propietario->consultar($datos['codigo']);
 
-        if($pais->getId_pais() == null) {
+        if($propietario->getId_propietario() == null) {
             $respuesta = array(
                 'respuesta' => 'no existe'
             );
         }  else {
             $respuesta = array(
-                'codigo' => $pais->getId_pais(),
-                'pais' => $pais->getNombre_pais(),
-                'abreviatura' => $pais->getAbreviatura_pais(),
+                'codigo' => $propietario->getId_propietario(),
+                'nombre' => $propietario->getNombre_propietario(),
+                'apellido' => $propietario->getApellido_propietario(),
+                'direccion' => $propietario->getDireccion_propietario(),
+                'telefono' => $propietario->getTelefono_propietario(),
                 'respuesta' =>'existe'
             );
         }
@@ -60,8 +62,8 @@ switch ($_GET['accion']){
         break;
 
     case 'listar':
-        $pais = new Pais();
-        $listado = $pais->listar();        
+        $propietario = new Propietario();
+        $listado = $propietario->listar();        
         echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);
         break;
 }

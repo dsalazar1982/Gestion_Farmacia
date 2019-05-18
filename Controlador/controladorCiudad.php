@@ -1,19 +1,19 @@
 <?php
  
-require_once '../Modelo/modeloPais.php';
+require_once '../Modelo/modeloCiudad.php';
 $datos = $_GET;
 switch ($_GET['accion']){
     case 'editar':
-        $pais = new Pais();
-		$resultado = $pais->editar($datos);
+        $ciudad = new Ciudad();
+		$resultado = $ciudad->editar($datos);
         $respuesta = array(
                 'respuesta' => $resultado
             );
         echo json_encode($respuesta);
         break;
     case 'nuevo':
-        $pais = new Pais();
-		$resultado = $pais->nuevo($datos);
+        $ciudad = new Ciudad();
+		$resultado = $ciudad->nuevo($datos);
         if($resultado > 0) {
             $respuesta = array(
                 'respuesta' => 'correcto'
@@ -26,8 +26,8 @@ switch ($_GET['accion']){
         echo json_encode($respuesta);
         break;
     case 'borrar':
-		$pais = new Pais();
-		$resultado = $pais->borrar($datos['codigo']);
+		$ciudad = new Ciudad();
+		$resultado = $ciudad->borrar($datos['codigo']);
         if($resultado > 0) {
             $respuesta = array(
                 'respuesta' => 'correcto'
@@ -41,18 +41,18 @@ switch ($_GET['accion']){
         break;
 
     case 'consultar':
-        $pais = new Pais();
-        $pais->consultar($datos['codigo']);
+        $ciudad = new Ciudad();
+        $ciudad->consultar($datos['codigo']);
 
-        if($pais->getId_pais() == null) {
+        if($ciudad->getId_ciudad() == null) {
             $respuesta = array(
                 'respuesta' => 'no existe'
             );
         }  else {
             $respuesta = array(
-                'codigo' => $pais->getId_pais(),
-                'pais' => $pais->getNombre_pais(),
-                'abreviatura' => $pais->getAbreviatura_pais(),
+                'codigo' => $ciudad->getId_ciudad(),
+                'ciudad' => $ciudad->getNombre_ciudad(),
+                'pais' => $ciudad->getNombre_pais(),
                 'respuesta' =>'existe'
             );
         }
@@ -60,8 +60,8 @@ switch ($_GET['accion']){
         break;
 
     case 'listar':
-        $pais = new Pais();
-        $listado = $pais->listar();        
+        $ciudad = new Ciudad();
+        $listado = $ciudad->listar();        
         echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);
         break;
 }
