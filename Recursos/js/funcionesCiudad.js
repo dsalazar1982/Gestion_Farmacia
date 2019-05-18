@@ -153,7 +153,7 @@ function ciudad() {
     });
 
     $(".content-header").on("click", "button#grabar", function() {
-        var codigo = document.forms["fciudad"]["id_ciudads"].value;
+        var codigo = document.forms["fciudad"]["id_ciudad"].value;
         $.ajax({
             type: "get",
             url: "./Controlador/controladorCiudad.php",

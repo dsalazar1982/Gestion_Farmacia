@@ -66,15 +66,14 @@
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="button" id="actualizar" data-toggle="tooltip" title="Grabar Propietario"
-                                    class="btn btn-primary">Grabar Propietario</button>
-                                <button type="button" id="cancelar" data-toggle="tooltip" title="Cancelar Edición"
-                                    class="btn btn-success btncerrar2">Cancelar</button>
+                                <button type="button" id="grabar" class="btn btn-primary" data-toggle="tooltip"
+                                    title="Grabar Pais">Grabar Propietario</button>
+                                <button type="button" id="cerrar" class="btn btn-success btncerrar2"
+                                    data-toggle="tooltip" title="Cancelar">Cancelar</button>
                             </div>
-
                         </div>
 
-                        <input type="hidden" id="editar" value="editar" name="accion" />
+                        <input type="hidden" id="nuevo" value="nuevo" name="accion" />
                         </fieldset>
 
                     </form>
