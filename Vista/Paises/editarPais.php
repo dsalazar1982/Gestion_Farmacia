@@ -65,3 +65,6 @@
                 </div>
                 <input type="hidden" id="pagina" value="editar" name="editar" />
             </div>
+        </div>
+    </div>
+</div>
