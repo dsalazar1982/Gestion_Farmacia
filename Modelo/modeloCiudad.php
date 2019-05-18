@@ -4,6 +4,7 @@
 		public $id_ciudad;
 		public $nombre_ciudad;
 		public $id_pais;
+		public $nombre_pais;
 		
 		function __construct() {
 		}
@@ -18,6 +19,10 @@
 
 		public function getId_pais(){
 			return $this->id_pais;
+		}
+
+		public function getNombre_pais(){
+			return $this->nombre_pais;
 		}
 		
 		public function consultar($id_ciudad='') {

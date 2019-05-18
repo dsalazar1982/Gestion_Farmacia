@@ -26,6 +26,8 @@ function ciudad() {
             } else {
                 $("#id_ciudad").val(ciudad.codigo);
                 $("#nombre_ciudad").val(ciudad.ciudad);
+                /* AQUI FUE*/
+                $("#id_pais").append("<option value='" + ciudad.id_pais + "'>" + ciudad.pais + "</option>")
                 $("#id_pais").val(ciudad.pais);
             }
         });
@@ -126,6 +128,7 @@ function ciudad() {
             data: datos,
             dataType: "json"
         }).done(function(resultado) {
+
             if (resultado.respuesta) {
                 swal(
                     "Actualizado!",
@@ -150,12 +153,11 @@ function ciudad() {
     });
 
     $(".content-header").on("click", "button#grabar", function() {
-        var codigo = document.forms["fciudad"]["id_ciudad"].value;
-
+        var codigo = document.forms["fciudad"]["id_ciudads"].value;
         $.ajax({
             type: "get",
             url: "./Controlador/controladorCiudad.php",
-            data: { codigo: codigo, accion: "consultar" },
+            data: { codigo: codigo, accion: 'consultar' },
             dataType: "json"
         }).done(function(ciudad) {
             if (ciudad.respuesta == "no existe") {
@@ -168,31 +170,37 @@ function ciudad() {
                     dataType: "json"
                 }).done(function(resultado) {
                     if (resultado.respuesta) {
-                        swal("Grabado!!", "El registro se grabó correctamente", "success");
+                        swal(
+                            'Grabado!!',
+                            'El registro se grabó correctamente',
+                            'success'
+                        )
                         dt.ajax.reload();
                         $("#titulo").html("Listado ciudades");
                         $("#nuevo-editar").html("");
                         $("#nuevo-editar").removeClass("show");
                         $("#nuevo-editar").addClass("hide");
                         $("#ciudad").removeClass("hide");
-                        $("#ciudad").addClass("show");
+                        $("#ciudad").addClass("show")
                     } else {
                         swal({
-                            type: "error",
-                            title: "Oops...",
-                            text: "Something went wrong!"
-                        });
+                            type: 'error',
+                            title: 'Oops...',
+                            text: 'Something went wrong!'
+                        })
                     }
                 });
             } else {
                 swal({
-                    type: "error",
-                    title: "Oops...",
-                    text: "La ciudad ya existe!!!!!"
-                });
+                    type: 'error',
+                    title: 'Oops...',
+                    text: 'La ciudad ya existe!!!!!'
+                })
             }
         });
     });
+
+
 }
 $(document).ready(() => {
     $(".content-header").off("click", "a.editar");
