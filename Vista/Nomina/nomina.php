@@ -17,7 +17,7 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Listdo de Nomina</h3>
+          <h3 class="box-title">Listado de Nomina</h3>
           <div class="box-tools pull-right">
             <button class="btn btn-info btn-sm" id="nuevo" data-toggle="tooltip" title="Nueva Nomina"><i class="fa fa-plus" aria-hidden="true"></i></button>
             <button class="btn btn-info btn-sm btncerrar" data-toggle="tooltip" title="Ocultar"><i class="fa fa-times"></i></button>
@@ -27,8 +27,8 @@
 
         <!-- /.box-header -->
         <div class="box-body">
-          <!--<div id="editar"></div>
-          <div id="listado">-->
+          <div id="editar"></div>
+          <div id="listado">
             <table id="tabla" class="table table-bordered table-striped">
               <thead>
                 <tr>
@@ -45,8 +45,7 @@
                   <th>Salud</th>
                   <th>Pension</th>
                   <th>Salario Neto</th>
-                  <th>&nbsp;</th>
-                  <th>&nbsp;</th>
+                  <th>Acciones</th>
 
                 </tr>
               </thead>
@@ -70,3 +69,6 @@
 
 <script src="./Recursos/js/funcionesNomina.js"></script>
 <!-- Funciones de Lógica de neogcio -->
+<script>
+   $(document).ready(nomina);
+</script>

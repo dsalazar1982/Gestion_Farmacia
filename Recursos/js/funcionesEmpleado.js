@@ -228,7 +228,7 @@ function empleado(){
      //$("#titulo").html("Editar Comuna");
      //Recupera datos del fromulario
      var codigo = $(this).data("codigo");
-     var municipio;
+     var pais, ciudad;
      $(".box-title").html("Actualizar Empleado")
      $("#editar").addClass('show');
      $("#editar").removeClass('hide');
@@ -237,37 +237,43 @@ function empleado(){
      $("#editar").load("./Vista/Empleados/editarEmpleado.php",function(){
           $.ajax({
               type:"get",
-              url:"./Controlador/controladorEmpleado.php",
+              url:"./Controlador/controladorEmpleados.php",
               data: {codigo: codigo, accion:'consultar'},
               dataType:"json"
-              }).done(function( comuna ) {        
-                  if(comuna.respuesta === "no existe"){
+              }).done(function( empleado ) {        
+                  if(empleado.respuesta === "no existe"){
                       swal({
                       type: 'error',
                       title: 'Oops...',
                       text: 'Comuna no existe!'                         
                       })
                   } else {
-                      $("#comu_codi").val(comuna.codigo);                   
-                      $("#comu_nomb").val(comuna.comuna);
-                      municipio = comuna.municipio;
+                      $("#id_empleado").val(empleado.codigo);                   
+                      $("#nombre_empleado").val(empleado.nombre);
+                      $("#apellido_empleado").val(empleado.apellido);
+                      $("#direccion_empleado").val(empleado.cargo);
+                      $("#direccion_empleado").val(empleado.direccion);
+                      $("#telefono_empleado").val(empleado.telefono);
+                      $("#email_empleado").val(empleado.email);
+                      pais = empleado.pais;
+                      ciudad = empleado.ciudad;
                   }
           });
-
           $.ajax({
               type:"get",
-              url:"./Controlador/controladorMunicipio.php",
+              url:"./Controlador/controladorPais.php",
               data: {accion:'listar'},
               dataType:"json"
           }).done(function( resultado ) {                      
               $.each(resultado.data, function (index, value) { 
-              if(municipio === value.muni_codi){
-                  $("#editar #muni_codi").append("<option selected value='" + value.muni_codi + "'>" + value.muni_nomb + "</option>")
+              if(pais === value.id_pais){
+                  $("#editar #id_pais").append("<option selected value='" + value.id_pais + "'>" + value.nombre_pais + "</option>")
               }else {
-                  $("#editar #muni_codi").append("<option value='" + value.muni_codi + "'>" + value.muni_nomb + "</option>")
+                  $("#editar #id_pais").append("<option value='" + value.id_pais + "'>" + value.nombre_pais + "</option>")
               }
               });
           });
+          
       });
   })
 }

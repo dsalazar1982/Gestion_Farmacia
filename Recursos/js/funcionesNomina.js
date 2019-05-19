@@ -1,6 +1,32 @@
-var dt
-
 function nomina(){
+
+    var dt = $("#tabla").DataTable({
+        "ajax": "./Controlador/controladorNomina.php?accion=listar",
+        "columns": [
+            { "data": "id_nomina"} ,
+            { "data": "id_empleado" },
+            { "data": "fecha" },
+            { "data": "salario_basico"} ,
+            { "data": "hextrasd" },
+            { "data": "hextrasn" },
+            { "data": "auxilo_trasporte"} ,
+            { "data": "valor_hextrad" },
+            { "data": "valor_hextran" },
+            { "data": "dias_loborados"} ,
+            { "data": "salrio_devengado" },
+            { "data": "pension" },
+            { "data": "salud" },
+            { "data": "salario_neto" },
+            { "data": "id_nomina",
+               render: function (data) {
+                            return '<a href="#" data-codigo="'+ data + 
+                                   '" class="btn btn-danger btn-sm borrar"> <i class="fa fa-trash"></i></a>'
+                            +      '<a href="#" data-codigo="'+ data + 
+                                   '" class="btn btn-info btn-sm editar"> <i class="fa fa-edit"></i></a>'
+                  }
+          }             
+        ]
+    });
     
     $("#editar").on("click", "button.btncerrar2", function() {
         $("#titulo").html("Listado Nomina");
@@ -224,39 +250,5 @@ function nomina(){
       });
   })
 
-  dt = $("#tabla").DataTable({
-    "ajax": "./Controlador/controladorNomina.php?accion=listar",
-    "columns": [
-        { "data": "id_nomina"} ,
-        { "data": "id_empleado" },
-        { "data": "fecha" },
-        { "data": "salario_basico"} ,
-        { "data": "hextrasd" },
-        { "data": "hextrasn" },
-        { "data": "auxilo_trasporte"} ,
-        { "data": "valor_hextrad" },
-        { "data": "valor_hextran" },
-        { "data": "dias_loborados"} ,
-        { "data": "salrio_devengado" },
-        { "data": "pension" },
-        { "data": "salud" },
-        { "data": "salario_neto" },
-     
-        { "data": "id_nomina",
-          render: function (data) {
-                    return '<a href="#" data-codigo="'+ data + 
-                           '" class="btn btn-danger btn-sm borrar"> <i class="fa fa-trash"></i></a>'  
-          }
-        },         
-        { "data": "id_nomina",
-        render: function (data) {
-                  return '<a href="#" data-codigo="'+ data + 
-                         '" class="btn btn-danger btn-sm borrar"> <i class="fa fa-trash"></i></a>'
-                  
-        }
-      }             
-    ]
-});
-
-
+ 
 }

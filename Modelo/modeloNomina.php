@@ -83,7 +83,7 @@
 			endif;
 		}
 		
-		public function lista() {
+		public function listar() {
 			$this->query = "
 			SELECT n.id_nomina, n.id_empleado,CONCAT (e.nombre_empleado," + ",e.apellido_empleado) Nombre, n.fecha, n.salario_basico, n.hextrasd,
 			n.hextrasn, n.auxilio_trasporte, n.valor_hextrad, n.valor_hextran,

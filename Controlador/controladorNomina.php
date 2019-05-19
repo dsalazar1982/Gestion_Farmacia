@@ -75,7 +75,7 @@ switch ($_GET['accion']){
 
     case 'listar':
         $nomina = new Nomina();
-        $listado = $nomina->lista();
+        $listado = $nomina->listar();
         echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);    
         break;
 }
