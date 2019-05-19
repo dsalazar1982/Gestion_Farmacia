@@ -25,23 +25,23 @@
 
 
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="comu_nomb">Nombre:</label>
+                        <label class="control-label col-sm-2" for="nombre_empleado">Nombre:</label>
                         <div class="col-sm-10">
                         
-                            <input type="text" class="form-control" id="comu_nomb" name="comu_nomb" placeholder="Ingrese Nombre comuna"
+                            <input type="text" class="form-control" id="nombre_empleado" name="nombre_empleado" placeholder="Ingrese el nombre del empleado"
                             value = "">
                         </div>
                     </div>
 					
 					
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="muni_codi">Municipio:</label>
+                        <label class="control-label col-sm-2" for="muni_codi">Id Empleado:</label>
                         <div class="col-sm-10">
-                            <select class="form-control" id="muni_codi" name="muni_codi">
+                            <select class="form-control" id="id_empleado" name="id_empleado">
                             <option value="" selected>Seleccione ...</option>
-								<?php foreach($listaMunicipio as $fila){ ?>
-								<option value="<?php echo trim($fila['muni_codi']); ?>" >
-								<?php echo utf8_encode(trim($fila['muni_nomb'])); ?> </option>
+								<?php foreach($listaEmpleado as $fila){ ?>
+								<option value="<?php echo trim($fila['id_empleado']); ?>" >
+								<?php echo utf8_encode(trim($fila['nombre_empleado'])); ?> </option>
 
 								<?php } ?>
 							</select>	

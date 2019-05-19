@@ -1,7 +1,7 @@
 <?php
     require_once("modeloAbstractoDB.php");
 	
-    class nomina extends ModeloAbstractoDB {
+    class Nomina extends ModeloAbstractoDB {
 		
 		private $id_nomina;
 		private $id_empleado;
@@ -23,48 +23,48 @@
 			//$this->db_name = '';
 		}
 
-		public function getid_nomina(){
+		public function getId_nomina(){
 			return $this->id_nomina;
 		}
 
-		public function getid_empleado(){
+		public function getId_empleado(){
 			return $this->id_empleado;
 		}
 		
-		public function getfecha(){
+		public function getFecha(){
 			return $this->fecha;
 		}
-		public function getsalario_basico(){
+		public function getSalario_basico(){
 			return $this->salario_basico;
 		}
-		public function gethextrasd(){
+		public function getHextrasd(){
 			return $this->hextrasd;
 		}
-		public function gethextrasn(){
+		public function getHextrasn(){
 			return $this->hextrasn;
 		}
-		public function getauxilo_trasporte(){
+		public function getAuxilo_trasporte(){
 			return $this->auxilo_trasporte;
 		}
-		public function getvalor_hextrad(){
+		public function getValor_hextrad(){
 			return $this->valor_hextrad;
 		}
-		public function getvalor_hextran(){
+		public function getValor_hextran(){
 			return $this->valor_hextran;
 		}
-		public function getdias_loborados(){
+		public function getDias_loborados(){
 			return $this->dias_laborados;
 		}
-		public function getsalrio_devengado(){
+		public function getSalrio_devengado(){
 			return $this->salario_devengado;
 		}
-		public function getpension(){
+		public function getPension(){
 			return $this->pension;
 		}
-		public function getsalud(){
+		public function getSalud(){
 			return $this->salud;
 		}
-		public function getsalario_neto(){
+		public function getSalario_neto(){
 			return $this->salario_neto;
 		}
 
@@ -73,9 +73,7 @@
 			if($id_nomina !=''):
 				$this->query = "
                 SELECT n.id_nomina,n.id_empleado, 
-                e.nombre_empleado 
-                FROM tb_nominas as n,tb_empleados as e;
-				";
+                CONCAT (e.nombre_empleado," + ",e.apellido_empleado) FROM tb_nominas as n,tb_empleados as e;";
 				$this->obtener_resultados_query();
 			endif;
 			if(count($this->rows) == 1):
@@ -87,7 +85,7 @@
 		
 		public function lista() {
 			$this->query = "
-			SELECT n.id_nomina, n.id_empleado,e.nombre_empleado, n.fecha, n.salario_basico, n.hextrasd,
+			SELECT n.id_nomina, n.id_empleado,CONCAT (e.nombre_empleado," + ",e.apellido_empleado) Nombre, n.fecha, n.salario_basico, n.hextrasd,
 			n.hextrasn, n.auxilio_trasporte, n.valor_hextrad, n.valor_hextran,
 			n.dias_laborados, n.salario_devengado,n.pension,n.salud, n.salario_neto 
 			FROM tb_nominas as n, tb_empleados as e WHERE (e.id_empleado = n.id_empleado);

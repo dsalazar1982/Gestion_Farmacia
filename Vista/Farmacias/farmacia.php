@@ -1,5 +1,5 @@
 <div id="nuevo-editar" class="hide">
-		<!-- div para cargar el formulario para una nueva farmacia o editar una comuna -->
+		<!-- div para cargar el formulario para una nueva farmacia  -->
 </div>
 
 <div id="farmacia">
@@ -35,7 +35,7 @@
 		</tbody>
 
 	</table>
-	<li><a  class = "reporte" href="../farmacia/exPDF.php" target="_blank"><i class="fa fa-building"></i> Reporte en PDF</a></li>
+	
 
 </div><!-- /.box-body -->  
 <script src="../../js/funcionesFarmacia.js"></script>

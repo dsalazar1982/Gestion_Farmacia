@@ -4,7 +4,7 @@ require_once '../Modelo/modeloNomina.php';
 $datos = $_GET;
 switch ($_GET['accion']){
     case 'editar':
-        $nomina = new nomina();
+        $nomina = new Nomina();
         $resultado = $nomina->editar($datos);
         $respuesta = array(
             'respuesta' => $resultado
@@ -13,7 +13,7 @@ switch ($_GET['accion']){
         break;
    
     case 'nuevo':
-        $nomina = new nomina();
+        $nomina = new Nomina();
         $resultado = $nomina->nuevo($datos);
         if($resultado > 0) 
         {
@@ -29,7 +29,7 @@ switch ($_GET['accion']){
         break;
        
     case 'borrar':
-		$nomina = new nomina();
+		$nomina = new Nomina();
 		$resultado = $nomina->borrar($datos['codigo']);
         if($resultado > 0) {
             $respuesta = array(
@@ -44,18 +44,29 @@ switch ($_GET['accion']){
         break;
 
     case 'consultar':
-        $nomina = new nomina();
+        $nomina = new Nomina();
         $nomina->consultar($datos['codigo']);
 
-        if($nomina->getid_nomina() == null) {
+        if($nomina->getId_nomina() == null) {
             $respuesta = array(
                 'respuesta' => 'no existe'
             );
         }  else {
             $respuesta = array(
-                'codigo' => $nomina->getid_nomina(),
-                'id' => $nomina->getid_empleado(),
-                'empleado' =>$nomina->getnombre_empleado(),
+                'codigo' => $nomina->getId_nomina(),
+                'cc' => $nomina->getId_empleado(),
+                'empleado' =>$nomina->getNombre_empleado(),
+                'fecha' =>$nomina->getFecha(),// seguir colocando todos los get
+                'SalarioB' =>$nomina->getSalario_basico(),
+                'Hextrad' =>$nomina->getHextrasd(),
+                'Hextran' =>$nomina->getHextrasn(),
+                'Valor Hora Extra D' =>$nomina->getValor_hextrad(),
+                'Valor Hora Extra N' =>$nomina->getValor_hextran(),
+                'Dias Laborados '=>$nomina->getDias_loborados(),
+                'Salario Devengado' =>$nomina->getSalrio_devengado(),
+                'Salud' =>$nomina->getPension(),
+                'Pension' =>$nomina->getSalud(),
+                'Salario Devengado' =>$nomina->getSalario_neto(),
                 'respuesta' =>'existe'
             );
         }
@@ -63,7 +74,7 @@ switch ($_GET['accion']){
         break;
 
     case 'listar':
-        $nomina = new nomina();
+        $nomina = new Nomina();
         $listado = $nomina->lista();
         echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);    
         break;

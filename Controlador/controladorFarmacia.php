@@ -54,9 +54,8 @@ switch ($_GET['accion']){
                 'farmacia' => $farmacia->getnombre_farmacia(),
                 'direccion' => $farmacia->getdireccion_farmacia(),
                 'ciudad' =>$farmacia->getid_ciudad(),
-                'telefono' => $farmacia->gettelefono_farmacia(),
-                'telefono' => $farmacia->gettelefono_farmacia(),
-                'telefono' => $farmacia->gettelefono_farmacia(),
+                'Propietatio' => $farmacia->getpropiatario(),
+                'usuario' => $farmacia->getusuairo(),
                 'respuesta' =>'existe'
             );
         }

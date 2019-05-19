@@ -1,39 +1,16 @@
+var dt
+
 function nomina(){
-
-    var dt = $("#tabla").DataTable({
-            "ajax": "./Controlador/controladorNomina.php?accion=listar",
-            "columns": [
-                { "data": "id_nomina"} ,
-                { "data": "id_empleado" },
-                { "data": "fecha" },
-                { "data": "salario_basico"} ,
-                { "data": "hextrasd" },
-                { "data": "hextrasn" },
-                { "data": "auxilo_trasporte"} ,
-                { "data": "valor_hextrad" },
-                { "data": "valor_hextran" },
-                { "data": "dias_loborados"} ,
-                { "data": "salrio_devengado" },
-                { "data": "pension" },
-                { "data": "salud" },
-                { "data": "salario_neto" },
-             
-                { "data": "id_nomina",
-                  render: function (data) {
-                            return '<a href="#" data-codigo="'+ data + 
-                                   '" class="btn btn-danger btn-sm borrar"> <i class="fa fa-trash"></i></a>'  
-                  }
-                },         
-                { "data": "id_nomina",
-                render: function (data) {
-                          return '<a href="#" data-codigo="'+ data + 
-                                 '" class="btn btn-danger btn-sm borrar"> <i class="fa fa-trash"></i></a>'
-                          
-                }
-              }             
-            ]
-    });
-
+    
+    $("#editar").on("click", "button.btncerrar2", function() {
+        $("#titulo").html("Listado Nomina");
+        $("#nuevo-editar").html("");
+        $("#nuevo-editar").removeClass("show");
+        $("#nuevo-editar").addClass("hide");
+        $("#pais").removeClass("hide");
+        $("#pais").addClass("show");
+    })
+    
   $("#editar").on("click",".btncerrar", function(){
       $(".box-title").html("Listado de Nomina");
       $("#editar").addClass('hide');
@@ -50,7 +27,7 @@ function nomina(){
       $("#editar").removeClass('hide');
       $("#listado").addClass('hide');
       $("#listado").removeClass('show');
-      $("#editar").load('./Vistas/nomina/nuevaNomina.php', function(){
+      $("#editar").load('./Vistas/Nomina/nuevoNomina.php', function(){
           $.ajax({
              type:"get",
              url:"./Controlador/controladorNomina.php",
@@ -193,7 +170,7 @@ function nomina(){
       })
 
   });
-  
+  // ESTE TOCA ACOMODARLO CASI TODO 
   $(".box-body").on("click","a.editar",function(){
      //$("#titulo").html("Editar Nomina");
      //Recupera datos del fromulario
@@ -207,7 +184,7 @@ function nomina(){
      $("#editar").load("./Vistas/nomina/editarnomina.php",function(){
           $.ajax({
               type:"get",
-              url:"./Controlador/controladornomina.php",
+              url:"./Controlador/controladoNomina.php",
               data: {codigo: codigo, accion:'consultar'},
               dataType:"json"
               }).done(function( nomina ) {        
@@ -218,6 +195,12 @@ function nomina(){
                       text: 'Comuna no existe!'                         
                       })
                   } else {
+                      $("#id_nomina").val(nomina.codigo);                   
+                      $("#id_empleado").val(nomina.comuna);
+                      $("#comu_codi").val(comuna.codigo);                   
+                      $("#comu_nomb").val(comuna.comuna);
+                      $("#comu_codi").val(comuna.codigo);                   
+                      $("#comu_nomb").val(comuna.comuna);
                       $("#comu_codi").val(comuna.codigo);                   
                       $("#comu_nomb").val(comuna.comuna);
                       municipio = comuna.municipio;
@@ -240,4 +223,40 @@ function nomina(){
           });
       });
   })
+
+  dt = $("#tabla").DataTable({
+    "ajax": "./Controlador/controladorNomina.php?accion=listar",
+    "columns": [
+        { "data": "id_nomina"} ,
+        { "data": "id_empleado" },
+        { "data": "fecha" },
+        { "data": "salario_basico"} ,
+        { "data": "hextrasd" },
+        { "data": "hextrasn" },
+        { "data": "auxilo_trasporte"} ,
+        { "data": "valor_hextrad" },
+        { "data": "valor_hextran" },
+        { "data": "dias_loborados"} ,
+        { "data": "salrio_devengado" },
+        { "data": "pension" },
+        { "data": "salud" },
+        { "data": "salario_neto" },
+     
+        { "data": "id_nomina",
+          render: function (data) {
+                    return '<a href="#" data-codigo="'+ data + 
+                           '" class="btn btn-danger btn-sm borrar"> <i class="fa fa-trash"></i></a>'  
+          }
+        },         
+        { "data": "id_nomina",
+        render: function (data) {
+                  return '<a href="#" data-codigo="'+ data + 
+                         '" class="btn btn-danger btn-sm borrar"> <i class="fa fa-trash"></i></a>'
+                  
+        }
+      }             
+    ]
+});
+
+
 }

@@ -180,8 +180,9 @@ function farmacia(){
                     $("#id_farmacia").val(farmacia.codigo);   //Controlador_famacia linea 53                
                     $("#nombre_farmacia").val(farmacia.farmacia); //Controlador_famacia linea 54
                     $("#direccion_farmacia").val(farmacia.direccion); //Controlador_famacia linea 55
-                    ciudad = farmacia.ciudad;                //Controlador_famacia linea 56
                     $("#telefono_farmacia").val(farmacia.telefono);  //Controlador_famacia linea 57
+                    ciudad = farmacia.ciudad;                //Controlador_famacia linea 56
+                    
                     
                 }
            });
@@ -195,7 +196,7 @@ function farmacia(){
               $("#id_ciudad option").remove();
               $.each(resultado.data, function (index, value) { 
                 
-                if(ciudad === value.ciudad_id){
+                if(ciudad === value.id_ciudad){
                   $("#id_ciudad").append("<option selected value='" + value.id_ciudad + "'>" + value.nombre_ciudad + "</option>")
                 }else {
                   $("#id_ciudad").append("<option value='" + value.id_ciudad + "'>" + value.nombre_ciudad + "</option>")
