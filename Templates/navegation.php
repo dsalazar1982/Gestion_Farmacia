@@ -21,10 +21,10 @@
     </a>
     <ul class="treeview-menu">
         <li><a href="./Vista/Ciudades/ciudad.php"><i class="fa fa-globe"></i> <span>Ciudades</span></a></li>
-        <li><a href="#"><i class="fa fa-user"></i> <span>Clientes</span></a></li>
+        <li><a href="./Vista/Clientes/clientes.php"><i class="fa fa-user"></i> <span>Clientes</span></a></li>
         <li><a href="./Vista/Empleados/empleados.php"><i class="fa fa-male"></i> <span>Empleados</span></a></li>
         <li><a href="#"><i class="fa fa-calculator"></i> <span>Facturas</span></a></li>
-	    <li><a href="#"><i class="fa  fa-money"></i> <span>Ventas</span></a></li>
+	    <li><a href=./Vista/Venta/venta.php"><i class="fa  fa-money"></i> <span>Ventas</span></a></li>
 		<li><a href="./Vista/Farmacias/farmacia.php"><i class="fa fa-hospital-o"></i> <span>Farmacias</span></a></li>
 		<li><a href="#"><i class="fa fa-table"></i> <span>Inventario</span></a></li>
 	   <li><a href="#"><i class="fa fa-hourglass-2"></i> <span>Ofertas</span></a></li>

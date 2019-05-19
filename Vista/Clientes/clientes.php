@@ -23,8 +23,8 @@
 				<th class="text-center">Cliente</th>
 				<th class="text-center">Direccion</th>
                 <th class="text-center">Telefono</th>
-                <th class="text-center">Idpais</th>
-                <th class="text-center">Idciudad</th>
+                <th class="text-center">Pais</th>
+                <th class="text-center">Ciudad</th>
                 <th>&nbsp;</th>
 				<th>&nbsp;</th>
 			</tr>
