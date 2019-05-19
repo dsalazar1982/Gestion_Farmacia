@@ -39,14 +39,7 @@
 		}
 		
 		public function listar() {
-			$this->query = "
-			SELECT comu_codi, comu_nomb, m.muni_nomb
-			FROM tb_comuna as c inner join tb_municipio as m
-			ON (c.muni_codi = m.muni_codi) order by comu_codi
-			";
-			
-			$this->obtener_resultados_query();
-			return $this->rows;
+		
 			
 		}
 		
@@ -77,10 +70,10 @@
 			return $resultado;
 		}
 		
-		public function borrar($comu_codi='') {
+		public function borrar($id_usuarioxempleado='') {
 			$this->query = "
-			DELETE FROM tb_comuna
-			WHERE comu_codi = '$comu_codi'
+			DELETE FROM tb_usuarioxempleado
+			WHERE id_usuarioxempleado = '$id_usuarioxempleado'
 			";
 			$resultado = $this->ejecutar_query_simple();
 

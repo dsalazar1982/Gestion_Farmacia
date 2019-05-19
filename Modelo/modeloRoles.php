@@ -50,9 +50,9 @@
 				endforeach;
 				$this->query = "
 					INSERT INTO tb_roles
-					(id_rol, nombre_rol)
+					(id_rol, nombre_rol, update_at)
 					VALUES
-					(NULL, '$nombre_rol')
+					(NULL, '$nombre_rol', NOW())
 					";
 					$resultado = $this->ejecutar_query_simple();
 					return $resultado;
@@ -63,7 +63,8 @@
 		
 			$this->query = "
 			UPDATE tb_roles
-			SET nombre_rol = '$nombre_rol'
+			SET nombre_rol = '$nombre_rol',
+			update_at = NOW()
 			WHERE id_rol = '$id_rol'
 			";
 			$resultado = $this->ejecutar_query_simple();

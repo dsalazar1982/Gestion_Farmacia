@@ -1597,16 +1597,16 @@ CREATE TABLE IF NOT EXISTS `tb_proveedores` (
 CREATE TABLE IF NOT EXISTS `tb_roles` (
   `id_rol` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_rol` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `update_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id_rol`)
 ) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 -- Volcando datos para la tabla db_proyectofarmacia.tb_roles: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_roles` DISABLE KEYS */;
-INSERT INTO `tb_roles` (`id_rol`, `nombre_rol`) VALUES
-	(48, 'Administrador del sistema'),
-	(49, 'Administrador de farmacia'),
-	(50, 'Cliente'),
-	(51, 'Empleado');
+INSERT INTO `tb_roles` (`id_rol`, `nombre_rol`, `update_at`) VALUES
+	(48, 'Administrador del sistema', NULL),
+	(49, 'Administrador de farmacia', NULL),
+	(51, 'Empleado', '2019-05-18 19:10:26');
 /*!40000 ALTER TABLE `tb_roles` ENABLE KEYS */;
 
 -- Volcando estructura para tabla db_proyectofarmacia.tb_rolesxpermisos
@@ -1655,27 +1655,11 @@ INSERT INTO `tb_rolesxpermisos` (`id_rolxpermiso`, `id_rol`, `modulo_rolxpermiso
 	(398, 49, 14, 0),
 	(399, 49, 15, 0),
 	(400, 49, 16, 0),
-	(401, 50, 1, 0),
-	(402, 50, 2, 0),
-	(403, 50, 3, 0),
-	(404, 50, 4, 0),
-	(405, 50, 5, 0),
-	(406, 50, 6, 0),
-	(407, 50, 7, 0),
-	(408, 50, 8, 0),
-	(409, 50, 9, 0),
-	(410, 50, 10, 0),
-	(411, 50, 11, 0),
-	(412, 50, 12, 0),
-	(413, 50, 13, 0),
-	(414, 50, 14, 0),
-	(415, 50, 15, 0),
-	(416, 50, 16, 0),
 	(417, 51, 1, 0),
 	(418, 51, 2, 0),
 	(419, 51, 3, 1),
 	(420, 51, 4, 1),
-	(421, 51, 5, 1),
+	(421, 51, 5, 0),
 	(422, 51, 6, 1),
 	(423, 51, 7, 1),
 	(424, 51, 8, 0),
@@ -1693,23 +1677,24 @@ INSERT INTO `tb_rolesxpermisos` (`id_rolxpermiso`, `id_rol`, `modulo_rolxpermiso
 CREATE TABLE IF NOT EXISTS `tb_usuarios` (
   `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
   `nickname_usuario` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
-  `clave_usuario` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `clave_usuario` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `id_estado` int(11) NOT NULL,
   `id_rol` int(11) NOT NULL,
-  `fechacreacion_usuario` datetime NOT NULL,
+  `fechacreacion_usuario` date NOT NULL,
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `nombre_usuario` (`nickname_usuario`),
   KEY `id_estado` (`id_estado`),
   KEY `id_rol` (`id_rol`),
   CONSTRAINT `fk_usuarios-estados` FOREIGN KEY (`id_estado`) REFERENCES `tb_estados` (`id_estado`),
   CONSTRAINT `fk_usuarios-roles` FOREIGN KEY (`id_rol`) REFERENCES `tb_roles` (`id_rol`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofarmacia.tb_usuarios: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_usuarios: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_usuarios` DISABLE KEYS */;
 INSERT INTO `tb_usuarios` (`id_usuario`, `nickname_usuario`, `clave_usuario`, `id_estado`, `id_rol`, `fechacreacion_usuario`) VALUES
-	(7, 'miguel.cerquera', 'Miguel123', 1, 51, '2019-05-17 00:00:00'),
-	(10, 'daniel.salazar', 'Daniel123', 1, 48, '2019-05-17 00:00:00');
+	(24, 'miguel.cerquera', '$2y$12$UAqtzKiyUwcNjiVS/6657eUMPW/p88EIFKeXkKf8w7N5FvpJ14Vsa', 1, 48, '2019-05-18'),
+	(25, 'daniel.salazar', '$2y$12$Wwe2dCe6PotgPFrxD7gZMunqNOXatIy7Prem6ewjvsbQyMrLogOJK', 1, 48, '2019-05-18'),
+	(26, 'multifarma', '$2y$12$O9qUXXIU4VnKKFNYWgTwpuOrPcKD7RYKDYGPljWBuF40oYIC7J1Zi', 1, 51, '2019-05-18');
 /*!40000 ALTER TABLE `tb_usuarios` ENABLE KEYS */;
 
 -- Volcando estructura para tabla db_proyectofarmacia.tb_usuarioxempleado
@@ -1717,18 +1702,20 @@ CREATE TABLE IF NOT EXISTS `tb_usuarioxempleado` (
   `id_usuarioxempleado` int(11) NOT NULL AUTO_INCREMENT,
   `id_empleado` int(11) DEFAULT NULL,
   `id_usuario` int(11) DEFAULT NULL,
+  `update_at` datetime NOT NULL,
   PRIMARY KEY (`id_usuarioxempleado`),
   KEY `id_empleado` (`id_empleado`),
   KEY `id_usuario` (`id_usuario`),
   CONSTRAINT `fk_usuarioxempleado-empleado` FOREIGN KEY (`id_empleado`) REFERENCES `tb_empleados` (`id_empleado`),
   CONSTRAINT `fk_usuarioxempleado-usuario` FOREIGN KEY (`id_usuario`) REFERENCES `tb_usuarios` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofarmacia.tb_usuarioxempleado: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_usuarioxempleado: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_usuarioxempleado` DISABLE KEYS */;
-INSERT INTO `tb_usuarioxempleado` (`id_usuarioxempleado`, `id_empleado`, `id_usuario`) VALUES
-	(1, 1117349420, 7),
-	(2, 94061180, 10);
+INSERT INTO `tb_usuarioxempleado` (`id_usuarioxempleado`, `id_empleado`, `id_usuario`, `update_at`) VALUES
+	(14, 1117349420, 24, '2019-05-18 19:10:51'),
+	(15, 94061180, 25, '2019-05-18 19:11:34'),
+	(16, 1117349420, 26, '2019-05-18 19:12:24');
 /*!40000 ALTER TABLE `tb_usuarioxempleado` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

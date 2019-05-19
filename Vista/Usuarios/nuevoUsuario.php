@@ -62,14 +62,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-1" for="fechacreacion_usuario">Fecha:</label>
-                        <div class="input-group date col-sm-10">
-                            <input type="date" class="form-control" id="fechacreacion_usuario" name="fechacreacion_usuario"
-                            value = "">
-                        </div>                    
-                    </div>
-
-                    <div class="form-group">
                         <label class="control-label col-sm-1" for="id_empleado">Empleado:</label>
                         <div class="input-group col-sm-10">
                             <select class="form-control" id="id_empleado" name="id_empleado">

@@ -67,14 +67,13 @@
 			
 		}
 		
-		public function nuevo($nickname_usuario='',$clave_usuario='',$id_estado='',$id_rol='',
-		$fechacreacion_usuario='') {
+		public function nuevo($nickname_usuario='',$clave_usuario='',$id_estado='',$id_rol='') {
 			
 			$this->query = "
 				INSERT INTO tb_usuarios
 				(id_usuario, nickname_usuario, clave_usuario, id_estado, id_rol, fechacreacion_usuario)
 				VALUES
-				(NULL, '$nickname_usuario', '$clave_usuario','$id_estado','$id_rol','$fechacreacion_usuario')
+				(NULL, '$nickname_usuario', '$clave_usuario','$id_estado','$id_rol',NOW())
 				";
 				$resultado = $this->ejecutar_query_simple();
 				return $resultado;
@@ -92,7 +91,7 @@
             clave_usuario ='$clave_usuario',
             id_estado ='$id_estado',
             id_rol ='$id_rol',
-			fechacreacion_usuario = NOW()
+			fechacreacion_usuario = '$fechacreacion_usuario'
 			WHERE id_usuario = '$id_usuario'
 			";
 			$resultado = $this->ejecutar_query_simple();
@@ -108,7 +107,7 @@
             clave_usuario ='$clave_usuario',
             id_estado ='$id_estado',
             id_rol ='$id_rol',
-			fechacreacion_usuario = NOW()
+			fechacreacion_usuario = '$fechacreacion_usuario'
 			WHERE id_usuario = '$id_usuario'
 			";
 			$resultado = $this->ejecutar_query_simple();
@@ -117,7 +116,7 @@
 		
 		public function borrar($id_usuario='') {
 			$this->query = "
-			DELETE FROM tb_usuario
+			DELETE FROM tb_usuarios
 			WHERE id_usuario = '$id_usuario'
 			";
 			$resultado = $this->ejecutar_query_simple();

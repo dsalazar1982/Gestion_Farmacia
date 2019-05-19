@@ -28,8 +28,8 @@ switch ($_GET['accion']){
         break;
 
     case 'borrar':
-		$comuna = new Comuna();
-		$resultado = $comuna->borrar($datos['codigo']);
+		$usuarioxempleado = new Usuarioxempleado();
+		$resultado = $usuarioxempleado->borrar($datos['codigo']);
         if($resultado > 0) {
             $respuesta = array(
                 'respuesta' => 'correcto'
@@ -61,9 +61,7 @@ switch ($_GET['accion']){
         break;
 
     case 'listar':
-        $comuna = new Comuna();
-        $listado = $comuna->lista();
-        echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);    
+            
         break;
 }
 ?>

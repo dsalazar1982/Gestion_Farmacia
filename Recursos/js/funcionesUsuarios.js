@@ -89,7 +89,6 @@ $("#editar").on("click","#desbloqueo",function(){
     var clave_usuario = document.forms['fusuario']['clave_usuario'].value;
     var id_estado = document.forms['fusuario']['id_estado'].value;
     var id_rol =    document.forms['fusuario']['id_rol'].value; 
-    var fechacreacion_usuario = document.forms['fusuario']['fechacreacion_usuario'].value;
             $.ajax({
                 type:"get",
                 url:"./Controlador/controladorUsuarios.php",
@@ -101,7 +100,7 @@ $("#editar").on("click","#desbloqueo",function(){
                     type:"get",
                     url:"./Controlador/controladorUsuarios.php",
                     data: {codigoA: nickname_usuario, codigoB: clave_usuario, codigoC: id_estado,
-                    codigoD: id_rol, codigoE: fechacreacion_usuario, accion:'nuevo'},
+                    codigoD: id_rol, accion:'nuevo'},
                     dataType:"json"
                   }).done(function( resultado ) {
                       if(resultado.respuesta){
@@ -210,7 +209,6 @@ $("#editar").on("click","#desbloqueo",function(){
     });
      }else{
         var id_usuario = document.forms['fusuario']['id_usuario'].value;
-        var id_empleado = document.forms['fusuario']['id_empleado'].value;
         var nickname_usuario = document.forms['fusuario']['nickname_usuario'].value;
         var clave_usuario = document.forms['fusuario']['clave_usuario'].value;
         var id_estado = document.forms['fusuario']['id_estado'].value;
@@ -293,52 +291,63 @@ $("#editar").on("click","#desbloqueo",function(){
             confirmButtonText: 'Si, Borrarlo!'
       }).then((decision) => {
               if (decision.value) {
-                  var request = $.ajax({
-                      method: "get",                  
-                      url: "./Controlador/controladorusuariosxEmpleados.php",
-                      data: {codigo: codigo, accion:'borrar'},
-                      dataType: "json"
-                  })
-                  request.done(function( resultado ) {
-                      if(resultado.respuesta == 'correcto'){
-                        var request = $.ajax({
-                            method: "get",                  
-                            url: "./Controlador/controladorUsuarios.php",
-                            data: {codigo: codigo, accion:'borrar'},
-                            dataType: "json"
-                        })
-                        request.done(function( resultado ) {
+                var request = $.ajax({
+                    method: "get",                  
+                    url: "./Controlador/controladorusuariosxEmpleados.php",
+                    data: {codigo: codigo, accion:'consultar'},
+                    dataType: "json"
+                })
+                request.done(function( resultado ) {
+                    if(resultado.respuesta == 'existe'){
+                     var id_usuarioxempleado = resultado.usuarioxempleado;
+                     var request = $.ajax({
+                        method: "get",                  
+                        url: "./Controlador/controladorusuariosxEmpleados.php",
+                        data: {codigo: id_usuarioxempleado, accion:'borrar'},
+                        dataType: "json"
+                    })
+                    request.done(function( resultado ) {
                         if(resultado.respuesta == 'correcto'){
-                            swal({
-                                position: 'center',
-                                type: 'success',
-                                title: 'La comuna con codigo ' + codigo + ' fue borrada',
-                                showConfirmButton: false,
-                                timer: 1500
-                              })       
-                              var info = dt.page.info();   
-                              if((info.end-1) == info.length)
-                                  dt.page( info.page-1 ).draw( 'page' );
-                              dt.ajax.reload(null, false);
-                        }    
-                        });   
-                          
-                      } else {
-                          swal({
-                            type: 'error',
-                            title: 'Oops...',
-                            text: 'Something went wrong!'                         
+                          var request = $.ajax({
+                              method: "get",                  
+                              url: "./Controlador/controladorUsuarios.php",
+                              data: {codigo: codigo, accion:'borrar'},
+                              dataType: "json"
                           })
-                      }
-                  });
-                   
-                  request.fail(function( jqXHR, textStatus ) {
-                      swal({
-                        type: 'error',
-                        title: 'Oops...',
-                        text: 'Something went wrong!' + textStatus                          
-                      })
-                  });
+                          request.done(function( resultado ) {
+                          if(resultado.respuesta == 'correcto'){
+                              swal({
+                                  position: 'center',
+                                  type: 'success',
+                                  title: 'La comuna con codigo ' + codigo + ' fue borrada',
+                                  showConfirmButton: false,
+                                  timer: 1500
+                                })       
+                                var info = dt.page.info();   
+                                if((info.end-1) == info.length)
+                                    dt.page( info.page-1 ).draw( 'page' );
+                                dt.ajax.reload(null, false);
+                          }    
+                          });   
+                            
+                        } else {
+                            swal({
+                              type: 'error',
+                              title: 'Oops...',
+                              text: 'Something went wrong!'                         
+                            })
+                        }
+                    });
+                     
+                    request.fail(function( jqXHR, textStatus ) {
+                        swal({
+                          type: 'error',
+                          title: 'Oops...',
+                          text: 'Something went wrong!' + textStatus                          
+                        })
+                    });   
+                    }
+                });   
               }
       })
 

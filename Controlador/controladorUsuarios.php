@@ -24,8 +24,7 @@ switch ($_GET['accion']){
 
     case 'nuevo':
         $usuario = new Usuario();
-        $resultado = $usuario->nuevo($datos['codigoA'],$datos['codigoB'],$datos['codigoC'],$datos['codigoD'],
-        $datos['codigoE']);
+        $resultado = $usuario->nuevo($datos['codigoA'],$datos['codigoB'],$datos['codigoC'],$datos['codigoD']);
         if($resultado > 0) {
             $respuesta = array(
                 'respuesta' => $resultado
