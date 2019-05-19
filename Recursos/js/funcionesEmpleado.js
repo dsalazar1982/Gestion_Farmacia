@@ -1,12 +1,18 @@
-function comunas(){
+function empleado(){
 
     var dt = $("#tabla").DataTable({
-            "ajax": "./Controlador/controladorComuna.php?accion=listar",
+            "ajax": "./Controlador/controladorEmpleados.php?accion=listar",
             "columns": [
-                { "data": "comu_codi"} ,
-                { "data": "comu_nomb" },
-                { "data": "muni_nomb" },
-              { "data": "comu_codi",
+                { "data": "id_empleado"} ,
+                { "data": "nombre_empleado" },
+                { "data": "apellido_empleado" },
+                { "data": "cargo_empleado" },
+                { "data": "nombre_pais" },
+                { "data": "nombre_ciudad" },
+                { "data": "direccion_empleado" },
+                { "data": "telefono_empleado" },
+                { "data": "email_empleado" },
+              { "data": "id_empleado",
                   render: function (data) {
                             return '<a href="#" data-codigo="'+ data + 
                                    '" class="btn btn-danger btn-sm borrar"> <i class="fa fa-trash"></i></a>'
@@ -18,7 +24,7 @@ function comunas(){
     });
 
   $("#editar").on("click",".btncerrar", function(){
-      $(".box-title").html("Listado de Comunas");
+      $(".box-title").html("Listado de Empleados");
       $("#editar").addClass('hide');
       $("#editar").removeClass('show');
       $("#listado").addClass('show');
@@ -26,73 +32,114 @@ function comunas(){
       $(".box #nuevo").show(); 
   })  
 
+//$("#editar").on("click", function(){
+
+
+
+//});
+
   $(".box").on("click","#nuevo", function(){
       $(this).hide();
-      $(".box-title").html("Crear Comuna");
+      $(".box-title").html("Crear Empleado");
       $("#editar").addClass('show');
       $("#editar").removeClass('hide');
       $("#listado").addClass('hide');
       $("#listado").removeClass('show');
-      $("#editar").load('./Vistas/Comuna/nuevaComuna.php', function(){
+      $("#editar").load('./Vista/Empleados/nuevoEmpleado.php', function(){
           $.ajax({
              type:"get",
-             url:"./Controlador/controladorMunicipio.php",
+             url:"./Controlador/controladorPais.php",
              data: {accion:'listar'},
              dataType:"json"
           }).done(function( resultado ) {                    ;
               $.each(resultado.data, function (index, value) { 
-                $("#editar #muni_codi").append("<option value='" + value.muni_codi + "'>" + value.muni_nomb + "</option>")
+                $("#editar #id_pais").append("<option value='" + value.id_pais + "'>" + value.nombre_pais + "</option>")
               });
           });
+          $("#id_pais").change(function(){
+            $("#id_pais option:selected").each(function(){
+            var id_pais = document.forms['fempleado']['id_pais'].value;
+            $("#id_ciudad").find('option').remove().end().append(
+            '<option value="whatever">Seleccione ...</option>').val("whatever");
+            $.ajax({
+                type:"get",
+                url:"./Controlador/controladorCiudad.php",
+                data: {codigo: id_pais, accion:'listarC'},
+                dataType:"json"
+             }).done(function( resultado ) {                    ;
+                 $.each(resultado.data, function (index, value) { 
+                   $("#editar #id_ciudad").append("<option value='" + value.id_ciudad + "'>" + value.nombre_ciudad + "</option>")
+                 });
+             });
+            });             
+            });
       });
       
   })
 
   $("#editar").on("click","button#grabar",function(){
-    var datos=$("#fcomuna").serialize();
-    //console.log(datos);
+    var codigo = document.forms["fempleado"]["id_empleado"].value;
     $.ajax({
-          type:"get",
-          url:"./Controlador/controladorComuna.php",
-          data: datos,
-          dataType:"json"
-        }).done(function( resultado ) {
-            if(resultado.respuesta){
-              swal({
-                  position: 'center',
-                  type: 'success',
-                  title: 'La comuna fue grabada con éxito',
-                  showConfirmButton: false,
-                  timer: 1200
-              })     
-                  $(".box-title").html("Listado de Comunas");
-                  $(".box #nuevo").show();
-                  $("#editar").html('');
-                  $("#editar").addClass('hide');
-                  $("#editar").removeClass('show');
-                  $("#listado").addClass('show');
-                  $("#listado").removeClass('hide');
-                  dt.page( 'last' ).draw( 'page' );
-                  dt.ajax.reload(null, false);                   
-           } else {
-              swal({
-                  position: 'center',
-                  type: 'error',
-                  title: 'Ocurrió un erro al grabar',
-                  showConfirmButton: false,
-                  timer: 1500
+      type:"get",
+      url:"./Controlador/controladorEmpleados.php",
+      data: {codigo: codigo, accion:'consultar'},
+      dataType:"json"
+      }).done(function( empleado ) {        
+           if(empleado.respuesta == "no existe"){
+            var datos=$("#fempleado").serialize();
+            //console.log(datos);
+            $.ajax({
+                  type:"get",
+                  url:"./Controlador/controladorEmpleados.php",
+                  data: datos,
+                  dataType:"json"
+                }).done(function( resultado ) {
+                    if(resultado.respuesta){
+                      swal({
+                          position: 'center',
+                          type: 'success',
+                          title: 'El empleado fue grabada con éxito',
+                          showConfirmButton: false,
+                          timer: 1200
+                      })     
+                          $(".box-title").html("Listado de Empleados");
+                          $(".box #nuevo").show();
+                          $("#editar").html('');
+                          $("#editar").addClass('hide');
+                          $("#editar").removeClass('show');
+                          $("#listado").addClass('show');
+                          $("#listado").removeClass('hide');
+                          dt.page( 'last' ).draw( 'page' );
+                          dt.ajax.reload(null, false);                   
+                   } else {
+                      swal({
+                          position: 'center',
+                          type: 'error',
+                          title: 'Ocurrió un erro al grabar',
+                          showConfirmButton: false,
+                          timer: 1500
+                      });
+                     
+                  }
               });
-             
+           }
+           else {
+            swal({
+              type: 'error',
+              title: 'Oops...',
+              text: 'El empleado ya existe!!!!!'                         
+            })
           }
-      });
+        });
+   
   });
 
   $("#editar").on("click","button#actualizar",function(){
-       var datos=$("#fcomuna").serialize();
+       var datos=$("#fempleado").serialize();
        console.log(datos);
        $.ajax({
           type:"get",
-          url:"./Controlador/controladorComuna.php",
+          url:"./Controlador/controladorEmpleados.php",
           data: datos,
           dataType:"json"
         }).done(function( resultado ) {
@@ -105,7 +152,7 @@ function comunas(){
                   showConfirmButton: false,
                   timer: 1500
               }) 
-              $(".box-title").html("Listado de Comunas");
+              $(".box-title").html("Listado de Empleado");
               $("#editar").html('');
               $("#editar").addClass('hide');
               $("#editar").removeClass('show');
@@ -138,7 +185,7 @@ function comunas(){
               if (decision.value) {
                   var request = $.ajax({
                       method: "get",                  
-                      url: "./Controlador/controladorComuna.php",
+                      url: "./Controlador/controladorEmpleados.php",
                       data: {codigo: codigo, accion:'borrar'},
                       dataType: "json"
                   })
@@ -182,15 +229,15 @@ function comunas(){
      //Recupera datos del fromulario
      var codigo = $(this).data("codigo");
      var municipio;
-     $(".box-title").html("Actualizar Comuna")
+     $(".box-title").html("Actualizar Empleado")
      $("#editar").addClass('show');
      $("#editar").removeClass('hide');
      $("#listado").addClass('hide');
      $("#listado").removeClass('show');
-     $("#editar").load("./Vistas/Comuna/editarComuna.php",function(){
+     $("#editar").load("./Vista/Empleados/editarEmpleado.php",function(){
           $.ajax({
               type:"get",
-              url:"./Controlador/controladorComuna.php",
+              url:"./Controlador/controladorEmpleado.php",
               data: {codigo: codigo, accion:'consultar'},
               dataType:"json"
               }).done(function( comuna ) {        

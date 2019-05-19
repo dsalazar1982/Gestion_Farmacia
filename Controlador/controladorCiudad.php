@@ -64,5 +64,11 @@ switch ($_GET['accion']){
         $listado = $ciudad->listar();        
         echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);
         break;
+
+    case 'listarC':
+        $ciudad = new Ciudad();
+        $listado = $ciudad->listarC($datos['codigo']);        
+        echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);
+    break;    
 }
 ?>

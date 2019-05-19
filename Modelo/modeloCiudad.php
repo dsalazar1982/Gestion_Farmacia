@@ -52,7 +52,17 @@
 			$this->obtener_resultados_query();
 			return $this->rows;
 		}
-				
+		
+		public function listarC($id_pais='') {
+			$this->query = "
+			SELECT id_ciudad, nombre_ciudad
+			FROM tb_ciudades
+			WHERE id_pais = '$id_pais' ORDER BY nombre_ciudad
+			";
+			$this->obtener_resultados_query();
+			return $this->rows;
+		}
+
 		public function nuevo($datos=array()) {
 			if(array_key_exists('id_ciudad', $datos)):
 				foreach ($datos as $campo=>$valor):

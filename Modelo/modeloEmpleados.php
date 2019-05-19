@@ -96,17 +96,15 @@
 		}
 		
 		public function nuevo($datos=array()) {
-			if(array_key_exists('comu_codi', $datos)):
+			if(array_key_exists('id_empleado', $datos)):
 				foreach ($datos as $campo=>$valor):
 					$$campo = $valor;
 				endforeach;
 				$this->query = "
 					INSERT INTO tb_empleados
-                    (id_empleado, nombre_empleado, apellido_empleado, cargo_empleado, id_pais, id_ciudad, 
-                    direccion_empleado, telefono_empleado, email_empleado)
+                    (id_empleado,nombre_empleado,apellido_empleado,cargo_empleado,id_pais,id_ciudad,direccion_empleado,telefono_empleado,email_empleado)
 					VALUES
-                    ('$id_empleado,'$nombre_empleado', '$apellido_empleado','$cargo_empleado','$id_pais','$id_ciudad',
-                    '$direccion_empleado','$telefono_empleado','$email_empleado')
+                    ('$id_empleado','$nombre_empleado','$apellido_empleado','$cargo_empleado','$id_pais','$id_ciudad','$direccion_empleado','$telefono_empleado','$email_empleado')
 					";
 					$resultado = $this->ejecutar_query_simple();
 					return $resultado;

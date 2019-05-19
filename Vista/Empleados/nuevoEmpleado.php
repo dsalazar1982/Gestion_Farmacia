@@ -15,17 +15,17 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="nombre_empleado">Nombre:</label>
+                        <label class="control-label col-sm-2" for="nombre_empleado">Nombres:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="nombre_empleado" name="nombre_empleado" placeholder="Ingrese el nombre del empleado"
+                            <input type="text" class="form-control" id="nombre_empleado" name="nombre_empleado" placeholder="Ingrese los nombres del empleado"
                             value = "">
                         </div>
                     </div>
 					
 					<div class="form-group">
-                        <label class="control-label col-sm-2" for="apellido_empleado">Apellido:</label>
+                        <label class="control-label col-sm-2" for="apellido_empleado">Apellidos:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="apellido_empleado" name="apellido_empleado" placeholder="Ingrese el apellido del empleado"
+                            <input type="text" class="form-control" id="apellido_empleado" name="apellido_empleado" placeholder="Ingrese los apellidos del empleado"
                             value = "">
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="direccion_empleado">Dirección:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="direccion_empleado" name="direccion_empleado" placeholder="Ingrese el cargo del empleado"
+                            <input type="text" class="form-control" id="direccion_empleado" name="direccion_empleado" placeholder="Ingrese la dirección del empleado"
                             value = "">
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="telefono_empleado">Telefono:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="telefono_empleado" name="telefono_empleado" placeholder="Ingrese el cargo del empleado"
+                            <input type="text" class="form-control" id="telefono_empleado" name="telefono_empleado" placeholder="Ingrese el telefono del empleado"
                             value = "">
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="email_empleado">Email:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="email_empleado" name="email_empleado" placeholder="Ingrese el cargo del empleado"
+                            <input type="text" class="form-control" id="email_empleado" name="email_empleado" placeholder="Ingrese el email del empleado"
                             value = "">
                         </div>
                     </div>
