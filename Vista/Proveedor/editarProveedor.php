@@ -1,6 +1,6 @@
-<div id="seccion-pais">
+<div id="seccion-proveedor">
     <div class="box-header">
-        <i class="fa fa-building" aria-hidden="true">Gestion de Pais</i>
+        <i class="fa fa-building" aria-hidden="true">Gestion de Proveedor</i>
 
         <!-- tools box -->
         <div class="pull-right box-tools">
@@ -20,33 +20,30 @@
                 <div class="panel-heading">Datos</div>
                 <div class="panel-body">
 
-                    <form class="form-horizontal" role="form" id="fpais">
-
+                    <form class="form-horizontal" role="form" id="fproveedor">
 
 
                     <div class="form-group">
                             <label class="control-label col-sm-2" for="id_proveedor">Codigo:</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="id_proveedor" name="id_proveedor"
-                                    placeholder="Ingrese Codigo" data-validation="length alphanumeric"
-                                    data-validation-length="3-12" required />
+                                    placeholder="Ingrese Codigo" value="" readonly="true">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="nombre_proveedor">Nombre:</label>
+                            <label class="control-label col-sm-2" for="nombre_proveedor">Proveedor:</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="nombre_proveedor" name="nombre_proveedor"
-                                    placeholder="Ingrese Nombre de Proveedor" value="" required>
+                                    placeholder="Ingrese Nombre del Proveedor" value="">
                             </div>
                         </div>
-
 
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="direccion_proveedor">Direccion:</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="direccion_proveedor" name="direccion_proveedor"
-                                    placeholder="Ingrese Direccion de Proveedor" value="" required>
+                                    placeholder="Ingrese Direccion del Proveedor" value="">
                             </div>
                         </div>
 
@@ -54,7 +51,7 @@
                             <label class="control-label col-sm-2" for="telefono_proveedor">Telefono:</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="telefono_proveedor" name="telefono_proveedor"
-                                    placeholder="Ingrese Telefono de Proveedor" value="" required>
+                                    placeholder="Ingrese Telefono del Proveedor" value="">
                             </div>
                         </div>
 
@@ -81,7 +78,7 @@
                                 <button type="button" id="actualizar" data-toggle="tooltip" title="Actualizar Proveedor"
                                     class="btn btn-primary">Actualizar</button>
                                 <button type="button" id="cancelar" data-toggle="tooltip" title="Cancelar Edición"
-                                    class="btn btn-success btncerrar2">Cancelar</button>
+                                    class="btn btn-success btncerrar2"> Cancelar </button>
                             </div>
 
                         </div>

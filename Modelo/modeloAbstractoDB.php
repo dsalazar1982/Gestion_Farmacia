@@ -1,5 +1,5 @@
 <?php
-	abstract class ModeloAbstractoDB {
+	abstract class modeloAbstractoDB {
 		private static $db_host ="localhost";
 		private static $db_user = "root";
 		private static $db_pass = "";

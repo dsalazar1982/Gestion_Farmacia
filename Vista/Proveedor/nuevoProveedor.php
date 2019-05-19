@@ -21,32 +21,30 @@
                 <div class="panel-heading">Datos</div>
                 <div class="panel-body">
 
-                    <form class="form-horizontal" role="form" id="fproveedor" name="fproveedor" method="post">
+                    <form class="form-horizontal" role="form" id="fproveedor">
 
 
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="id_proveedor">Codigo:</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="id_proveedor" name="id_proveedor"
-                                    placeholder="Ingrese Codigo" data-validation="length alphanumeric"
-                                    data-validation-length="3-12" required />
+                                    placeholder="Ingrese Codigo" value="">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="nombre_proveedor">Nombre:</label>
+                            <label class="control-label col-sm-2" for="nombre_proveedor">Proveedor:</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="nombre_proveedor" name="nombre_proveedor"
-                                    placeholder="Ingrese Nombre de Proveedor" value="" required>
+                                    placeholder="Ingrese Nombre del Proveedor" value="">
                             </div>
                         </div>
-
 
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="direccion_proveedor">Direccion:</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="direccion_proveedor" name="direccion_proveedor"
-                                    placeholder="Ingrese Direccion de Proveedor" value="" required>
+                                    placeholder="Ingrese Direccion del Proveedor" value="">
                             </div>
                         </div>
 
@@ -54,7 +52,7 @@
                             <label class="control-label col-sm-2" for="telefono_proveedor">Telefono:</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="telefono_proveedor" name="telefono_proveedor"
-                                    placeholder="Ingrese Telefono de Proveedor" value="" required>
+                                    placeholder="Ingrese Telefono del Proveedor" value="">
                             </div>
                         </div>
 
