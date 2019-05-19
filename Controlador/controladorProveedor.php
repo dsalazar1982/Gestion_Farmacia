@@ -1,40 +1,42 @@
 <?php
- 
+
 require_once '../Modelo/modeloProveedor.php';
+require_once '../Modelo/modeloCiudad.php';
+
 $datos = $_GET;
-switch ($_GET['accion']){
+switch ($_GET['accion']) {
     case 'editar':
         $proveedor = new Proveedor();
-		$resultado = $proveedor->editar($datos);
+        $resultado = $proveedor->editar($datos);
         $respuesta = array(
-                'respuesta' => $resultado
+                'respuesta' => $resultado,
             );
         echo json_encode($respuesta);
         break;
     case 'nuevo':
         $proveedor = new Proveedor();
-		$resultado = $proveedor->nuevo($datos);
-        if($resultado > 0) {
+        $resultado = $proveedor->nuevo($datos);
+        if ($resultado > 0) {
             $respuesta = array(
-                'respuesta' => 'correcto'
+                'respuesta' => 'correcto',
             );
-        }  else {
+        } else {
             $respuesta = array(
-                'respuesta' => 'error'
+                'respuesta' => 'error',
             );
         }
         echo json_encode($respuesta);
         break;
     case 'borrar':
-		$proveedor = new Proveedor();
-		$resultado = $proveedor->borrar($datos['codigo']);
-        if($resultado > 0) {
+        $proveedor = new Proveedor();
+        $resultado = $proveedor->borrar($datos['codigo']);
+        if ($resultado > 0) {
             $respuesta = array(
-                'respuesta' => 'correcto'
+                'respuesta' => 'correcto',
             );
-        }  else {
+        } else {
             $respuesta = array(
-                'respuesta' => 'error'
+                'respuesta' => 'error',
             );
         }
         echo json_encode($respuesta);
@@ -44,11 +46,11 @@ switch ($_GET['accion']){
         $proveedor = new Proveedor();
         $proveedor->consultar($datos['codigo']);
 
-        if($proveedor->getId_proveedor() == null) {
+        if ($proveedor->getId_proveedor() == null) {
             $respuesta = array(
-                'respuesta' => 'no existe'
+                'respuesta' => 'no existe',
             );
-        }  else {
+        } else {
             $respuesta = array(
                 'codigo' => $proveedor->getId_proveedor(),
                 'proveedor' => $proveedor->getNombre_proveedor(),
@@ -56,7 +58,7 @@ switch ($_GET['accion']){
                 'telefono' => $proveedor->getTelefono_proveedor(),
                 'ciudad' => $proveedor->getId_ciudad(),
                 'pais' => $proveedor->getId_pais(),
-                'respuesta' =>'existe'
+                'respuesta' => 'existe',
             );
         }
         echo json_encode($respuesta);
@@ -64,8 +66,7 @@ switch ($_GET['accion']){
 
     case 'listar':
         $proveedor = new Proveedor();
-        $listado = $proveedor->listar();        
-        echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);
+        $listado = $proveedor->listar();
+        echo json_encode(array('data' => $listado), JSON_UNESCAPED_UNICODE);
         break;
 }
-?>

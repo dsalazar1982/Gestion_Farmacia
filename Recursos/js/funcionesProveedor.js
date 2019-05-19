@@ -136,26 +136,14 @@ function proveedor() {
 
     $(".content-header").on("click", "button#nuevo", function() {
         $("#titulo").html("Nuevo proveedor");
+
+        var pais;
+
         $("#nuevo-editar").load("./Vista/Proveedor/nuevoProveedor.php");
         $("#nuevo-editar").removeClass("hide");
         $("#nuevo-editar").addClass("show");
         $("#proveedor").removeClass("show");
         $("#proveedor").addClass("hide");
-
-        // CIUDAD
-        $.ajax({
-            type: "get",
-            url: "./Controlador/controladorCiudad.php",
-            data: { accion: 'listar' },
-            dataType: "json"
-        }).done(function(resultado) {
-            //console.log(resultado.data)
-            $("#id_ciudad option").remove()
-            $("#id_ciudad").append("<option selecte value=''>Seleccione una ciudad</option>")
-            $.each(resultado.data, function(index, value) {
-                $("#id_ciudad").append("<option value='" + value.id_ciudad + "'>" + value.nombre_ciudad + "</option>")
-            });
-        });
 
         // PAIS
         $.ajax({
@@ -164,12 +152,27 @@ function proveedor() {
             data: { accion: 'listar' },
             dataType: "json"
         }).done(function(resultado) {
-            //console.log(resultado.data)
-            // DATOS DE PAIS
             $("#id_pais option").remove()
             $("#id_pais").append("<option selecte value=''>Seleccione un pais</option>")
             $.each(resultado.data, function(index, value) {
                 $("#id_pais").append("<option value='" + value.id_pais + "'>" + value.nombre_pais + "</option>")
+            });
+        });
+
+
+
+
+        // CIUDAD
+        $.ajax({
+            type: "get",
+            url: "./Controlador/controladorCiudad.php",
+            data: { accion: 'listar' },
+            dataType: "json"
+        }).done(function(resultado) {
+            $("#id_ciudad option").remove()
+            $("#id_ciudad").append("<option selecte value=''>Seleccione una ciudad</option>")
+            $.each(resultado.data, function(index, value) {
+                $("#id_ciudad").append("<option value='" + value.id_ciudad + "'>" + value.nombre_ciudad + "</option>")
             });
         });
     });
