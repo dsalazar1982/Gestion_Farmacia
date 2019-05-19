@@ -37,30 +37,13 @@ function proveedor() {
 
         $.ajax({
             type: "get",
-            url: "./Controlador/controladorCiudad.php",
-            data: { accion: 'listar' },
-            dataType: "json"
-        }).done(function(resultado) {
-            $("#id_ciudad option").remove();
-            $.each(resultado.data, function(index, value) {
-
-                if (ciudad === value.id_ciudad) {
-                    $("#id_ciudad").append("<option selected value='" + value.id_ciudad + "'>" + value.nombre_ciudad + "</option>")
-                } else {
-                    $("#id_ciudad").append("<option value='" + value.id_ciudad + "'>" + value.nombre_ciudad + "</option>")
-                }
-            });
-        });
-
-        $.ajax({
-            type: "get",
             url: "./Controlador/controladorPais.php",
             data: { accion: 'listar' },
             dataType: "json"
-        }).done(function(resultado) {
-            $("#id_pais option").remove();
+        }).done(function(resultado) {;
+            $("#id_pais option").remove()
+            $("#id_pais").append("<option selecte value=''>Seleccione un pais</option>")
             $.each(resultado.data, function(index, value) {
-
                 if (pais === value.id_pais) {
                     $("#id_pais").append("<option selected value='" + value.id_pais + "'>" + value.nombre_pais + "</option>")
                 } else {
@@ -68,6 +51,34 @@ function proveedor() {
                 }
             });
         });
+
+        $("#id_pais").change(function() {
+            $("#id_pais option:selected").each(function() {
+                var id_pais = document.forms['fproveedor']['id_pais'].value;
+                $.ajax({
+                    type: "get",
+                    url: "./Controlador/controladorCiudad.php",
+                    data: { codigo: id_pais, accion: 'listarC' },
+                    dataType: "json"
+                }).done(function(resultado) {;
+                    $("#id_ciudad option").remove()
+                    $("#id_ciudad").append("<option selecte value=''>Seleccione una ciudad</option>")
+                    $.each(resultado.data, function(index, value) {
+                        if (ciudad === value.id_ciudad) {
+                            $("#id_ciudad").append("<option selected value='" + value.id_ciudad + "'>" + value.nombre_ciudad + "</option>")
+                        } else {
+                            $("#id_ciudad").append("<option value='" + value.id_ciudad + "'>" + value.nombre_ciudad + "</option>")
+                        }
+                    });
+                });
+            });
+        });
+
+
+
+
+
+
     });
 
     $(".content-header").on("click", "a.borrar", function() {
@@ -135,47 +146,47 @@ function proveedor() {
     });
 
     $(".content-header").on("click", "button#nuevo", function() {
-        $("#titulo").html("Nuevo proveedor");
+        $(this).hide();
+        $("#titulo").html("Crear Proveedor");
+        $("#nuevo-editar").load('./Vista/Proveedor/nuevoProveedor.php', function() {
+            $("#nuevo-editar").removeClass('hide');
+            $("#nuevo-editar").addClass('show');
+            $("#proveedor").removeClass('show');
+            $("#proveedor").addClass('hide');
 
-        var pais;
-
-        $("#nuevo-editar").load("./Vista/Proveedor/nuevoProveedor.php");
-        $("#nuevo-editar").removeClass("hide");
-        $("#nuevo-editar").addClass("show");
-        $("#proveedor").removeClass("show");
-        $("#proveedor").addClass("hide");
-
-        // PAIS
-        $.ajax({
-            type: "get",
-            url: "./Controlador/controladorPais.php",
-            data: { accion: 'listar' },
-            dataType: "json"
-        }).done(function(resultado) {
-            $("#id_pais option").remove()
-            $("#id_pais").append("<option selecte value=''>Seleccione un pais</option>")
-            $.each(resultado.data, function(index, value) {
-                $("#id_pais").append("<option value='" + value.id_pais + "'>" + value.nombre_pais + "</option>")
+            $.ajax({
+                type: "get",
+                url: "./Controlador/controladorPais.php",
+                data: { accion: 'listar' },
+                dataType: "json"
+            }).done(function(resultado) {;
+                $("#id_pais option").remove()
+                $("#id_pais").append("<option selecte value=''>Seleccione un pais</option>")
+                $("#id_ciudad").append("<option selecte value=''>Seleccione primero un pais</option>")
+                $.each(resultado.data, function(index, value) {
+                    $("#id_pais").append("<option value='" + value.id_pais + "'>" + value.nombre_pais + "</option>")
+                });
+            });
+            $("#id_pais").change(function() {
+                $("#id_pais option:selected").each(function() {
+                    var id_pais = document.forms['fproveedor']['id_pais'].value;
+                    $.ajax({
+                        type: "get",
+                        url: "./Controlador/controladorCiudad.php",
+                        data: { codigo: id_pais, accion: 'listarC' },
+                        dataType: "json"
+                    }).done(function(resultado) {;
+                        $("#id_ciudad option").remove()
+                        $("#id_ciudad").append("<option selecte value=''>Seleccione una ciudad</option>")
+                        $.each(resultado.data, function(index, value) {
+                            $("#id_ciudad").append("<option value='" + value.id_ciudad + "'>" + value.nombre_ciudad + "</option>")
+                        });
+                    });
+                });
             });
         });
 
-
-
-
-        // CIUDAD
-        $.ajax({
-            type: "get",
-            url: "./Controlador/controladorCiudad.php",
-            data: { accion: 'listar' },
-            dataType: "json"
-        }).done(function(resultado) {
-            $("#id_ciudad option").remove()
-            $("#id_ciudad").append("<option selecte value=''>Seleccione una ciudad</option>")
-            $.each(resultado.data, function(index, value) {
-                $("#id_ciudad").append("<option value='" + value.id_ciudad + "'>" + value.nombre_ciudad + "</option>")
-            });
-        });
-    });
+    })
 
     $(".content-header").on("click", "button#actualizar", function() {
         var datos = $("#fproveedor").serialize();

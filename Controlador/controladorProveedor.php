@@ -1,7 +1,6 @@
 <?php
 
 require_once '../Modelo/modeloProveedor.php';
-require_once '../Modelo/modeloCiudad.php';
 
 $datos = $_GET;
 switch ($_GET['accion']) {

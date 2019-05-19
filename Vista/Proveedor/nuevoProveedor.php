@@ -69,7 +69,6 @@
                             <label class="control-label col-sm-2" for="id_ciudad">Ciudad:</label>
                             <div class="col-sm-10">
                                 <select class="form-control" id="id_ciudad" name="id_ciudad">
-
                                 </select>
                             </div>
                         </div>
