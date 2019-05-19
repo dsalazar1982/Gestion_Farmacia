@@ -1,24 +1,25 @@
-<?php //include_once ("../../Funciones/sessiones.php"); ?>
-     
-     <h1>
+?php include_once ("../../Funciones/sessiones.php"); ?>
+      
+      <h1>
         Gestión de
-        <small>  Usuarios</small>
+        <small>  Empleados</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Usuarios</li>
+        <li class="active">Empleado</li>
       </ol>
     </section>
+
     <!-- Main content -->
     <section class="content">
       <div class="row">
         <div class="col-xs-12">
          <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Listado de Usuarios</h3>
+              <h3 class="box-title">Listado de Empleados</h3>
               <div class="box-tools pull-right">
                   <button class="btn btn-info btn-sm" id="nuevo"  data-toggle="tooltip" 
-                      title="Nuevo Usuario"><i class="fa fa-plus" aria-hidden="true"></i></button> 
+                      title="Nueva Empleado"><i class="fa fa-plus" aria-hidden="true"></i></button> 
               </div>
             </div>
            
@@ -30,12 +31,15 @@
               <table id="tabla" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Identificador</th>
-                  <th>Nickname</th>
-                  <th>Clave</th>
-                  <th>Estado</th>
-                  <th>Rol</th>
-                  <th>Fecha creación</th>
+                  <th>Identificación</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Cargo</th>
+                  <th>Pais</th>
+                  <th>Ciudad</th>
+                  <th>Dirección</th>
+                  <th>Telefono</th>
+                  <th>Email</th>
                   <th>Acciones</th>
                 </tr>
                 </thead>
@@ -44,12 +48,15 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                  <th>Identificador</th>
-                  <th>Nickname</th>
-                  <th>Clave</th>
-                  <th>Estado</th>
-                  <th>Rol</th>
-                  <th>Fecha creación</th>
+                <th>Identificación</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Cargo</th>
+                  <th>Pais</th>
+                  <th>Ciudad</th>
+                  <th>Dirección</th>
+                  <th>Telefono</th>
+                  <th>Email</th>
                   <th>Acciones</th>
                 </tr>
                 </tfoot>
@@ -68,9 +75,10 @@
   </div>
   <!-- /.content-wrapper -->
 
-<script src="./Recursos/js/funcionesUsuarios.js"></script>
+<script src="./Recursos/js/funcionesEmpleado.js"></script>
 <!-- Funciones de Lógica de neogcio -->
 <script>
-    $(document).ready(usuarios);
+    $(document).ready(empleado);
 </script>
+
 
