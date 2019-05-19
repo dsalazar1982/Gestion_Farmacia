@@ -32,12 +32,13 @@
             <table id="tabla" class="table table-bordered table-striped">
               <thead>
                 <tr>
+                  <th>Id Nomina</th>
                   <th>Id Empleado</th>
-                  <th>Nombre Empleado</th>
                   <th>Fecha</th>
                   <th>salario Basico</th>
                   <th>Horas Ext. Dia</th>
                   <th>Horas Ext. Noche</th>
+                  <th>Auxilio transporte</th>
                   <th>Val. H. Ext. Dia</th>
                   <th>Val. H. Ext. Noche</th>
                   <th>Dias Laborados</th>

@@ -4,16 +4,16 @@ function nomina(){
         "ajax": "./Controlador/controladorNomina.php?accion=listar",
         "columns": [
             { "data": "id_nomina"} ,
-            { "data": "id_empleado" },
+            { "data": "nombre" },
             { "data": "fecha" },
             { "data": "salario_basico"} ,
             { "data": "hextrasd" },
             { "data": "hextrasn" },
-            { "data": "auxilo_trasporte"} ,
+            { "data": "auxilio_trasporte"} ,
             { "data": "valor_hextrad" },
             { "data": "valor_hextran" },
-            { "data": "dias_loborados"} ,
-            { "data": "salrio_devengado" },
+            { "data": "dias_laborados"} ,
+            { "data": "salario_devengado" },
             { "data": "pension" },
             { "data": "salud" },
             { "data": "salario_neto" },
@@ -27,7 +27,7 @@ function nomina(){
           }             
         ]
     });
-    
+
     $("#editar").on("click", "button.btncerrar2", function() {
         $("#titulo").html("Listado Nomina");
         $("#nuevo-editar").html("");

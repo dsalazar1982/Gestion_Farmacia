@@ -136,7 +136,7 @@ function empleado(){
 
   $("#editar").on("click","button#actualizar",function(){
        var datos=$("#fempleado").serialize();
-       console.log(datos);
+      // console.log(datos);
        $.ajax({
           type:"get",
           url:"./Controlador/controladorEmpleados.php",

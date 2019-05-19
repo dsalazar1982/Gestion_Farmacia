@@ -85,10 +85,10 @@
 		
 		public function listar() {
 			$this->query = "
-			SELECT n.id_nomina, n.id_empleado,CONCAT (e.nombre_empleado," + ",e.apellido_empleado) Nombre, n.fecha, n.salario_basico, n.hextrasd,
-			n.hextrasn, n.auxilio_trasporte, n.valor_hextrad, n.valor_hextran,
-			n.dias_laborados, n.salario_devengado,n.pension,n.salud, n.salario_neto 
-			FROM tb_nominas as n, tb_empleados as e WHERE (e.id_empleado = n.id_empleado);
+			SELECT id_nomina, CONCAT (e.nombre_empleado,'',e.apellido_empleado) as nombre, fecha, salario_basico, hextrasd, 
+			hextrasn, auxilio_trasporte , valor_hextrad, valor_hextran, dias_laborados, salario_devengado, 
+			pension, salud, salario_neto FROM tb_nominas as n 
+			INNER JOIN tb_empleados as e on (n.id_empleado = e.id_empleado) ORDER BY id_nomina
 			";
 			
 			$this->obtener_resultados_query();
