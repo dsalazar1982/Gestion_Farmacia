@@ -97,11 +97,18 @@
 		}
 		
 		public function nuevo($datos=array()) {
-			if(array_key_exists('id_empleado', $datos)):
+			if(array_key_exists('id_nomina', $datos)):
 				foreach ($datos as $campo=>$valor):
 					$$campo = $valor;
 				endforeach;
 					
+				   $salud = $salario_basico*0.04;
+				   $pension = $salud;
+				   $salario_neto = (($valor_hextrad*$hextrasd)+($valor_hextran*$hextrasn)+
+				   (($salario_basico/30)*$dias_loborados))-($salud+$pension);
+                   $salrio_devengado = (($valor_hextrad*$hextrasd)+($valor_hextran*$hextrasn)+
+				   (($salario_basico/30)*$dias_loborados));
+
          			$this->query = "
 					INSERT INTO tb_nominas
 					(id_nomina, id_empleado,fecha,salario_basico,hextrasd,
@@ -110,7 +117,7 @@
 					VALUES
 					(NULL, '$id_emplead', '$fecha','$salario_basico','$hextrasd','$hextrasn',
 					'$auxilo_trasporte','$valor_hextrad','$valor_hextran',
-					'$dias_loborados','$salrio_devengado','$pension','$salud','$salario_neto' NOW())
+					'$dias_loborados','$salrio_devengado','$pension','$salud','$salario_neto')
 					";
 					$resultado = $this->ejecutar_query_simple();
 					return $resultado;
@@ -122,6 +129,14 @@
 			foreach ($datos as $campo=>$valor):
 				$$campo = $valor;
 			endforeach;
+
+			$salud = $salario_basico*0.04;
+			$pension = $salud;
+			$salario_neto = (($valor_hextrad*$hextrasd)+($valor_hextran*$hextrasn)+
+			(($salario_basico/30)*$dias_loborados))-($salud+$pension);
+			$salrio_devengado = (($valor_hextrad*$hextrasd)+($valor_hextran*$hextrasn)+
+			(($salario_basico/30)*$dias_loborados));
+
 			$this->query = "
 			UPDATE tb_nominas
 			SET id_empleado ='$id_empleado',
@@ -133,8 +148,7 @@
 			valor_hextrad ='$valor_hextrad',
 			valor_hextran ='$valor_hextran',
 			dias_loborados ='$dias_loborados',
-			Update_at = NOW()
-			WHERE id_empleado = '$id_empleado'
+			WHERE id_comina = '$id_nomina'
 			";
 			$resultado = $this->ejecutar_query_simple();
 			return $resultado;

@@ -61,7 +61,7 @@ function nomina(){
              dataType:"json"
           }).done(function( resultado ) {                    ;
               $.each(resultado.data, function (index, value) { 
-                $("#editar #id_empleado").append("<option value='" + value.id_nomina + "'>" + value.id_empleado + "</option>")
+                $("#editar #id_empleado").append("<option value='" + value.id_empleado + "'>" + value.nombre_empleado + "</option>")
               });
           });
       });
@@ -218,7 +218,7 @@ function nomina(){
                       swal({
                       type: 'error',
                       title: 'Oops...',
-                      text: 'Comuna no existe!'                         
+                      text: 'Nomina no existe!'                         
                       })
                   } else {
                       $("#id_nomina").val(nomina.codigo);                   
