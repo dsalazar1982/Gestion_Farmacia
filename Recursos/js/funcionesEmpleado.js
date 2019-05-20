@@ -148,11 +148,11 @@ function empleado(){
               swal({
                   position: 'center',
                   type: 'success',
-                  title: 'Se actaulizaron los datos correctamente',
+                  title: 'Se actualizaron los datos correctamente',
                   showConfirmButton: false,
                   timer: 1500
               }) 
-              $(".box-title").html("Listado de Empleado");
+              $(".box-title").html("Listado de Empleados");
               $("#editar").html('');
               $("#editar").addClass('hide');
               $("#editar").removeClass('show');
@@ -175,7 +175,7 @@ function empleado(){
       
       swal({
             title: '¿Está seguro?',
-            text: "¿Realmente desea borrar la comuna con codigo : " + codigo + " ?",
+            text: "¿Realmente desea borrar el empleado con codigo : " + codigo + " ?",
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -194,7 +194,7 @@ function empleado(){
                           swal({
                             position: 'center',
                             type: 'success',
-                            title: 'La comuna con codigo ' + codigo + ' fue borrada',
+                            title: 'El empleado con codigo ' + codigo + ' fue borrado',
                             showConfirmButton: false,
                             timer: 1500
                           })       
@@ -251,29 +251,61 @@ function empleado(){
                       $("#id_empleado").val(empleado.codigo);                   
                       $("#nombre_empleado").val(empleado.nombre);
                       $("#apellido_empleado").val(empleado.apellido);
-                      $("#direccion_empleado").val(empleado.cargo);
+                      $("#cargo_empleado").val(empleado.cargo);
                       $("#direccion_empleado").val(empleado.direccion);
                       $("#telefono_empleado").val(empleado.telefono);
                       $("#email_empleado").val(empleado.email);
                       pais = empleado.pais;
                       ciudad = empleado.ciudad;
+                      var id_pais = empleado.pais;
+                      $.ajax({
+                        type:"get",
+                        url:"./Controlador/controladorPais.php",
+                        data: {accion:'listar'},
+                        dataType:"json"
+                    }).done(function( resultado ) {                      
+                        $.each(resultado.data, function (index, value) { 
+                        if(pais === value.id_pais){
+                            $("#editar #id_pais").append("<option selected value='" + value.id_pais + "'>" + value.nombre_pais + "</option>")
+                        }else {
+                            $("#editar #id_pais").append("<option value='" + value.id_pais + "'>" + value.nombre_pais + "</option>")
+                        }
+                        });
+                    });
+                    $.ajax({
+                      type:"get",
+                      url:"./Controlador/controladorCiudad.php",
+                      data: {codigo: id_pais, accion:'listarC'},
+                      dataType:"json"
+                   }).done(function( resultado ) {                    ;
+                       $.each(resultado.data, function (index, value) { 
+                          if(ciudad === value.id_ciudad){
+                          $("#editar #id_ciudad").append("<option selected value='" + value.id_ciudad + "'>" + value.nombre_ciudad + "</option>")
+                          }
+                          else{
+                          $("#editar #id_ciudad").append("<option value='" + value.id_ciudad + "'>" + value.nombre_ciudad + "</option>")
+                          } 
+                       });
+                   });
                   }
+                  $("#id_pais").change(function(){
+                    $("#id_pais option:selected").each(function(){
+                    var id_pais = document.forms['fempleado']['id_pais'].value;
+                    $("#id_ciudad").find('option').remove().end().append(
+                    '<option value="whatever">Seleccione ...</option>').val("whatever");
+                    $.ajax({
+                        type:"get",
+                        url:"./Controlador/controladorCiudad.php",
+                        data: {codigo: id_pais, accion:'listarC'},
+                        dataType:"json"
+                     }).done(function( resultado ) {                    ;
+                         $.each(resultado.data, function (index, value) {           
+                           $("#editar #id_ciudad").append("<option value='" + value.id_ciudad + "'>" + value.nombre_ciudad + "</option>") 
+                         });
+                     });
+                    });             
+                    });
           });
-          $.ajax({
-              type:"get",
-              url:"./Controlador/controladorPais.php",
-              data: {accion:'listar'},
-              dataType:"json"
-          }).done(function( resultado ) {                      
-              $.each(resultado.data, function (index, value) { 
-              if(pais === value.id_pais){
-                  $("#editar #id_pais").append("<option selected value='" + value.id_pais + "'>" + value.nombre_pais + "</option>")
-              }else {
-                  $("#editar #id_pais").append("<option value='" + value.id_pais + "'>" + value.nombre_pais + "</option>")
-              }
-              });
-          });
-          
       });
   })
 }

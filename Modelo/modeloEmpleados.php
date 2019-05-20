@@ -125,14 +125,14 @@
             id_ciudad = '$id_ciudad',
             direccion_empleado = '$direccion_empleado',
             telefono_empleado = '$telefono_empleado',
-            email_empleado = '$email_empleado',
+            email_empleado = '$email_empleado'
 			WHERE id_empleado = '$id_empleado'
 			";
 			$resultado = $this->ejecutar_query_simple();
 			return $resultado;
 		}
 		
-		public function borrar($comu_codi='') {
+		public function borrar($id_empleado='') {
 			$this->query = "
 			DELETE FROM tb_empleados
 			WHERE id_empleado = '$id_empleado'

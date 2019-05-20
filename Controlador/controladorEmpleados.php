@@ -4,7 +4,7 @@ require_once '../Modelo/modeloEmpleados.php';
 $datos = $_GET;
 switch ($_GET['accion']){
     case 'editar':
-        $empleados = new Empleado();
+        $empleado = new Empleado();
         $resultado = $empleado->editar($datos);
         $respuesta = array(
                 'respuesta' => $resultado

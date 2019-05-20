@@ -10,7 +10,7 @@
                         <label class="control-label col-sm-2" for="id_empleado">Identificación:</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="id_empleado" name="id_empleado" placeholder="Ingrese la identificación"
-                            value = ""  data-validation="length alphanumeric" data-validation-length="3-12">
+                            value = "" readonly="true" data-validation="length alphanumeric" data-validation-length="3-12">
                         </div>
                     </div>
 
