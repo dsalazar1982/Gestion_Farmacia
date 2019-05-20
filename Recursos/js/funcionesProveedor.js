@@ -233,6 +233,7 @@ function proveedor() {
                         data: { accion: 'listar' },
                         dataType: "json"
                     }).done(function(resultado) {
+                        $("#id_pais").append("<option selecte value=''>Seleccione un pais</option>")
                         $.each(resultado.data, function(index, value) {
                             if (pais === value.id_pais) {
                                 $("#id_pais").append("<option selected value='" + value.id_pais + "'>" + value.nombre_pais + "</option>")
@@ -253,8 +254,6 @@ function proveedor() {
                             } else {
                                 $("#id_pais").change(function() {
                                     $("#id_pais option:selected").each(function() {
-                                        $("#id_ciudad").find('option').remove().end().append(
-                                            '<option value="whatever">Seleccione ...</option>').val("whatever");
                                         var id_pais = document.forms['fproveedor']['id_pais'].value;
                                         $.ajax({
                                             type: "get",
@@ -262,7 +261,6 @@ function proveedor() {
                                             data: { codigo: id_pais, accion: 'listarC' },
                                             dataType: "json"
                                         }).done(function(resultado) {;
-
                                             $("#id_ciudad option").remove()
                                             if (id_pais === "") {
                                                 $("#id_ciudad").append("<option selecte value=''>Seleccione primero un pais</option>")
