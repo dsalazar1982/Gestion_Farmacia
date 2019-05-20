@@ -1,85 +1,6 @@
 var dt;
 
 function proveedor() {
-    $(".content-header").on("click", "a.editar", function() {
-        $("#titulo").html("Editar Proveedor");
-        //Recupera datos del fromulario
-        var codigo = $(this).data("codigo");
-        var pais;
-        var ciudad;
-
-        $("#nuevo-editar").load("./Vista/Proveedor/editarProveedor.php");
-        $("#nuevo-editar").removeClass("hide");
-        $("#nuevo-editar").addClass("show");
-        $("#proveedor").removeClass("show");
-        $("#proveedor").addClass("hide");
-        $.ajax({
-            type: "get",
-            url: "./Controlador/controladorProveedor.php",
-            data: { codigo: codigo, accion: "consultar" },
-            dataType: "json"
-        }).done(function(proveedor) {
-            if (proveedor.respuesta === "no existe") {
-                swal({
-                    type: "error",
-                    title: "Oops...",
-                    text: "Proveedor no existe!"
-                });
-            } else {
-                $("#id_proveedor").val(proveedor.codigo);
-                $("#nombre_proveedor").val(proveedor.proveedor);
-                $("#direccion_proveedor").val(proveedor.direccion);
-                $("#telefono_proveedor").val(proveedor.telefono);
-                ciudad = proveedor.ciudad;
-                pais = proveedor.pais;
-            }
-        });
-
-        $.ajax({
-            type: "get",
-            url: "./Controlador/controladorPais.php",
-            data: { accion: 'listar' },
-            dataType: "json"
-        }).done(function(resultado) {;
-            $("#id_pais option").remove()
-            $("#id_pais").append("<option selecte value=''>Seleccione un pais</option>")
-            $.each(resultado.data, function(index, value) {
-                if (pais === value.id_pais) {
-                    $("#id_pais").append("<option selected value='" + value.id_pais + "'>" + value.nombre_pais + "</option>")
-                } else {
-                    $("#id_pais").append("<option value='" + value.id_pais + "'>" + value.nombre_pais + "</option>")
-                }
-            });
-        });
-
-        $("#id_pais").change(function() {
-            $("#id_pais option:selected").each(function() {
-                var id_pais = document.forms['fproveedor']['id_pais'].value;
-                $.ajax({
-                    type: "get",
-                    url: "./Controlador/controladorCiudad.php",
-                    data: { codigo: id_pais, accion: 'listarC' },
-                    dataType: "json"
-                }).done(function(resultado) {;
-                    $("#id_ciudad option").remove()
-                    $("#id_ciudad").append("<option selecte value=''>Seleccione una ciudad</option>")
-                    $.each(resultado.data, function(index, value) {
-                        if (ciudad === value.id_ciudad) {
-                            $("#id_ciudad").append("<option selected value='" + value.id_ciudad + "'>" + value.nombre_ciudad + "</option>")
-                        } else {
-                            $("#id_ciudad").append("<option value='" + value.id_ciudad + "'>" + value.nombre_ciudad + "</option>")
-                        }
-                    });
-                });
-            });
-        });
-
-
-
-
-
-
-    });
 
     $(".content-header").on("click", "a.borrar", function() {
         //Recupera datos del formulario
@@ -190,7 +111,7 @@ function proveedor() {
             });
         });
 
-    })
+    });
 
     $(".content-header").on("click", "button#actualizar", function() {
         var datos = $("#fproveedor").serialize();
@@ -272,7 +193,97 @@ function proveedor() {
         });
     });
 
+    $(".content-header").on("click", "a.editar", function() {
+        $("#titulo").html("Editar Proveedor");
+        //Recupera datos del fromulario
+        var codigo = $(this).data("codigo");
+        var pais;
+        var ciudad;
+
+        $("#nuevo-editar").load("./Vista/Proveedor/editarProveedor.php", function() {
+            $("#nuevo-editar").addClass('show');
+            $("#nuevo-editar").removeClass('hide');
+            $("#proveedor").addClass('hide');
+            $("#proveedor").removeClass('show');
+
+            $.ajax({
+                type: "get",
+                url: "./Controlador/controladorProveedor.php",
+                data: { codigo: codigo, accion: 'consultar' },
+                dataType: "json"
+            }).done(function(proveedor) {
+                if (proveedor.respuesta === "no existe") {
+                    swal({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'Proveedor no existe!'
+                    })
+                } else {
+                    $("#id_proveedor").val(proveedor.codigo);
+                    $("#nombre_proveedor").val(proveedor.proveedor);
+                    $("#direccion_proveedor").val(proveedor.direccion);
+                    $("#telefono_proveedor").val(proveedor.telefono);
+                    ciudad = proveedor.ciudad;
+                    pais = proveedor.pais;
+
+                    var id_pais = proveedor.pais;
+                    $.ajax({
+                        type: "get",
+                        url: "./Controlador/controladorPais.php",
+                        data: { accion: 'listar' },
+                        dataType: "json"
+                    }).done(function(resultado) {
+                        $.each(resultado.data, function(index, value) {
+                            if (pais === value.id_pais) {
+                                $("#id_pais").append("<option selected value='" + value.id_pais + "'>" + value.nombre_pais + "</option>")
+                            } else {
+                                $("#id_pais").append("<option value='" + value.id_pais + "'>" + value.nombre_pais + "</option>")
+                            }
+                        });
+                    });
+                    $.ajax({
+                        type: "get",
+                        url: "./Controlador/controladorCiudad.php",
+                        data: { codigo: id_pais, accion: 'listarC' },
+                        dataType: "json"
+                    }).done(function(resultado) {;
+                        $.each(resultado.data, function(index, value) {
+                            if (ciudad === value.id_ciudad) {
+                                $("#id_ciudad").append("<option selected value='" + value.id_ciudad + "'>" + value.nombre_ciudad + "</option>")
+                            } else {
+                                $("#id_pais").change(function() {
+                                    $("#id_pais option:selected").each(function() {
+                                        $("#id_ciudad").find('option').remove().end().append(
+                                            '<option value="whatever">Seleccione ...</option>').val("whatever");
+                                        var id_pais = document.forms['fproveedor']['id_pais'].value;
+                                        $.ajax({
+                                            type: "get",
+                                            url: "./Controlador/controladorCiudad.php",
+                                            data: { codigo: id_pais, accion: 'listarC' },
+                                            dataType: "json"
+                                        }).done(function(resultado) {;
+
+                                            $("#id_ciudad option").remove()
+                                            if (id_pais === "") {
+                                                $("#id_ciudad").append("<option selecte value=''>Seleccione primero un pais</option>")
+                                            } else {
+                                                $("#id_ciudad").append("<option selecte value=''>Seleccione una ciudad</option>")
+                                                $.each(resultado.data, function(index, value) {
+                                                    $("#id_ciudad").append("<option value='" + value.id_ciudad + "'>" + value.nombre_ciudad + "</option>")
+                                                });
+                                            }
+                                        });
+                                    });
+                                });
+                            }
+                        });
+                    });
+                }
+            });
+        });
+    });
 }
+
 $(document).ready(() => {
     $(".content-header").off("click", "a.editar");
     $(".content-header").off("click", "button#actualizar");
