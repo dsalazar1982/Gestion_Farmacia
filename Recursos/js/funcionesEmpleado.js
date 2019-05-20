@@ -245,7 +245,7 @@ function empleado(){
                       swal({
                       type: 'error',
                       title: 'Oops...',
-                      text: 'Comuna no existe!'                         
+                      text: 'Empleado no existe!'                         
                       })
                   } else {
                       $("#id_empleado").val(empleado.codigo);                   

@@ -84,12 +84,12 @@
 
 					 <div class="form-group">        
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="button" id="grabar" class="btn btn-primary" data-toggle="tooltip" title="Grabar Cliente">Grabar Cliente</button>
+                            <button type="button" id="actualizar" class="btn btn-primary" data-toggle="tooltip" title="Actualizar Cliente">Actualizar Cliente</button>
                             <button type="button" id="cerrar" class="btn btn-success btncerrar" data-toggle="tooltip" title="Cancelar">Cancelar</button>
                         </div>
                     </div>
 
-					<input type="hidden" id="nuevo" value="nuevo" name="accion"/>
+					<input type="hidden" id="nuevo" value="editar" name="accion"/>
 			</fieldset>
 
 		</form>

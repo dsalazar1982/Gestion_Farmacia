@@ -11,6 +11,7 @@ switch ($_GET['accion']){
             );
         echo json_encode($respuesta);
         break;
+        
     case 'nuevo':
         $empleado = new Empleado();
         $resultado = $empleado->nuevo($datos);
@@ -25,7 +26,7 @@ switch ($_GET['accion']){
         }
         echo json_encode($respuesta);
         break;
-       
+
     case 'borrar':
 		$empleado = new Empleado();
 		$resultado = $empleado->borrar($datos['codigo']);

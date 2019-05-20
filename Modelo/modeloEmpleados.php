@@ -85,9 +85,7 @@
 		public function listarE() {
 			$this->query = "
 			SELECT id_empleado, nombre_empleado, apellido_empleado
-            FROM tb_empleados as e inner join tb_paises as p
-			ON (e.id_pais = p.id_pais) inner join tb_ciudades as c ON (e.id_ciudad = c.id_ciudad) 
-			order by id_empleado
+            FROM tb_empleados
 			";
 			
 			$this->obtener_resultados_query();

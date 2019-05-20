@@ -11,20 +11,22 @@ switch ($_GET['accion']){
             );
         echo json_encode($respuesta);
         break;
+
     case 'nuevo':
         $cliente = new Cliente();
 		$resultado = $cliente->nuevo($datos);
         if($resultado > 0) {
             $respuesta = array(
-                'respuesta' => 'correcto'
+                'respuesta' => $resultado
             );
         }  else {
             $respuesta = array(
-                'respuesta' => 'error'
+                'respuesta' => $resultado
             );
         }
         echo json_encode($respuesta);
         break;
+
     case 'borrar':
 		$cliente = new Cliente();
 		$resultado = $cliente->borrar($datos['codigo']);
@@ -50,12 +52,13 @@ switch ($_GET['accion']){
             );
         }  else {
             $respuesta = array(
-                'id_cliente' => $venta->getId_cliente(),
-                'nombre_cliente' => $venta->getNombre_cliente(),
-                'direccion_cliente' => $venta->getDireccion_cliente(),
-                'telefono_cliente' => $venta->getTelefono_cliente(),
-                'id_pais' => $venta->getId_pais(),
-                'id_ciudad' => $venta->getId_ciudad(),
+                'id_cliente' => $cliente->getId_cliente(),
+                'nombre_cliente' => $cliente->getNombre_cliente(),
+                'apellido_cliente' => $cliente->getApellido_cliente(),
+                'direccion_cliente' => $cliente->getDireccion_cliente(),
+                'telefono_cliente' => $cliente->getTelefono_cliente(),
+                'id_pais' => $cliente->getId_pais(),
+                'id_ciudad' => $cliente->getId_ciudad(),
                 'respuesta' =>'existe'
             );
         }
@@ -67,5 +70,11 @@ switch ($_GET['accion']){
         $listado = $cliente->listar();        
         echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);
         break;
+
+    case 'listarC':
+        $cliente = new Cliente();
+        $listado = $cliente->listar();
+        echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);    
+    break;
 }
 ?>

@@ -3,12 +3,14 @@
 	class Cliente extends ModeloAbstractoDB {
 		public $id_cliente;
 		public $nombre_cliente;
+		public $apellido_cliente;
 		public $direccion_cliente;
 		public $telefono_cliente;
 		public $id_pais;
 		public $id_ciudad;
 		
 		function __construct() {
+			
 		}
 		
 		public function getId_cliente(){
@@ -17,6 +19,10 @@
 
 		public function getNombre_cliente(){
 			return $this->nombre_cliente;
+		}
+
+		public function getApellido_cliente(){
+			return $this->apellido_cliente;
 		}
 
 		public function getDireccion_cliente(){
@@ -39,10 +45,10 @@
 		public function consultar($id_cliente='') {
 			if($id_cliente !=''):
 				$this->query = "
-                SELECT id_cliente, nombre_cliente, direccion_cliente, 
+                SELECT id_cliente, nombre_cliente, apellido_cliente, direccion_cliente, 
                 telefono_cliente, id_pais, id_ciudad 
                 FROM tb_clientes 
-				WHERE id_cliente = '$id_cliente'
+				WHERE id_cliente = '$id_cliente' order by id_cliente
 				";
 				$this->obtener_resultados_query();
 			endif;
@@ -55,7 +61,7 @@
 		
 		public function listar() {
 			$this->query = "
-			SELECT id_cliente, nombre_cliente, direccion_cliente, 
+			SELECT id_cliente, nombre_cliente, apellido_cliente, direccion_cliente, 
                 telefono_cliente, s.nombre_pais, p.nombre_ciudad
                 FROM tb_clientes AS pr
 				INNER JOIN tb_paises AS s ON (pr.id_pais = s.id_pais) 
@@ -76,23 +82,29 @@
 		//	return $this->rows;
 		//}
 		
+		public function listarC() {
+			$this->query = "
+			SELECT id_cliente, nombre_cliente, apellido_cliente
+            FROM tb_clientes
+			";
+			
+			$this->obtener_resultados_query();
+			return $this->rows;
+			
+		}
+
 		public function nuevo($datos=array()) {
 			if(array_key_exists('id_cliente', $datos)):
 				foreach ($datos as $campo=>$valor):
 					$$campo = $valor;
 				endforeach;
-				$id_cliente= utf8_decode($id_cliente);
-				$nombre_cliente= utf8_decode($nombre_cliente);
-				$direccion_cliente= utf8_decode($direccion_cliente);
-				$telefono_cliente= utf8_decode($telefono_cliente);
-				$id_pais= utf8_decode($id_pais);
-				$id_ciudad= utf8_decode($id_ciudad);
+
 				$this->query = "
 				INSERT INTO tb_clientes
-				(id_cliente, nombre_cliente, direccion_cliente, 
+				(id_cliente, nombre_cliente, apellido_cliente, direccion_cliente, 
                 telefono_cliente, id_pais, id_ciudad)
 				VALUES
-				('$id_cliente', '$nombre_cliente', '$direccion_cliente',
+				('$id_cliente', '$nombre_cliente', '$apellido_cliente' ,'$direccion_cliente',
 				'$telefono_cliente', '$id_pais', '$id_ciudad')
 				";
 				$resultado = $this->ejecutar_query_simple();
@@ -106,8 +118,12 @@
 			endforeach;
 			$this->query = "
 			UPDATE tb_clientes
-			SET nombre_cliente='$nombre_cliente', direccion_cliente='$direccion_cliente', 
-			telefono_cliente='$telefono_cliente', id_pais='$id_pais', id_ciudad='$id_ciudad'
+			SET nombre_cliente='$nombre_cliente', 
+			apellido_cliente='$apellido_cliente',
+			direccion_cliente='$direccion_cliente', 
+			telefono_cliente='$telefono_cliente', 
+			id_pais='$id_pais', 
+			id_ciudad='$id_ciudad'
 			WHERE id_cliente = '$id_cliente'
 			";
 			$resultado = $this->ejecutar_query_simple();
@@ -125,5 +141,7 @@
 		}
 		
 		function __destruct() {
+
 		}
+
 	}
