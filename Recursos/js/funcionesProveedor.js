@@ -177,10 +177,14 @@ function proveedor() {
                         dataType: "json"
                     }).done(function(resultado) {;
                         $("#id_ciudad option").remove()
-                        $("#id_ciudad").append("<option selecte value=''>Seleccione una ciudad</option>")
-                        $.each(resultado.data, function(index, value) {
-                            $("#id_ciudad").append("<option value='" + value.id_ciudad + "'>" + value.nombre_ciudad + "</option>")
-                        });
+                        if (id_pais === "") {
+                            $("#id_ciudad").append("<option selecte value=''>Seleccione primero un pais</option>")
+                        } else {
+                            $("#id_ciudad").append("<option selecte value=''>Seleccione una ciudad</option>")
+                            $.each(resultado.data, function(index, value) {
+                                $("#id_ciudad").append("<option value='" + value.id_ciudad + "'>" + value.nombre_ciudad + "</option>")
+                            });
+                        }
                     });
                 });
             });
