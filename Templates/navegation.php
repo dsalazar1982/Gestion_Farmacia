@@ -1,4 +1,4 @@
-<?php //include_once ("./Funciones/sessiones.php"); ?>
+<?php //include_once ("./Funciones/sessiones.php");?>
 <aside class="main-sidebar">
 	  
    <section class="sidebar">
@@ -30,6 +30,7 @@
 	   <li><a href="#"><i class="fa fa-hourglass-2"></i> <span>Ofertas</span></a></li>
 		<li><a href="./Vista/Nomina/nomina.php"><i class="fa fa-usd"></i> <span>Nomina</span></a></li>
 		<li><a href="./Vista/Paises/pais.php"><i class="fa fa-globe"></i> <span>Paises</span></a></li>
+		<li><a href="./Vista/Presentacion/presentacion.php"><i class="fa fa-medkit"></i> <span>Presentaciones productos</span></a></li>
 		<li><a href="#"><i class="fa  fa-plus-square"></i> <span>Productos</span></a></li>
 		<li><a href="./Vista/Propietario/propietario.php"><i class="fa fa-black-tie"></i> <span>Propietarios</span></a></li>
 		<li><a href="./Vista/Proveedor/proveedor.php"><i class="fa fa-flask"></i> <span>Proveedores</span></a></li>
