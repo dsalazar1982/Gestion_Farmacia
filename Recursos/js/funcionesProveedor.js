@@ -67,7 +67,6 @@ function proveedor() {
     });
 
     $(".content-header").on("click", "button#nuevo", function() {
-        $(this).hide();
         $("#titulo").html("Crear Proveedor");
         $("#nuevo-editar").load('./Vista/Proveedor/nuevoProveedor.php', function() {
             $("#nuevo-editar").removeClass('hide');

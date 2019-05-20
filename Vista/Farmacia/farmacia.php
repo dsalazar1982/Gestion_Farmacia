@@ -23,9 +23,10 @@
 				<th class="text-center">Nombre Farmacia</th>
 				<th class="text-center">Direccion</th>
                 <th class="text-center">Telefono</th>
-                <th class="text-center">Ciudad</th>
                 <th class="text-center">Propietario</th>
-                <th class="text-center">Id_usuario</th>
+                <th class="text-center">Administrador de Sistemas</th>
+                <th class="text-center">Ciudad</th>
+                <th class="text-center">Pais</th>
 				<th>&nbsp;</th>
 				<th>&nbsp;</th>
 			</tr>

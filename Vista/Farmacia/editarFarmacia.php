@@ -23,13 +23,12 @@
 
                     <form class="form-horizontal" role="form" id="ffarmacia">
 
-
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="id_farmacia">Codigo:</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="id_farmacia" name="id_farmacia"
                                     placeholder="Ingrese Codigo" data-validation="length alphanumeric"
-                                    data-validation-length="3-12" required />
+                                    data-validation-length="3-12" readonly="true" required />
                             </div>
                         </div>
 
@@ -96,16 +95,20 @@
 
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="button" id="grabar" class="btn btn-primary" data-toggle="tooltip"
-                                        title="Grabar farmacia">Grabar Farmacia</button>
+                                    <button type="button" id="actualizar" class="btn btn-primary" data-toggle="tooltip"
+                                        title="Actualizar farmacia">Actualizar</button>
                                     <button type="button" id="cerrar" class="btn btn-success btncerrar2"
                                         data-toggle="tooltip" title="Cancelar">Cancelar</button>
                                 </div>
                             </div>
 
-                            <input type="hidden" id="nuevo" value="nuevo" name="accion" />
+                            <input type="hidden" id="editar" value="editar" name="accion" />
                             </fieldset>
 
                     </form>
                 </div>
+                <input type="hidden" id="pagina" value="editar" name="editar" />
             </div>
+        </div>
+    </div>
+</div>
