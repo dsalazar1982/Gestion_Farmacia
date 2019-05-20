@@ -1,11 +1,11 @@
 <?php
  
-require_once 'modeloFarmacia.php';
+require_once '../Modelo/modeloFarmacia.php';
 $datos = $_GET;
 switch ($_GET['accion']){
     case 'editar':
         $farmacia = new Farmacia();
-        $resultado = $farmacia->editar($datos);
+		$resultado = $farmacia->editar($datos);
         $respuesta = array(
                 'respuesta' => $resultado
             );
@@ -44,18 +44,19 @@ switch ($_GET['accion']){
         $farmacia = new Farmacia();
         $farmacia->consultar($datos['codigo']);
 
-        if($farmacia->getid_farmacia() == null) {
+        if($farmacia->getId_farmacia() == null) {
             $respuesta = array(
                 'respuesta' => 'no existe'
             );
         }  else {
             $respuesta = array(
-                'codigo' => $farmacia->getid_farmacia(),
-                'farmacia' => $farmacia->getnombre_farmacia(),
-                'direccion' => $farmacia->getdireccion_farmacia(),
-                'ciudad' =>$farmacia->getid_ciudad(),
-                'Propietatio' => $farmacia->getpropiatario(),
-                'usuario' => $farmacia->getusuairo(),
+                'id_farmacia' => $farmacia->getId_farmacia(),
+                'nombre_farmacia' => $farmacia->getNombre_farmacia(),
+                'direccion_farmacia' => $farmacia->getDireccion_farmacia(),
+                'telefono_farmacia' => $farmacia->getTelefono_farmacia(),
+                'id_ciudad' => $farmacia->getId_ciudad(),
+                'id_propietario' => $farmacia->getId_propietario(),
+                'id_usuario' => $farmacia->getId_usuario(),
                 'respuesta' =>'existe'
             );
         }
@@ -64,8 +65,8 @@ switch ($_GET['accion']){
 
     case 'listar':
         $farmacia = new Farmacia();
-        $listado = $farmacia->lista();
-        echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);    
+        $listado = $farmacia->listar();        
+        echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);
         break;
-}      //<!-- codigo listo, funcionando -->
+}
 ?>

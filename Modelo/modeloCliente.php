@@ -40,11 +40,9 @@
 			if($id_cliente !=''):
 				$this->query = "
                 SELECT id_cliente, nombre_cliente, direccion_cliente, 
-                telefono_cliente, s.id_pais, p.id_ciudad 
-                FROM tb_clientes h 
-				INNER JOIN tb_paises s ON (h.id_pais = s.id_pais) 
-				INNER JOIN tb_ciudades p ON (h.id_ciudad  = p.id_ciudad )
-				WHERE h.id_cliente = '$id_cliente'
+                telefono_cliente, id_pais, id_ciudad 
+                FROM tb_clientes 
+				WHERE id_cliente = '$id_cliente'
 				";
 				$this->obtener_resultados_query();
 			endif;
@@ -58,25 +56,25 @@
 		public function listar() {
 			$this->query = "
 			SELECT id_cliente, nombre_cliente, direccion_cliente, 
-                telefono_cliente, s.id_pais, p.id_ciudad 
-                FROM tb_clientes h 
-				INNER JOIN tb_paises s ON (h.id_pais = s.id_pais) 
-				INNER JOIN tb_ciudades p ON (h.id_ciudad  = p.id_ciudad )
+                telefono_cliente, s.nombre_pais, p.nombre_ciudad
+                FROM tb_clientes AS pr
+				INNER JOIN tb_paises AS s ON (pr.id_pais = s.id_pais) 
+				INNER JOIN tb_ciudades AS p ON (pr.id_ciudad  = p.id_ciudad)
 			";
 			$this->obtener_resultados_query();
 			return $this->rows;
 		}
-		public function listacliente() {
-			$this->query = "
-			SELECT id_cliente, nombre_cliente, direccion_cliente, 
-                telefono_cliente, s.id_pais, p.id_ciudad 
-                FROM tb_clientes h 
-				INNER JOIN tb_paises s ON (h.id_pais = s.id_pais) 
-				INNER JOIN tb_ciudades p ON (h.id_ciudad  = p.id_ciudad )
-			";
-			$this->obtener_resultados_query();
-			return $this->rows;
-		}
+		//public function listacliente() {
+		//	$this->query = "
+		//	SELECT id_cliente, nombre_cliente, direccion_cliente, 
+        //        telefono_cliente, s.id_pais, p.id_ciudad 
+        //        FROM tb_clientes h 
+		//		INNER JOIN tb_paises s ON (h.id_pais = s.id_pais) 
+		//		INNER JOIN tb_ciudades p ON (h.id_ciudad  = p.id_ciudad )
+		//	";
+		//	$this->obtener_resultados_query();
+		//	return $this->rows;
+		//}
 		
 		public function nuevo($datos=array()) {
 			if(array_key_exists('id_cliente', $datos)):
@@ -85,6 +83,10 @@
 				endforeach;
 				$id_cliente= utf8_decode($id_cliente);
 				$nombre_cliente= utf8_decode($nombre_cliente);
+				$direccion_cliente= utf8_decode($direccion_cliente);
+				$telefono_cliente= utf8_decode($telefono_cliente);
+				$id_pais= utf8_decode($id_pais);
+				$id_ciudad= utf8_decode($id_ciudad);
 				$this->query = "
 				INSERT INTO tb_clientes
 				(id_cliente, nombre_cliente, direccion_cliente, 

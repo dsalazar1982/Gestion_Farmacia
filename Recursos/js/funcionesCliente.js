@@ -100,12 +100,45 @@ function cliente() {
     })
 
     $(".content-header").on("click", "button#nuevo", function() {
-        $("#titulo").html("Nueva venta");
-        $("#nuevo-editar").load("./Vista/Clientes/nuevocliente.php");
+        $(this).hide();
+        $("#titulo").html("Nuevo cliente");
+        $("#nuevo-editar").load("./Vista/Clientes/nuevocliente.php", function() {
         $("#nuevo-editar").removeClass("hide");
         $("#nuevo-editar").addClass("show");
         $("#cliente").removeClass("show");
         $("#cliente").addClass("hide");
+
+        $.ajax({
+            type: "get",
+            url: "./Controlador/controladorPais.php",
+            data: { accion: 'listar' },
+            dataType: "json"
+        }).done(function(resultado) {;
+            $("#id_pais option").remove()
+            $("#id_pais").append("<option selecte value=''>Seleccione un pais</option>")
+            $("#id_ciudad").append("<option selecte value=''>Seleccione primero un pais</option>")
+            $.each(resultado.data, function(index, value) {
+                $("#id_pais").append("<option value='" + value.id_pais + "'>" + value.nombre_pais + "</option>")
+            });
+        });
+        $("#id_pais").change(function() {
+            $("#id_pais option:selected").each(function() {
+                var id_pais = document.forms['fcliente']['id_pais'].value;
+                $.ajax({
+                    type: "get",
+                    url: "./Controlador/controladorCiudad.php",
+                    data: { codigo: id_pais, accion: 'listarC' },
+                    dataType: "json"
+                }).done(function(resultado) {
+                    $("#id_ciudad option").remove()
+                    $("#id_ciudad").append("<option selecte value=''>Seleccione una ciudad</option>")
+                    $.each(resultado.data, function(index, value) {
+                        $("#id_ciudad").append("<option value='" + value.id_ciudad + "'>" + value.nombre_ciudad + "</option>")
+                    });
+                });
+            });
+         });  
+        });
     })
 
     $(".content-header").on("click", "button#grabar", function() {
@@ -205,8 +238,8 @@ $(document).ready(() => {
             { "data": "nombre_cliente" },
             { "data": "direccion_cliente" },
             { "data": "telefono_cliente"},
-            { "data": "id_pais"},
-            { "data": "id_ciudad"},
+            { "data": "nombre_pais"},
+            { "data": "nombre_ciudad"},
 
             {
                 "data": "id_cliente",

@@ -55,20 +55,21 @@
                     </div>
 
                     <div class="form-group">
-                    <label class="control-label col-sm-2" for="id_pais">id_pais:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="id_pais" name="id_pais" placeholder="Ingrese Pais"
-                            value = "" required>
-                        </div>
-                    </div>
+                            <label class="control-label col-sm-2" for="id_pais">Pais:</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="id_pais" name="id_pais">
 
-                    <div class="form-group">
-                    <label class="control-label col-sm-2" for="id_ciudad">id_ciudad:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="id_ciudad" name="id_ciudad" placeholder="Ingrese Ciudad"
-                            value = "" required>
+                                </select>
+                            </div>
                         </div>
-                    </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="id_ciudad">Ciudad:</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="id_ciudad" name="id_ciudad">
+                                </select>
+                            </div>
+                        </div>
 
 					 <div class="form-group">        
                         <div class="col-sm-offset-2 col-sm-10">

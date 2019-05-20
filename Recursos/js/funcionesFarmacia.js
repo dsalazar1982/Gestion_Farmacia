@@ -1,11 +1,11 @@
 var dt;
 
 function farmacia(){
-    $("#contenido").on("click","button#actualizar",function(){
-         var datos=$("#ffarmacia").serialize();
+    $(".content-header").on("click", "button#actualizar", function() {
+         var datos=$("#farmacia").serialize();
          $.ajax({
             type:"get",
-            url:"./Controlador/controladorFarmacia.php",
+            url:"./php/Controlador/controladorFarmacia.php",
             data: datos,
             dataType:"json"
           }).done(function( resultado ) {
@@ -13,10 +13,10 @@ function farmacia(){
                 swal(
                     'Actualizado!',
                     'Se actualizaron los datos correctamente',
-                    'success' //Palabra no modificar(Sale Chulo verde animacion) //Palabra no modificar(Sale Chulo verde animacion)
+                    'success'
                 )     
                 dt.ajax.reload();
-                $("#titulo").html("Listado Farmacias");
+                $("#titulo").html("Listado Comunas");
                 $("#nuevo-editar").html("");
                 $("#nuevo-editar").removeClass("show");
                 $("#nuevo-editar").addClass("hide");
@@ -26,31 +26,30 @@ function farmacia(){
                 swal({
                   type: 'error',
                   title: 'Oops...',
-                  text: 'Algo salió mal!'                         
+                  text: 'Something went wrong!'                         
                 })
             }
         });
     })
 
-    $("#contenido").on("click","a.borrar",function(){
+    $(".content-header").on("click","a.borrar",function(){
         //Recupera datos del formulario
         var codigo = $(this).data("codigo");
 
         swal({
               title: '¿Está seguro?',
-              text: "¿Realmente desea borrar la farmacia con Id : " + codigo + " ?",
+              text: "¿Realmente desea borrar la Farmacia con codigo : " + codigo + " ?",
               type: 'warning',
               showCancelButton: true,
               confirmButtonColor: '#3085d6',
               cancelButtonColor: '#d33',
               confirmButtonText: 'Si, Borrarlo!'
-              //buttons:'Si, Borrarlo'  //unpkg.com/sweetalert/
         }).then((decision) => {
                 if (decision.value) {
 
                     var request = $.ajax({
                         method: "get",
-                        url: "./Controlador/controladorFarmacia.php",
+                        url: "./php/Controlador/controladorFarmacia.php",
                         data: {codigo: codigo, accion:'borrar'},
                         dataType: "json"
                     })
@@ -59,15 +58,15 @@ function farmacia(){
                         if(resultado.respuesta == 'correcto'){
                             swal(
                                 'Borrado!',
-                                'La farmacia con codigo : ' + codigo + ' fue borrada',
-                                'success' //Palabra no modificar(Sale Chulo verde animacion)
+                                'La Farmacia con codigo : ' + codigo + ' fue borrada',
+                                'success'
                             )     
                             dt.ajax.reload();                            
                         } else {
                             swal({
                               type: 'error',
                               title: 'Oops...',
-                              text: 'Algo salió mal!'                         
+                              text: 'Something went wrong!'                         
                             })
                         }
                     });
@@ -76,7 +75,7 @@ function farmacia(){
                         swal({
                           type: 'error',
                           title: 'Oops...',
-                          text: 'Algo salió mal!' + textStatus                          
+                          text: 'Something went wrong!' + textStatus                          
                         })
                     });
                 }
@@ -84,8 +83,8 @@ function farmacia(){
 
     });
 
-    $("#contenido").on("click","button.btncerrar2",function(){
-        $("#titulo").html("Listado Farmacias");
+    $(".content-header").on("click","button.btncerrar2",function(){
+        $("#titulo").html("Listado de Farmacias");
         $("#nuevo-editar").html("");
         $("#nuevo-editar").removeClass("show");
         $("#nuevo-editar").addClass("hide");
@@ -94,146 +93,140 @@ function farmacia(){
 
     })
 
-    $("#contenido").on("click","button.btncerrar",function(){
+    $(".content-header").on("click","button.btncerrar",function(){
         $("#contenedor").removeClass("show");
         $("#contenedor").addClass("hide");
-        $("#contenido").html('')
+        $(".content-header").html('')
     })
 
-    $("#contenido").on("click","button#nuevo",function(){
+    $(".content-header").on("click","button#nuevo",function(){
         $("#titulo").html("Nueva farmacia");
-        $("#nuevo-editar" ).load("./Controlador/nuevoFarmacia.php"); 
+        $("#nuevo-editar" ).load("./vista/Farmacia/nuevoFarmacia.php"); 
         $("#nuevo-editar").removeClass("hide");
         $("#nuevo-editar").addClass("show");
         $("#farmacia").removeClass("show");
         $("#farmacia").addClass("hide");
-         $.ajax({
-             type:"get",
-             url:"./Controlador/controladorFarmacia.php",
-             data: {accion:'listar'},
-             dataType:"json"
-           }).done(function( resultado ) {   
-              //console.log(resultado.data)           
-              $("#ciudad_id option").remove()       
-              $("#ciudad_id").append("<option selecte value=''>Seleccione una ciudad</option>")
-              $.each(resultado.data, function (index, value) { 
-                $("#ciudad_id").append("<option value='" + value.ciudad_id + "'>" + value.ciudad_nom + "</option>")
-              });
-           });
     })
 
-    $("#contenido").on("click","button#grabar",function(){
-     var datos=$("#ffarmacia").serialize();
-       $.ajax({
-            type:"get",
-            url:"./Controlador/controladorFarmacia.php",
-            data: datos,
-            dataType:"json"
-          }).done(function( resultado ) {
-              if(resultado.respuesta){
-                swal(
-                    'Grabado!!',
-                    'El registro se grabó correctamente',
-                    'success' //Palabra no modificar(Sale Chulo verde animacion)
-                )     
-                dt.ajax.reload();
-                $("#titulo").html("Listado Farmacias");
-                $("#nuevo-editar").html("");
-                $("#nuevo-editar").removeClass("show");
-                $("#nuevo-editar").addClass("hide");
-                $("#farmacia").removeClass("hide");
-                $("#farmacia").addClass("show")
-             } else {
+    $(".content-header").on("click", "button#grabar", function() {
+        var codigo = document.forms["farmacia"]["id_farmacia"].value;
+        $.ajax({
+            type: "get",
+            url: "./Controlador/controladorFarmacia.php",
+            data: { codigo: codigo, accion: 'consultar' },
+            dataType: "json"
+        }).done(function(farmacia) {
+            if (farmacia.respuesta == "no existe") {
+                var datos = $("#farmacia").serialize();
+
+                $.ajax({
+                    type: "get",
+                    url: "./Controlador/controladorFarmacia.php",
+                    data: datos,
+                    dataType: "json"
+                }).done(function(resultado) {
+                    if (resultado.respuesta) {
+                        swal(
+                            'Grabado!!',
+                            'El registro se grabó correctamente',
+                            'success'
+                        )
+                        dt.ajax.reload();
+                        $("#titulo").html("Listado Farmacias");
+                        $("#nuevo-editar").html("");
+                        $("#nuevo-editar").removeClass("show");
+                        $("#nuevo-editar").addClass("hide");
+                        $("#farmacia").removeClass("hide");
+                        $("#farmacia").addClass("show")
+                    } else {
+                        swal({
+                            type: 'error',
+                            title: 'Oops...',
+                            text: 'Something went wrong!'
+                        })
+                    }
+                });
+            } else {
                 swal({
-                  type: 'error',
-                  title: 'Oops...',
-                  text: 'Algo salió mal!'                         
+                    type: 'error',
+                    title: 'Oops...',
+                    text: 'La Farmacia ya existe!!!!!'
                 })
             }
         });
     });
 
+    $(".content-header").on("click", "a.editar", function() {
+        $("#titulo").html("Editar Farmacia");
+        //Recupera datos del formulario
+        var codigo = $(this).data("codigo");
 
-    $("#contenido").on("click","a.editar",function(){
-       $("#titulo").html("Editar Farmacia");
-       //Recupera datos del fromulario
-       var codigo = $(this).data("codigo");
-       var ciudad;
-        $("#nuevo-editar").load("./Vista/Farmacia/editarFarmacia.php");
+        $("#nuevo-editar").load("./Vista/Farmacia/editarfarmacia.php");
         $("#nuevo-editar").removeClass("hide");
         $("#nuevo-editar").addClass("show");
         $("#farmacia").removeClass("show");
         $("#farmacia").addClass("hide");
-       $.ajax({
-           type:"get",
-           url:"./Controlador/controladorFarmacia.php",
-           data: {codigo: codigo, accion:'consultar'},
-           dataType:"json"
-           }).done(function( farmacia ) {        
-                if(farmacia.respuesta === "no existe"){
-                    swal({
-                      type: 'error',
-                      title: 'Oops...',
-                      text: 'Farmacia no existe!!!!!'                         
-                    })
-                } else {
-                    $("#id_farmacia").val(farmacia.codigo);   //Controlador_famacia linea 53                
-                    $("#nombre_farmacia").val(farmacia.farmacia); //Controlador_famacia linea 54
-                    $("#direccion_farmacia").val(farmacia.direccion); //Controlador_famacia linea 55
-                    $("#telefono_farmacia").val(farmacia.telefono);  //Controlador_famacia linea 57
-                    ciudad = farmacia.ciudad;                //Controlador_famacia linea 56
-                    
-                    
-                }
-           });
+        $.ajax({
+            type: "get",
+            url: "./Controlador/controladorFarmacia.php",
+            data: { codigo: codigo, accion: 'consultar' },
+            dataType: "json"
+        }).done(function(farmacia) {
+            if (farmacia.respuesta === "no existe") {
+                swal({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: 'Farmacia no existe!'
+                })
+            } else {
+                $("#id_farmacia").val(farmacia.id_farmacia);
+                $("#nombre_farmacia").val(farmacia.nombre_farmacia);
+                $("#direccion_farmacia").val(farmacia.direccion_farmacia);
+                $("#telefono_farmacia").val(farmacia.telefono_farmacia);
+                $("#id_ciudad").val(farmacia.id_ciudad);
+                $("#id_propietario").val(farmacia.id_propietario);
+                $("#id_usuario").val(farmacia.id_usuario);
 
-           $.ajax({ // tengo que validar esta parte bien 
-             type:"get",
-             url:"../../php/ciudad/controladorCiudad.php",// falta actualizarlo
-             data: {accion:'listar'},
-             dataType:"json"
-           }).done(function( resultado ) {                     
-              $("#id_ciudad option").remove();
-              $.each(resultado.data, function (index, value) { 
-                
-                if(ciudad === value.id_ciudad){
-                  $("#id_ciudad").append("<option selected value='" + value.id_ciudad + "'>" + value.nombre_ciudad + "</option>")
-                }else {
-                  $("#id_ciudad").append("<option value='" + value.id_ciudad + "'>" + value.nombre_ciudad + "</option>")
-                }
-              });
-           });    
-            
-       })
+            }
+        });
+    })
+
 }
-
 $(document).ready(() => {
-  $("#contenido").off("click", "a.editar");
-  $("#contenido").off("click", "button#actualizar");
-  $("#contenido").off("click","a.borrar");
-  $("#contenido").off("click","button#nuevo");
-  $("#contenido").off("click","button#grabar");
-  $("#titulo").html("Listado de Farmacias");
-  dt = $("#tabla").DataTable({
+    $(".content-header").off("click", "a.editar");
+    $(".content-header").off("click", "button#actualizar");
+    $(".content-header").off("click", "a.borrar");
+    $(".content-header").off("click", "button#nuevo");
+    $(".content-header").off("click", "button#grabar");
+    $("#titulo").html("Listado de Pais");
+    dt = $("#tabla").DataTable({
         "ajax": "./Controlador/controladorFarmacia.php?accion=listar",
         "columns": [
-            { "data": "id_farmacia"} ,
+            { "data": "id_farmacia" },
             { "data": "nombre_farmacia" },
             { "data": "direccion_farmacia" },
-            { "data": "nombre_ciudad"},
             { "data": "telefono_farmacia"},
-            /*{ "data": "ciudad_id" ,*/ //en caso que no sea farma_codi
-            { "data": "id_farmacia" ,
-                render: function (data) {
-                          return '<a href="#" data-codigo="'+ data + '" class="btn btn-danger btn-sm borrar"> <i class="fa fa-trash glyphicon glyphicon-trash "></i></a>' 
+            { "data": "id_ciudad"},
+            { "data": "id_propietario"},
+            { "data": "id_usuario"},
+           
+
+            {
+                "data": "id_farmacia",
+                render: function(data) {
+                    return '<a href="#" data-codigo="' + data +
+                        '" class="btn btn-danger btn-sm borrar"> <i class="fa fa-trash"></i></a>'
                 }
             },
-            { "data": "id_farmacia",
-                render: function (data) {
-                          return '<a href="#" data-codigo="'+ data + '" class="btn btn-info btn-sm editar"> <i class="glyphicon glyphicon-edit fa fa-edit"></i></a>';
+            {
+                "data": "id_farmacia",
+                render: function(data) {
+                    return '<a href="#" data-codigo="' + data +
+                        '" class="btn btn-info btn-sm editar"> <i class="fa fa-edit"></i></a>';
                 }
             }
         ]
-  });
+    });
+
   farmacia();
 });

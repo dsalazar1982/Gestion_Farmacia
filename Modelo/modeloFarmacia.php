@@ -1,53 +1,53 @@
 <?php
-    require_once("../modeloAbstractoDB.php");
-    class Farmacia extends ModeloAbstractoDB {
-		private $id_farmacia;
-		private $nombre_farmacia;
-		private $direccion_farmacia;
-		private $telefono_farmacia;
-        private $id_ciudad;
-        private $id_propietario;
-        private $id_usuario; 
+	require_once('modeloAbstractoDB.php');
+	class Farmacia extends ModeloAbstractoDB {
+		public $id_farmacia;
+		public $nombre_farmacia;
+		public $direccion_farmacia;
+		public $telefono_farmacia;
+		public $id_ciudad;
+		public $id_propietario;
+		public $id_usuario;
 		
 		function __construct() {
-			//$this->db_name = '';
 		}
-
-		public function getid_farmacia(){
+		
+		public function getId_farmacia(){
 			return $this->id_farmacia;
 		}
 
-		public function getnombre_farmacia(){
+		public function getNombre_farmacia(){
 			return $this->nombre_farmacia;
 		}
 
-		public function getdireccion_farmacia(){
+		public function getDireccion_farmacia(){
 			return $this->direccion_farmacia;
 		}
-
-		public function gettelefono_farmacia(){
+		
+		public function getTelefono_farmacia(){
 			return $this->telefono_farmacia;
 		}
 
-		public function getid_ciudad(){
+		public function getId_ciudad(){
 			return $this->id_ciudad;
-        }
-        
-        public function getid_propietario(){
+		}
+
+		public function getId_propietario(){
 			return $this->id_propietario;
-        }
-        
-        public function getid_usuario(){
+		}
+
+		public function getId_usuario(){
 			return $this->id_usuario;
 		}
-		
+
 		public function consultar($id_farmacia='') {
-			if($id_farmacia !=''):
+			if($id_farmacia != ''):
 				$this->query = "
-                SELECT id_farmacia, nombre_farmacia, direccion_farmacia, telefono_farmacia, id_ciudad,
-                id_propietario,id_usuario
+				SELECT id_farmacia, nombre_farmacia, direccion_farmacia,
+				telefono_farmacia, id_ciudad, id_propietario,
+				id_usuario 
 				FROM tb_farmacias
-				WHERE id_farmacia = '$id_farmacia' order by id_farmacia
+				WHERE id_farmacia = '$id_farmacia'
 				";
 				$this->obtener_resultados_query();
 			endif;
@@ -58,17 +58,23 @@
 			endif;
 		}
 		
-		public function lista() {
+		public function listar() {
 			$this->query = "
-            SELECT f.id_farmacia, f.nombre_farmacia, f.direccion_farmacia, 
-            f.telefono_farmacia, c.nombre_ciudad, p.nombre_propietario FROM tb_farmacias as f,
-             tb_ciudades as c, tb_propietarios as p WHERE (c.id_ciudad=f.id_ciudad) 
-             AND (p.id_propietario=f.id_propietario)
+			SELECT id_farmacia, nombre_farmacia, direccion_farmacia,
+			telefono_farmacia, id_ciudad, id_propietario, id_usuario 
+			FROM tb_farmacias ORDER BY nombre_farmacia
 			";
-			
 			$this->obtener_resultados_query();
 			return $this->rows;
-			
+		}
+		public function listafarmacia() {
+			$this->query = "
+			SELECT id_farmacia, nombre_farmacia, direccion_farmacia,
+			telefono_farmacia, id_ciudad, id_propietario, id_usuario 
+			FROM tb_farmacias as d order by nombre_farmacia
+			";
+			$this->obtener_resultados_query();
+			return $this->rows;
 		}
 		
 		public function nuevo($datos=array()) {
@@ -76,15 +82,17 @@
 				foreach ($datos as $campo=>$valor):
 					$$campo = $valor;
 				endforeach;
+				$id_farmacia= utf8_decode($id_farmacia);
 				$nombre_farmacia= utf8_decode($nombre_farmacia);
 				$this->query = "
-					INSERT INTO tb_farmacia
-					(id_farmacia, nombre_farmacia, direccion_farmacia, 
-                    telefono_farmacia,nombre_ciudad, nombre_propietario)
-					VALUES
-                    (NULL, '$id_farmacia', '$nombre_farmacia', '$direccion_farmacia', '$telefono_farmacia',
-                    '$id_ciudad','$id_propietario','$id_usuario')
-					";
+				INSERT INTO tb_farmacias
+				(id_farmacia, nombre_farmacia, direccion_farmacia,
+                telefono_farmacia, id_ciudad, id_propietario, id_usuario)
+				VALUES
+				('$id_farmacia', '$nombre_farmacia', '$direccion_farmacia',
+				'$telefono_farmacia', '$id_ciudad', '$id_propietario',
+				'$id_usuario')
+				";
 				$resultado = $this->ejecutar_query_simple();
 				return $resultado;
 			endif;
@@ -94,12 +102,11 @@
 			foreach ($datos as $campo=>$valor):
 				$$campo = $valor;
 			endforeach;
-			$nombre_farmacia= utf8_decode($nombre_farmacia);
-			$direccion_farmacia= ($direccion_farmacia);
-			$telefono_farmacia= ($telefono_farmacia);
 			$this->query = "
-			UPDATE tb_farmacia
-			SET nombre_farmacia='$nombre_farmacia', direccion_farmacia='$direccion_famarcia', telefono_farmacia='$telefono_farmacia',
+			UPDATE tb_farmacias
+            SET nombre_farmacia='$nombre_farmacia', direccion_farmacia='$direccion_farmacia', 
+            telefono_farmacia='$telefono_farmacia', id_ciudad='$id_ciudad', 
+            id_propietario='$id_propietario', id_usuario='$id_usuario'
 			WHERE id_farmacia = '$id_farmacia'
 			";
 			$resultado = $this->ejecutar_query_simple();
@@ -117,7 +124,6 @@
 		}
 		
 		function __destruct() {
-			//unset($this);
 		}
-	} //<!-- codigo listo, funcionando -->
+	}
 ?>
