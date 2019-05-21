@@ -145,7 +145,9 @@ function carousel() {
     });
 
     $(".content-header").on("click", "button#grabar", function() {
+
         var codigo = document.forms["fcarousel"]["id_carousel"].value;
+        
         $.ajax({
             type: "get",
             url: "./Controlador/controladorCarousel.php",
@@ -153,13 +155,22 @@ function carousel() {
             dataType: "json"
         }).done(function(proveedor) {
             if (proveedor.respuesta == "no existe") {
-                var datos = $("#fcarousel").serialize();
+                
+                var datos = $("#fcarousel").serialize();                   
+                
+                var form_data = new FormData();
+                var file_data = $('#imagen').prop('files')[0];    
+                form_data.append('file', file_data);                
+                // form_data.append('id_carousel', codigo);             
 
                 $.ajax({
-                    type: "get",
-                    url: "./Controlador/controladorCarousel.php",
-                    data: datos,
-                    dataType: "json"
+                    type: "post",
+                    url: "./Controlador/controladorCarousel.php?"+datos,
+                    data: form_data,
+                    dataType: 'json',
+                    cache: false,
+                    contentType: false,
+                    processData: false
                 }).done(function(resultado) {
                     if (resultado.respuesta) {
                         swal(

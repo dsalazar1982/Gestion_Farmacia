@@ -1,5 +1,5 @@
 <div id="nuevo-editar" class="hide">
-    <!-- div para cargar el formulario para un nuevo proveedor o editar un proveedor -->
+    <!-- div para cargar el formulario para una nueva imagen-->
 </div>
 
 <div id="carousel">
