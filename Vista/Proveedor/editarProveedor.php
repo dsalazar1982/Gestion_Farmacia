@@ -1,3 +1,4 @@
+<?php include_once ("../../Funciones/sessiones.php"); ?>
 <div id="seccion-proveedor">
     <div class="box-header">
         <i class="fa fa-building" aria-hidden="true">Gestion de Proveedor</i>

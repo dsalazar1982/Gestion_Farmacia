@@ -1,5 +1,4 @@
-<?php 
-?>
+<?php include_once ("../../Funciones/sessiones.php"); ?>
 
 <h1>
   Gestión de Nomina

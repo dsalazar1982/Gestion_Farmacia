@@ -1,4 +1,4 @@
-<?php //include_once ("../../Funciones/sessiones.php"); ?>
+<?php include_once ("../../Funciones/sessiones.php"); ?>
 <!-- quick email widget -->
 
     <div class="box-body">

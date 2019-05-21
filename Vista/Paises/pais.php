@@ -1,3 +1,4 @@
+<?php include_once ("../../Funciones/sessiones.php"); ?>
 <div id="nuevo-editar" class="hide">
     <!-- div para cargar el formulario para una nuevo pais o editar una pais -->
 </div>

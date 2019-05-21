@@ -1,4 +1,4 @@
-<?php //include_once ("./Funciones/sessiones.php");?>
+<?php include_once ("./Funciones/sessiones.php");?>
 <aside class="main-sidebar">
 	  
    <section class="sidebar">
@@ -20,24 +20,24 @@
             <span>Menu</span>
     </a>
     <ul class="treeview-menu">
-        <li><a href="./Vista/Ciudades/ciudad.php"><i class="fa fa-globe"></i> <span>Ciudades</span></a></li>
-        <li><a href="./Vista/Clientes/clientes.php"><i class="fa fa-user"></i> <span>Clientes</span></a></li>
-        <li><a href="./Vista/Empleados/empleados.php"><i class="fa fa-male"></i> <span>Empleados</span></a></li>
-        <li><a href="#"><i class="fa fa-calculator"></i> <span>Facturas</span></a></li>
-	    <li><a href="./Vista/Venta/venta.php"><i class="fa  fa-money"></i> <span>Ventas</span></a></li>
-		<li><a href="./Vista/Farmacia/farmacia.php"><i class="fa fa-hospital-o"></i> <span>Farmacias</span></a></li>
-		<li><a href="#"><i class="fa fa-table"></i> <span>Inventario</span></a></li>
-	   <li><a href="#"><i class="fa fa-hourglass-2"></i> <span>Ofertas</span></a></li>
-		<li><a href="./Vista/Nomina/nomina.php"><i class="fa fa-usd"></i> <span>Nomina</span></a></li>
-		<li><a href="./Vista/Paises/pais.php"><i class="fa fa-globe"></i> <span>Paises</span></a></li>
-		<li><a href="./Vista/Presentacion/presentacion.php"><i class="fa fa-medkit"></i> <span>Presentaciones productos</span></a></li>
-		<li><a href="#"><i class="fa  fa-plus-square"></i> <span>Productos</span></a></li>
-		<li><a href="./Vista/Propietario/propietario.php"><i class="fa fa-black-tie"></i> <span>Propietarios</span></a></li>
-		<li><a href="./Vista/Proveedor/proveedor.php"><i class="fa fa-flask"></i> <span>Proveedores</span></a></li>
-		<li><a href="./Vista/Usuarios/usuarios.php"><i class="fa fa-user-plus"></i> <span>Usuarios</span></a></li>
-		<li><a href="./Vista/roles/roles.php"><i class="fa fa-users"></i> <span>Roles</span></a></li>
-	    <li><a href="./Vista/Carousel/Carousel.php"><i class="fa fa-map-o"></i> <span>Carosuel</span></a></li>
-	    <li><a href="#"><i class="fa fa-safari"></i> <span>Logs</span></a></li>
+        <li id="1NA"><a href="./Vista/Ciudades/ciudad.php"><i class="fa fa-globe"></i> <span>Ciudades</span></a></li>
+        <li id="2NA"><a href="./Vista/Clientes/clientes.php"><i class="fa fa-user"></i> <span>Clientes</span></a></li>
+        <li id="3NA"><a href="./Vista/Empleados/empleados.php"><i class="fa fa-male"></i> <span>Empleados</span></a></li>
+        <li id="4NA"><a href="#"><i class="fa fa-calculator"></i> <span>Facturas</span></a></li>
+	    <li id="5NA"><a href="./Vista/Venta/venta.php"><i class="fa  fa-money"></i> <span>Ventas</span></a></li>
+		<li id="6NA"><a href="./Vista/Farmacia/farmacia.php"><i class="fa fa-hospital-o"></i> <span>Farmacias</span></a></li>
+		<li id="7NA"><a href="#"><i class="fa fa-table"></i> <span>Inventario</span></a></li>
+	   <li id="8NA"><a href="#"><i class="fa fa-hourglass-2"></i> <span>Ofertas</span></a></li>
+		<li id="9NA"><a href="./Vista/Nomina/nomina.php"><i class="fa fa-usd"></i> <span>Nomina</span></a></li>
+		<li id="10NA"><a href="./Vista/Paises/pais.php"><i class="fa fa-globe"></i> <span>Paises</span></a></li>
+		<li id="11NA"><a href="./Vista/Presentacion/presentacion.php"><i class="fa fa-medkit"></i> <span>Presentaciones</span></a></li>
+		<li id="12NA"><a href="#"><i class="fa  fa-plus-square"></i> <span>Productos</span></a></li>
+		<li id="13NA"><a href="./Vista/Propietario/propietario.php"><i class="fa fa-black-tie"></i> <span>Propietarios</span></a></li>
+		<li id="14NA"><a href="./Vista/Proveedor/proveedor.php"><i class="fa fa-flask"></i> <span>Proveedores</span></a></li>
+		<li id="15NA"><a href="./Vista/Usuarios/usuarios.php"><i class="fa fa-user-plus"></i> <span>Usuarios</span></a></li>
+		<li id="16NA"><a href="./Vista/roles/roles.php"><i class="fa fa-users"></i> <span>Roles</span></a></li>
+	  <li id="17NA"><a href="./Vista/Carousel/Carousel.php"><i class="fa fa-map-o"></i> <span>Carosuel</span></a></li>
+	  <li id="18NA"><a href="#"><i class="fa fa-safari"></i> <span>Logs</span></a></li>
     </ul>  
     </li>
     

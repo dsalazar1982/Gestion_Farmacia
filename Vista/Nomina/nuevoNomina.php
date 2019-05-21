@@ -1,5 +1,5 @@
+<?php include_once ("../../Funciones/sessiones.php"); ?>
 <!-- quick email widget -->
-
 <div class="box-body">
     <div class="panel-group">
         <div class="panel panel-primary">
@@ -156,14 +156,3 @@
 
                 </form>
             </div>
-
-
-
-
-            $valor_dia=$salario_basico/30;
-            $salud=$salario_basico*0.04;
-            $pension=$salario_basico*0.04;
-            $valor1=$valor_hextrad*$valor_hextrad;
-            $valor2=$valor_hextran*$valor_hextran;
-            $valor3=$valor_dia*$dias_loborados;
-            $salrio_devengado=$valor1+$valor2+$valor3-($salud+$pension);

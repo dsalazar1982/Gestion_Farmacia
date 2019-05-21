@@ -1,3 +1,4 @@
+<?php include_once ("../../Funciones/sessiones.php"); ?>
 <!-- quick email widget -->
 <div id="seccion-farmacia">
     <div class="box-header">
