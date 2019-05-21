@@ -17,7 +17,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="imagen">Imagen:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="imagen" name="imagen" placeholder="Ingrese la Imagen"
+                            <input type="file" class="form-control" id="imagen" name="imagen" placeholder="Ingrese la Imagen"
                             value = "">
                         </div>
                     </div>

@@ -43,21 +43,33 @@
 		}
 
 		public function nuevo($datos=array()) {
-			if(array_key_exists('id_carousel', $datos)):
-				foreach ($datos as $campo=>$valor):
-					$$campo = $valor;
-				endforeach;
-				$id_carousel= utf8_decode($id_carousel);
-				$imagen= utf8_decode($imagen);
-				$this->query = "
-				INSERT INTO tb_carousel
-				(id_carousel, imagen)
-				VALUES
-				('$id_carousel', '$imagen')
-				";
-				$resultado = $this->ejecutar_query_simple();
-				return $resultado;
-			endif;
+
+			extract($datos);
+			
+			if ( 0 < $_FILES['file']['error'] ) {
+				echo 'Error: ' . $_FILES['file']['error'] . '<br>';
+			}
+			else {
+				move_uploaded_file($_FILES['file']['tmp_name'], '../Recursos/img/Carousel/' . $_FILES['file']['name']);
+			}
+			
+			$imagen= utf8_decode($_FILES['file']['name']);
+			$this->query = "
+			INSERT INTO tb_carousel
+			(id_carousel, imagen)
+			VALUES
+			('null', 'Recursos/img/Carousel/$imagen')
+			";
+			$resultado = $this->ejecutar_query_simple();
+			return $resultado;
+
+			// if(array_key_exists('id_carousel', $datos)):
+			// 	foreach ($datos as $campo=>$valor):
+			// 		$$campo = $valor;
+			// 	endforeach;				
+			// 	$id_carousel= utf8_decode($id_carousel);
+
+			// endif;
 		}
 		
 		public function editar($datos=array()) {

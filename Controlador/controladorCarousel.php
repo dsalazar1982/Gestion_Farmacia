@@ -3,6 +3,7 @@
 require_once '../Modelo/modeloCarousel.php';
 
 $datos = $_GET;
+$datosPost = $_POST;
 switch ($_GET['accion']) {
     case 'editar':
         $carousel = new Carousel();
@@ -14,7 +15,7 @@ switch ($_GET['accion']) {
         break;
     case 'nuevo':
         $carousel = new Carousel();
-        $resultado = $carousel->nuevo($datos);
+        $resultado = $carousel->nuevo($datosPost);
         if ($resultado > 0) {
             $respuesta = array(
                 'respuesta' => 'correcto',
