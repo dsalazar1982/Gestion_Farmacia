@@ -19,7 +19,7 @@
               <h3 class="box-title">Listado de Clientes</h3>
               <div class="box-tools pull-right">
                   <button class="btn btn-info btn-sm" id="nuevo"  data-toggle="tooltip" 
-                      title="Nueva Empleado"><i class="fa fa-plus" aria-hidden="true"></i></button> 
+                      title="Nueva Cliente"><i class="fa fa-plus" aria-hidden="true"></i></button> 
               </div>
             </div>
            

@@ -192,7 +192,7 @@ function cliente(){
                           swal({
                             position: 'center',
                             type: 'success',
-                            title: 'El empleado con codigo ' + codigo + ' fue borrado',
+                            title: 'El cliente con codigo ' + codigo + ' fue borrado',
                             showConfirmButton: false,
                             timer: 1500
                           })       
@@ -243,7 +243,7 @@ function cliente(){
                       swal({
                       type: 'error',
                       title: 'Oops...',
-                      text: 'Empleado no existe!'                         
+                      text: 'Cliente no existe!'                         
                       })
                   } else {
                       $("#id_cliente").val(cliente.id_cliente);                   

@@ -9,11 +9,11 @@
 		private $salario_basico;
 		private $hextrasd;
 		private $hextrasn;
-		private $auxilo_trasporte;
+		private $auxilio_transporte;
 		private $valor_hextrad;
 		private $valor_hextran;
-		private $dias_loborados;
-		private $salrio_devengado;
+		private $dias_laborados;
+		private $salario_devengado;
 		private $pension;
 		private $salud;
 		private $salario_neto;
@@ -43,8 +43,8 @@
 		public function getHextrasn(){
 			return $this->hextrasn;
 		}
-		public function getAuxilo_trasporte(){
-			return $this->auxilo_trasporte;
+		public function getAuxilio_transporte(){
+			return $this->auxilio_transporte;
 		}
 		public function getValor_hextrad(){
 			return $this->valor_hextrad;
@@ -52,10 +52,10 @@
 		public function getValor_hextran(){
 			return $this->valor_hextran;
 		}
-		public function getDias_loborados(){
+		public function getDias_laborados(){
 			return $this->dias_laborados;
 		}
-		public function getSalrio_devengado(){
+		public function getSalario_devengado(){
 			return $this->salario_devengado;
 		}
 		public function getPension(){
@@ -72,8 +72,9 @@
 		public function consultar($id_nomina='') {
 			if($id_nomina !=''):
 				$this->query = "
-                SELECT n.id_nomina,n.id_empleado, 
-                CONCAT (e.nombre_empleado," + ",e.apellido_empleado) FROM tb_nominas as n,tb_empleados as e;";
+				SELECT id_nomina, id_empleado, fecha, salario_basico, hextrasd, hextrasn,
+				auxilio_transporte, valor_hextrad, valor_hextran, dias_laborados, salario_devengado,
+				pension, salud, salario_neto FROM tb_nominas WHERE id_nomina = '$id_nomina'";
 				$this->obtener_resultados_query();
 			endif;
 			if(count($this->rows) == 1):
@@ -86,7 +87,7 @@
 		public function listar() {
 			$this->query = "
 			SELECT id_nomina, CONCAT (e.nombre_empleado,'',e.apellido_empleado) as nombre, fecha, salario_basico, hextrasd, 
-			hextrasn, auxilio_trasporte , valor_hextrad, valor_hextran, dias_laborados, salario_devengado, 
+			hextrasn, auxilio_transporte , valor_hextrad, valor_hextran, dias_laborados, salario_devengado, 
 			pension, salud, salario_neto FROM tb_nominas as n 
 			INNER JOIN tb_empleados as e on (n.id_empleado = e.id_empleado) ORDER BY id_nomina
 			";
@@ -105,19 +106,19 @@
 				   $salud = $salario_basico*0.04;
 				   $pension = $salud;
 				   $salario_neto = (($valor_hextrad*$hextrasd)+($valor_hextran*$hextrasn)+
-				   (($salario_basico/30)*$dias_loborados))-($salud+$pension);
-                   $salrio_devengado = (($valor_hextrad*$hextrasd)+($valor_hextran*$hextrasn)+
-				   (($salario_basico/30)*$dias_loborados));
+				   (($salario_basico/30)*$dias_laborados))-($salud+$pension);
+                   $salario_devengado = (($valor_hextrad*$hextrasd)+($valor_hextran*$hextrasn)+
+				   (($salario_basico/30)*$dias_laborados));
 
          			$this->query = "
 					INSERT INTO tb_nominas
 					(id_nomina, id_empleado,fecha,salario_basico,hextrasd,
-					hextrasn,auxilio_trasporte,valor_hextrad,valor_hextran,
+					hextrasn,auxilio_transporte,valor_hextrad,valor_hextran,
 					dias_laborados,salario_devengado,pension,salud,salario_neto)
 					VALUES
-					(NULL, '$id_emplead', '$fecha','$salario_basico','$hextrasd','$hextrasn',
-					'$auxilo_trasporte','$valor_hextrad','$valor_hextran',
-					'$dias_loborados','$salrio_devengado','$pension','$salud','$salario_neto')
+					(NULL, '$id_empleado', '$fecha','$salario_basico','$hextrasd','$hextrasn',
+					'$auxilio_transporte','$valor_hextrad','$valor_hextran',
+					'$dias_laborados','$salario_devengado','$pension','$salud','$salario_neto')
 					";
 					$resultado = $this->ejecutar_query_simple();
 					return $resultado;
@@ -133,9 +134,9 @@
 			$salud = $salario_basico*0.04;
 			$pension = $salud;
 			$salario_neto = (($valor_hextrad*$hextrasd)+($valor_hextran*$hextrasn)+
-			(($salario_basico/30)*$dias_loborados))-($salud+$pension);
-			$salrio_devengado = (($valor_hextrad*$hextrasd)+($valor_hextran*$hextrasn)+
-			(($salario_basico/30)*$dias_loborados));
+			(($salario_basico/30)*$dias_laborados))-($salud+$pension);
+            $salario_devengado = (($valor_hextrad*$hextrasd)+($valor_hextran*$hextrasn)+
+			(($salario_basico/30)*$dias_laborados));
 
 			$this->query = "
 			UPDATE tb_nominas
@@ -144,20 +145,23 @@
 			salario_basico ='$salario_basico',
 			hextrasd ='$hextrasd',
 			hextrasn ='$hextrasn',
-			auxilo_trasporte ='$auxilo_trasporte',
+			auxilio_transporte ='$auxilio_transporte',
 			valor_hextrad ='$valor_hextrad',
 			valor_hextran ='$valor_hextran',
-			dias_loborados ='$dias_loborados',
-			WHERE id_comina = '$id_nomina'
+			dias_laborados ='$dias_laborados',
+			pension ='$pension',
+			salud ='$salud',
+			salario_neto ='$salario_neto'
+			WHERE id_nomina = '$id_nomina'
 			";
 			$resultado = $this->ejecutar_query_simple();
 			return $resultado;
 		}
 		
-		public function borrar($comu_codi='') {
+		public function borrar($id_nomina ='') {
 			$this->query = "
 			DELETE FROM tb_nominas
-			WHERE id_nomina = 'id_nomina'
+			WHERE id_nomina = '$id_nomina'
 			";
 			$resultado = $this->ejecutar_query_simple();
 

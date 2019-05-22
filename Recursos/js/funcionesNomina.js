@@ -9,7 +9,7 @@ function nomina(){
             { "data": "salario_basico"} ,
             { "data": "hextrasd" },
             { "data": "hextrasn" },
-            { "data": "auxilio_trasporte"} ,
+            { "data": "auxilio_transporte"} ,
             { "data": "valor_hextrad" },
             { "data": "valor_hextran" },
             { "data": "dias_laborados"} ,
@@ -28,17 +28,8 @@ function nomina(){
         ]
     });
 
-    $("#editar").on("click", "button.btncerrar2", function() {
-        $("#titulo").html("Listado Nomina");
-        $("#nuevo-editar").html("");
-        $("#nuevo-editar").removeClass("show");
-        $("#nuevo-editar").addClass("hide");
-        $("#pais").removeClass("hide");
-        $("#pais").addClass("show");
-    })
-    
   $("#editar").on("click",".btncerrar", function(){
-      $(".box-title").html("Listado de Nomina");
+      $(".box-title").html("Listado de Nominas");
       $("#editar").addClass('hide');
       $("#editar").removeClass('show');
       $("#listado").addClass('show');
@@ -53,15 +44,15 @@ function nomina(){
       $("#editar").removeClass('hide');
       $("#listado").addClass('hide');
       $("#listado").removeClass('show');
-      $("#editar").load('./Vistas/Nomina/nuevoNomina.php', function(){
+      $("#editar").load('./Vista/Nomina/nuevoNomina.php', function(){
           $.ajax({
              type:"get",
-             url:"./Controlador/controladorNomina.php",
+             url:"./Controlador/controladorEmpleados.php",
              data: {accion:'listar'},
              dataType:"json"
           }).done(function( resultado ) {                    ;
               $.each(resultado.data, function (index, value) { 
-                $("#editar #id_empleado").append("<option value='" + value.id_empleado + "'>" + value.nombre_empleado + "</option>")
+                $("#editar #id_empleado").append("<option value='" + value.id_empleado + "'>" + value.nombre_empleado +" "+value.apellido_empleado + "</option>")
               });
           });
       });
@@ -108,11 +99,11 @@ function nomina(){
   });
 
   $("#editar").on("click","button#actualizar",function(){
-       var datos=$("#fcomuna").serialize();
+       var datos=$("#fnomina").serialize();
        console.log(datos);
        $.ajax({
           type:"get",
-          url:"./Controlador/controladornomina.php",
+          url:"./Controlador/controladorNomina.php",
           data: datos,
           dataType:"json"
         }).done(function( resultado ) {
@@ -121,11 +112,11 @@ function nomina(){
               swal({
                   position: 'center',
                   type: 'success',
-                  title: 'Se actaulizaron los datos correctamente',
+                  title: 'Se actualizaron los datos correctamente',
                   showConfirmButton: false,
                   timer: 1500
               }) 
-              $(".box-title").html("Listado Nomina");
+              $(".box-title").html("Listado Nominas");
               $("#editar").html('');
               $("#editar").addClass('hide');
               $("#editar").removeClass('show');
@@ -158,7 +149,7 @@ function nomina(){
               if (decision.value) {
                   var request = $.ajax({
                       method: "get",                  
-                      url: "./Controlador/controladornomina.php",
+                      url: "./Controlador/controladorNomina.php",
                       data: {codigo: codigo, accion:'borrar'},
                       dataType: "json"
                   })
@@ -201,16 +192,16 @@ function nomina(){
      //$("#titulo").html("Editar Nomina");
      //Recupera datos del fromulario
      var codigo = $(this).data("codigo");
-     var municipio;
+     var empleado;
      $(".box-title").html("Actualizar Nomina")
      $("#editar").addClass('show');
      $("#editar").removeClass('hide');
      $("#listado").addClass('hide');
      $("#listado").removeClass('show');
-     $("#editar").load("./Vistas/nomina/editarnomina.php",function(){
+     $("#editar").load("./Vista/Nomina/editarNomina.php",function(){
           $.ajax({
               type:"get",
-              url:"./Controlador/controladoNomina.php",
+              url:"./Controlador/controladorNomina.php",
               data: {codigo: codigo, accion:'consultar'},
               dataType:"json"
               }).done(function( nomina ) {        
@@ -222,28 +213,33 @@ function nomina(){
                       })
                   } else {
                       $("#id_nomina").val(nomina.codigo);                   
-                      $("#id_empleado").val(nomina.comuna);
-                      $("#comu_codi").val(comuna.codigo);                   
-                      $("#comu_nomb").val(comuna.comuna);
-                      $("#comu_codi").val(comuna.codigo);                   
-                      $("#comu_nomb").val(comuna.comuna);
-                      $("#comu_codi").val(comuna.codigo);                   
-                      $("#comu_nomb").val(comuna.comuna);
-                      municipio = comuna.municipio;
+                      $("#fecha").val(nomina.fecha);
+                      $("#salario_basico").val(nomina.salarioB);                   
+                      $("#hextrasd").val(nomina.hextrasd);
+                      $("#hextrasn").val(nomina.hextrasn);                   
+                      $("#auxilio_transporte").val(nomina.auxilio);
+                      $("#valor_hextrad").val(nomina.val_hextrad);                   
+                      $("#valor_hextran").val(nomina.val_hextran);
+                      $("#dias_laborados").val(nomina.laborados);
+                      $("#salario_devengado").val(nomina.salarioD);
+                      $("#pension").val(nomina.pension);
+                      $("#salud").val(nomina.salud);
+                      $("#salario_neto").val(nomina.salarioN);
+                      empleado = nomina.empleado;
                   }
           });
 
           $.ajax({
               type:"get",
-              url:"./Controlador/controladorMunicipio.php",
+              url:"./Controlador/controladorEmpleados.php",
               data: {accion:'listar'},
               dataType:"json"
           }).done(function( resultado ) {                      
               $.each(resultado.data, function (index, value) { 
-              if(municipio === value.muni_codi){
-                  $("#editar #muni_codi").append("<option selected value='" + value.muni_codi + "'>" + value.muni_nomb + "</option>")
+              if(empleado === value.id_empleado){
+                  $("#editar #id_empleado").append("<option selected value='" + value.id_empleado + "'>" + value.nombre_empleado + " " + value.apellido_empleado + "</option>")
               }else {
-                  $("#editar #muni_codi").append("<option value='" + value.muni_codi + "'>" + value.muni_nomb + "</option>")
+                  $("#editar #id_empleado").append("<option value='" + value.id_empleado + "'>"  + value.nombre_empleado + " " + value.apellido_empleado + "</option>")
               }
               });
           });

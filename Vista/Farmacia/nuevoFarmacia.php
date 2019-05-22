@@ -88,7 +88,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="id_usuario">Administrador de sistemas</label>
+                            <label class="control-label col-sm-2" for="id_usuario">Administrador de farmacia</label>
                             <div class="col-sm-10">
                                 <select class="form-control" id="id_usuario" name="id_usuario">
 

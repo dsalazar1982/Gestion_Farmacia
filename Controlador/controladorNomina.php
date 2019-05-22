@@ -54,19 +54,19 @@ switch ($_GET['accion']){
         }  else {
             $respuesta = array(
                 'codigo' => $nomina->getId_nomina(),
-                'cc' => $nomina->getId_empleado(),
-                'empleado' =>$nomina->getNombre_empleado(),
-                'fecha' =>$nomina->getFecha(),// seguir colocando todos los get
-                'SalarioB' =>$nomina->getSalario_basico(),
-                'Hextrad' =>$nomina->getHextrasd(),
-                'Hextran' =>$nomina->getHextrasn(),
-                'Valor Hora Extra D' =>$nomina->getValor_hextrad(),
-                'Valor Hora Extra N' =>$nomina->getValor_hextran(),
-                'Dias Laborados '=>$nomina->getDias_loborados(),
-                'Salario Devengado' =>$nomina->getSalrio_devengado(),
-                'Salud' =>$nomina->getPension(),
-                'Pension' =>$nomina->getSalud(),
-                'Salario Devengado' =>$nomina->getSalario_neto(),
+                'empleado' => $nomina->getId_empleado(),
+                'fecha' =>$nomina->getFecha(),
+                'salarioB' =>$nomina->getSalario_basico(),
+                'hextrasd' =>$nomina->getHextrasd(),
+                'hextrasn' =>$nomina->getHextrasn(),
+                'auxilio'  =>$nomina->getAuxilio_transporte(),
+                'val_hextrad' =>$nomina->getValor_hextrad(),
+                'val_hextran' =>$nomina->getValor_hextran(),
+                'laborados'   =>$nomina->getDias_laborados(),
+                'salarioD'    =>$nomina->getSalario_devengado(),
+                'pension'     =>$nomina->getPension(),
+                'salud'       =>$nomina->getSalud(),
+                'salarioN'    =>$nomina->getSalario_neto(),  
                 'respuesta' =>'existe'
             );
         }

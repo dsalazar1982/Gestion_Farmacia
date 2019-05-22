@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `tb_ciudades` (
   CONSTRAINT `fk_ciudades-paises` FOREIGN KEY (`id_pais`) REFERENCES `tb_paises` (`id_pais`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofarmacia.tb_ciudades: ~1.026 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_ciudades: ~1.028 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_ciudades` DISABLE KEYS */;
 INSERT INTO `tb_ciudades` (`id_ciudad`, `nombre_ciudad`, `id_pais`) VALUES
 	(1000, 'INCA', 222),
@@ -1065,7 +1065,9 @@ INSERT INTO `tb_ciudades` (`id_ciudad`, `nombre_ciudad`, `id_pais`) VALUES
 	(99001, 'PUERTO CARRE?O', 205),
 	(99524, 'LA PRIMAVERA', 205),
 	(99624, 'SANTA ROSALIA', 205),
-	(99773, 'CUMARIBO', 205);
+	(99773, 'CUMARIBO', 205),
+	(100000, 'Monterrey', 218),
+	(100001, 'Guadalajara', 218);
 /*!40000 ALTER TABLE `tb_ciudades` ENABLE KEYS */;
 
 -- Volcando estructura para tabla db_proyectofarmacia.tb_clientes
@@ -1084,16 +1086,11 @@ CREATE TABLE IF NOT EXISTS `tb_clientes` (
   CONSTRAINT `fk_clientes-paises` FOREIGN KEY (`id_pais`) REFERENCES `tb_paises` (`id_pais`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofarmacia.tb_clientes: ~7 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_clientes: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_clientes` DISABLE KEYS */;
 INSERT INTO `tb_clientes` (`id_cliente`, `nombre_cliente`, `apellido_cliente`, `direccion_cliente`, `telefono_cliente`, `id_pais`, `id_ciudad`) VALUES
-	(500651232, 'LA ECONOMIA DROGUERIA', '', 'AV. Guardia Peruana 1465, Distrito de Chorrillos 1', '2523438', 222, 9000),
-	(800001047, 'INTERDROGAS', '', 'CLL 8 # 80 - 00', '8891010', 205, 11001),
-	(805002581, 'DROGUERIA SAN JORGE', '', 'CLL 23 B # 3 N - 100', '6410888', 205, 11001),
-	(830011670, 'DROGAS LA REBAJA', '', 'CLL 13 # 57 - 12', '5552255', 205, 76001),
-	(830129327, 'FARMATODO', '', 'CRA 94 # 4 - 41', '3744399', 205, 5001),
-	(890300346, 'ALMACENES LA 14', '', 'CRA 1 # 18 B - 59', '3212100', 205, 76001),
-	(890900608, 'DROGUERIA CAFAM', '', 'CRA 100 #5 - 169', '3396666', 205, 5001);
+	(30456789, 'Carlos Alberto', 'Erazo Torres', 'Ave 45 # 40 - 85', '3005891436', 205, 68162),
+	(30471589, 'Vicente', 'Fernandez', 'Ave 100 # 15 - 87', '3007892546', 218, 100000);
 /*!40000 ALTER TABLE `tb_clientes` ENABLE KEYS */;
 
 -- Volcando estructura para tabla db_proyectofarmacia.tb_empleados
@@ -1114,14 +1111,15 @@ CREATE TABLE IF NOT EXISTS `tb_empleados` (
   CONSTRAINT `fk_empleados-paises` FOREIGN KEY (`id_pais`) REFERENCES `tb_paises` (`id_pais`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofarmacia.tb_empleados: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_empleados: ~6 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_empleados` DISABLE KEYS */;
 INSERT INTO `tb_empleados` (`id_empleado`, `nombre_empleado`, `apellido_empleado`, `cargo_empleado`, `id_pais`, `id_ciudad`, `direccion_empleado`, `telefono_empleado`, `email_empleado`) VALUES
 	(1144198853, 'Miguel Angel', 'Cerquera Rodriguez', 'Gerente', 205, 76001, 'Cra 97 # 45 - 57', '3137030828', 'cerquera199627@hotmail.com'),
 	(1144198854, 'Daniel Alberto', 'Salazar Erazo', 'Analista de sistemas', 205, 76001, 'Cra 98 # 45 - 42', '3113024569', 'dsalazar1982@gmail.com'),
 	(1144198855, 'Stiven ', 'Arcila Pardo', 'Soporte y mantimiento', 205, 54001, 'cra 90 # 45 - 23', '3024569812', 'sarcilap@gmail.com'),
 	(1144198856, 'Cristian', 'Moreno', 'Desarrollador de software', 205, 5001, 'Cra 52 # 87 - 14', '3002478912', 'morenoc225@gmail.com'),
-	(1144198857, 'Brandon', 'Machado Vargas', 'Secretario de defensa', 220, 2500, 'Cra 45 # 10 - 2', '5073842478', 'brandonmachadovargas14@gmail.com');
+	(1144198857, 'Brandon', 'Machado Vargas', 'Secretario de defensa', 220, 2500, 'Cra 45 # 10 - 2', '5073842478', 'brandonmachadovargas14@gmail.com'),
+	(1144198860, 'Yovanny', 'Romo', 'Farmaceuta ', 205, 5129, 'Cra 52 # 58 - 63', '3112580396', 'yovaromo@gmail.com');
 /*!40000 ALTER TABLE `tb_empleados` ENABLE KEYS */;
 
 -- Volcando estructura para tabla db_proyectofarmacia.tb_estados
@@ -1131,7 +1129,7 @@ CREATE TABLE IF NOT EXISTS `tb_estados` (
   PRIMARY KEY (`id_estado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofarmacia.tb_estados: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_estados: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_estados` DISABLE KEYS */;
 INSERT INTO `tb_estados` (`id_estado`, `nombre_estado`) VALUES
 	(1, 'activo'),
@@ -1184,8 +1182,10 @@ CREATE TABLE IF NOT EXISTS `tb_farmacias` (
   CONSTRAINT `fk_farmacias-usuarios` FOREIGN KEY (`id_usuario`) REFERENCES `tb_usuarios` (`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofarmacia.tb_farmacias: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_farmacias: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_farmacias` DISABLE KEYS */;
+INSERT INTO `tb_farmacias` (`id_farmacia`, `nombre_farmacia`, `direccion_farmacia`, `telefono_farmacia`, `id_pais`, `id_ciudad`, `id_propietario`, `id_usuario`) VALUES
+	(123, 'Multifarma la 20', 'Ave 20 # 45 - 89', '3024893215', 205, 5001, 30456789, 7);
 /*!40000 ALTER TABLE `tb_farmacias` ENABLE KEYS */;
 
 -- Volcando estructura para tabla db_proyectofarmacia.tb_formaspago
@@ -1265,7 +1265,7 @@ CREATE TABLE IF NOT EXISTS `tb_nominas` (
   `salario_basico` int(11) NOT NULL,
   `hextrasd` int(11) DEFAULT NULL,
   `hextrasn` int(11) DEFAULT NULL,
-  `auxilio_trasporte` int(11) DEFAULT NULL,
+  `auxilio_transporte` int(11) DEFAULT NULL,
   `valor_hextrad` int(11) DEFAULT NULL,
   `valor_hextran` int(11) DEFAULT NULL,
   `dias_laborados` int(11) NOT NULL,
@@ -1276,7 +1276,7 @@ CREATE TABLE IF NOT EXISTS `tb_nominas` (
   PRIMARY KEY (`id_nomina`),
   KEY `id_empleado` (`id_empleado`),
   CONSTRAINT `fk_nominas-empleados` FOREIGN KEY (`id_empleado`) REFERENCES `tb_empleados` (`id_empleado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 -- Volcando datos para la tabla db_proyectofarmacia.tb_nominas: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_nominas` DISABLE KEYS */;
@@ -1574,10 +1574,10 @@ CREATE TABLE IF NOT EXISTS `tb_propietarios` (
   PRIMARY KEY (`id_propietario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofarmacia.tb_propietarios: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_propietarios: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_propietarios` DISABLE KEYS */;
 INSERT INTO `tb_propietarios` (`id_propietario`, `nombre_propietario`, `apellido_propietario`, `direccion_propietario`, `telefono_propietario`) VALUES
-	(30456789, 'Vicente', 'Fernandez', 'Ave 45 # 75 - 47', '3104567896');
+	(30456789, 'Andres', 'Fernandez', 'Ave 45 # 75 - 47', '3104567896');
 /*!40000 ALTER TABLE `tb_propietarios` ENABLE KEYS */;
 
 -- Volcando estructura para tabla db_proyectofarmacia.tb_proveedores
@@ -1607,7 +1607,7 @@ CREATE TABLE IF NOT EXISTS `tb_roles` (
   PRIMARY KEY (`id_rol`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofarmacia.tb_roles: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_roles: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_roles` DISABLE KEYS */;
 INSERT INTO `tb_roles` (`id_rol`, `nombre_rol`, `update_at`) VALUES
 	(1, 'Administrador del sistema', '2019-05-22 00:43:31'),
@@ -1699,9 +1699,9 @@ CREATE TABLE IF NOT EXISTS `tb_usuarios` (
   KEY `id_rol` (`id_rol`),
   CONSTRAINT `fk_usuarios-estados` FOREIGN KEY (`id_estado`) REFERENCES `tb_estados` (`id_estado`),
   CONSTRAINT `fk_usuarios-roles` FOREIGN KEY (`id_rol`) REFERENCES `tb_roles` (`id_rol`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofarmacia.tb_usuarios: ~6 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_usuarios: ~7 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_usuarios` DISABLE KEYS */;
 INSERT INTO `tb_usuarios` (`id_usuario`, `nickname_usuario`, `clave_usuario`, `id_estado`, `id_rol`, `fechacreacion_usuario`) VALUES
 	(1, 'miguel.cerquera', '$2y$12$Q52qyXdqdleAcCAoPS3ZyOYNqr5qWB/bHsWyrHlaF7wwkrnVghROC', 1, 1, '2019-05-22'),
@@ -1709,7 +1709,8 @@ INSERT INTO `tb_usuarios` (`id_usuario`, `nickname_usuario`, `clave_usuario`, `i
 	(3, 'stiven.arcila', '$2y$12$PbCzIn61cdg7HPDJqqu4.uyA7dDDoMpQ.jxA9wGYvhvpLJ2AWZEk.', 1, 1, '2019-05-22'),
 	(4, 'cristian.moreno', '$2y$12$zohQm2UjcCVPZot7YwWssOdKAc/6d533EOo8cs26gsWR7k6t5p9Fi', 1, 1, '2019-05-22'),
 	(5, 'brandon.machado', '$2y$12$Q.70LrD1mDbmF5QlsHEVge/ne3Owx0gVX9xwUFftPKf7owFnSghfm', 1, 1, '2019-05-22'),
-	(6, 'multifarma', '$2y$12$SQuHM9uVdM2ErYJuLT8xRectWgSArRI2YzYypo/9WqVvwJZ2nuIp2', 1, 3, '2019-05-22');
+	(6, 'multifarma', '$2y$12$SQuHM9uVdM2ErYJuLT8xRectWgSArRI2YzYypo/9WqVvwJZ2nuIp2', 1, 3, '2019-05-22'),
+	(7, 'af-yova.romo', '$2y$12$p41icnm8DxZhmiB7VWWqieAeU1WvA6dQlL6I83sxVrXdov6HStHQC', 1, 2, '2019-05-22');
 /*!40000 ALTER TABLE `tb_usuarios` ENABLE KEYS */;
 
 -- Volcando estructura para tabla db_proyectofarmacia.tb_usuarioxempleado
@@ -1723,9 +1724,9 @@ CREATE TABLE IF NOT EXISTS `tb_usuarioxempleado` (
   KEY `id_usuario` (`id_usuario`),
   CONSTRAINT `fk_usuarioxempleado-empleado` FOREIGN KEY (`id_empleado`) REFERENCES `tb_empleados` (`id_empleado`),
   CONSTRAINT `fk_usuarioxempleado-usuario` FOREIGN KEY (`id_usuario`) REFERENCES `tb_usuarios` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla db_proyectofarmacia.tb_usuarioxempleado: ~6 rows (aproximadamente)
+-- Volcando datos para la tabla db_proyectofarmacia.tb_usuarioxempleado: ~7 rows (aproximadamente)
 /*!40000 ALTER TABLE `tb_usuarioxempleado` DISABLE KEYS */;
 INSERT INTO `tb_usuarioxempleado` (`id_usuarioxempleado`, `id_empleado`, `id_usuario`, `update_at`) VALUES
 	(1, 1144198853, 1, '2019-05-22 01:18:22'),
@@ -1733,7 +1734,8 @@ INSERT INTO `tb_usuarioxempleado` (`id_usuarioxempleado`, `id_empleado`, `id_usu
 	(3, 1144198855, 3, '2019-05-22 01:04:15'),
 	(4, 1144198856, 4, '2019-05-22 01:04:38'),
 	(5, 1144198857, 5, '2019-05-22 01:04:59'),
-	(6, 1144198853, 6, '2019-05-22 01:09:06');
+	(6, 1144198853, 6, '2019-05-22 10:12:46'),
+	(7, 1144198860, 7, '2019-05-22 10:17:37');
 /*!40000 ALTER TABLE `tb_usuarioxempleado` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
