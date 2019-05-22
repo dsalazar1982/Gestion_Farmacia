@@ -1,42 +1,18 @@
-<<<<<<< HEAD
 <?php include_once ("./Funciones/sessiones.php"); ?>
-=======
-<?php //include_once ("./Funciones/sessiones.php");
-include_once("./Modelo/modeloCarousel.php");
-$carousel = new Carousel();
-$listado = $carousel->listar();
-?>
->>>>>>> 62b60deb0f6c1162b20f133db80390bca79a38e2
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
-<?php
-// $x = 0;
-//   foreach ($listado as $datos) {
-//     echo '<li data-target="#carouselExampleIndicators" data-slide-to="'.$x.'" class="active"></li>';
-//     $x++;
-//   }
-?>
      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
     </ol>
+	
     <div class="carousel-inner">
-
-<?php
-  // foreach ($listado as $datos) {
-  //   echo '
-  //   <div class="carousel-item" align="center">
-  //     <img src="'.$datos['imagen'].'" class="d-block w-100" alt="No disponible" style="height: 160px">
-  //   </div>';
-  // }
-?>
-
-     
-      <div class="carousel-item active" align="center">
-        <img src="Recursos/img/Carousel/serral.png" class="d-block w-100" alt="No disponible" style="height: 160px">
-      </div>
-      <div class="carousel-item" align="center">
-        <img src="Recursos/img/Carousel/cilfa.png" class="d-block w-100" alt="No disponible" style="height: 160px">
-      </div>
+     <div class="carousel-item active" align="center">
+      <img src="Recursos/img/Carousel/serral.png" class="d-block w-100" alt="No disponible" style="height: 160px">
+    </div>
+	  
+     <div class="carousel-item" align="center">
+      <img src="Recursos/img/Carousel/cilfa.png" class="d-block w-100" alt="No disponible" style="height: 160px">
+     </div>
     </div>
 	
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

@@ -21,6 +21,7 @@ switch ($_POST['accion']){
                 $respuesta = array(
                     'usuario' => $login->getId_usuario(),
                     'estado' => $login->getId_estado(),
+                    'rol'    => $login->getId_rol(),
                     'respuesta' =>'existe'
                 );
             } else {
@@ -92,6 +93,12 @@ switch ($_POST['accion']){
                 );
         } 
         echo json_encode($respuesta);
+        break;
+
+        case 'listar':
+        $login = new Login();
+        $listado = $login->listar($datos['codigoL']);
+        echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);    
         break;
 }
 ?>

@@ -4,7 +4,8 @@
     class Login extends ModeloAbstractoDB {
         private $id_usuario;
         private $clave_usuario;
-        private $id_estado;
+		private $id_estado;
+		private $id_rol;
         private $nickname_usuario;
 		private $id_empleado;
 
@@ -28,6 +29,11 @@
 			return $this->id_estado;
 		}
 
+		public function getId_rol(){
+			return $this->id_rol;
+		}
+
+
         public function getNickname_usuario(){
 			return $this->nickname_usuario;
 		}
@@ -49,7 +55,7 @@
             $nickname_usuario = $datos['usuario'];
             
             $this->query = "
-            SELECT id_usuario, nickname_usuario, clave_usuario, id_estado
+            SELECT id_usuario, nickname_usuario, clave_usuario, id_estado, id_rol
 			FROM tb_usuarios
 			WHERE nickname_usuario = '$nickname_usuario'
             ";
@@ -112,10 +118,17 @@
             endif;
         }
 
-		public function listar() {
-		
-			
-		}
+		public function listar($id_rol='') {
+			if($id_rol != ''){
+				 $this->query = "
+				 SELECT estado_rolxpermiso
+				 FROM tb_rolesxpermisos 
+				 WHERE id_rol = '$id_rol'
+				 ";	
+				 $this->obtener_resultados_query();
+				 return $this->rows;
+			}	
+			 }
         
 		public function nuevo($datos=array()) {
 			

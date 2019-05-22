@@ -12,6 +12,7 @@ function login(){
             dataType:"json"
           }).done(function( resultado ) {
             if(resultado.respuesta == "existe" && resultado.estado == 1){
+                var id_rol = resultado.rol;
                 $.ajax({
                     type:"post",
                     url:"./Controlador/controladorLogin.php",
@@ -27,7 +28,26 @@ function login(){
                         dataType:"json"
                       }).done(function( empleado ) {
                        if(empleado.respuesta == 'existe'){
-                        location.href ="adminper.php";
+                        $.ajax({
+                            type:"post",
+                            url:"./Controlador/controladorLogin.php",
+                            data: {codigoL: id_rol, accion: 'listar'},
+                            dataType:"json"
+                          }).done(function( resultado ) {
+                            var i = 1;
+                            $.each(resultado.data, function (index, value) {       
+                               // console.log(index+":"+value.estado_rolxpermiso);       
+                               if(value.estado_rolxpermiso == 1){
+                                $("#"+i+"NA").addClass('hide');
+                                i++;
+                               } 
+                               else{
+                                $("#"+i+"NA").addClass('show'); 
+                                i++;
+                               }
+                            });     
+                          location.href ="adminper.php"; 
+                          });   
                        }
                       });
                      }
