@@ -66,7 +66,7 @@
                     (NULL,'$id_rol',7,0),(NULL,'$id_rol',8,0),(NULL,'$id_rol',9,0),
                     (NULL,'$id_rol',10,0),(NULL,'$id_rol',11,0),(NULL,'$id_rol',12,0),
                     (NULL,'$id_rol',13,0),(NULL,'$id_rol',14,0),(NULL,'$id_rol',15,0),
-                    (NULL,'$id_rol',16,0) 
+                    (NULL,'$id_rol',16,0),(NULL,'$id_rol',17,0),(NULL,'$id_rol',18,0) 
 					";
 					$resultado = $this->ejecutar_query_simple();
 					return $resultado;

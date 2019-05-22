@@ -98,7 +98,26 @@ switch ($_POST['accion']){
         case 'listar':
         $login = new Login();
         $listado = $login->listar($datos['codigoL']);
-        echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE);    
+        //echo json_encode(array('data'=>$listado), JSON_UNESCAPED_UNICODE); 
+        $i = 1;
+        session_start();
+        foreach ($listado as $index => $value){
+           $index = $value;
+           foreach ($index as $key => $val) {
+            if($val == 1){
+                $_SESSION["".$i."NA"] = "block";
+                $i++;
+                }
+                else{
+                $_SESSION["".$i.'NA'] = "none";
+                $i++;
+                }  
+           }
+        }
+        $respuesta = array(
+            'respuesta' => 'Perfecto'
+        );  
+        echo json_encode($respuesta);
         break;
 }
 ?>

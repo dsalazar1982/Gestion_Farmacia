@@ -34,20 +34,10 @@ function login(){
                             data: {codigoL: id_rol, accion: 'listar'},
                             dataType:"json"
                           }).done(function( resultado ) {
-                            var i = 1;
-                            $.each(resultado.data, function (index, value) {       
-                               // console.log(index+":"+value.estado_rolxpermiso);       
-                               if(value.estado_rolxpermiso == 1){
-                                $("#"+i+"NA").addClass('hide');
-                                i++;
-                               } 
-                               else{
-                                $("#"+i+"NA").addClass('show'); 
-                                i++;
-                               }
-                            });     
-                          location.href ="adminper.php"; 
-                          });   
+                            if(resultado.respuesta){
+                            location.href ="adminper.php"; 
+                            }
+                            });    
                        }
                       });
                      }

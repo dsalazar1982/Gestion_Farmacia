@@ -130,7 +130,7 @@
 			}	
 			 }
         
-		public function nuevo($datos=array()) {
+		public function nuevo() {
 			
 			
 		}

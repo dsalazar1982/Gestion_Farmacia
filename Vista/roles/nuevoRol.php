@@ -27,22 +27,24 @@
                         <div class="col-sm-10">
                         <input type="checkbox" name="1"     value="1"     id="1R"> Ciudades<br>
                         <input type="checkbox" name="2"     value="2"     id="2R"> Clientes<br>
-                        <input type="checkbox" name="3"     value="3"     id="3R"> Facturas<br>
-                        <input type="checkbox" name="4"     value="4"     id="4R"> Ventas<br>
-                        <input type="checkbox" name="5"     value="5"     id="5R"> Farmacias<br>
-                        <input type="checkbox" name="6"     value="6"     id="6R"> Inventario<br>
-                        <input type="checkbox" name="7"     value="7"     id="7R"> Ofertas<br>
-                        <input type="checkbox" name="8"     value="8"     id="8R"> Nomina<br>
-                        <input type="checkbox" name="9"     value="9"     id="9R"> Paises<br>
-                        <input type="checkbox" name="10"    value="10"    id="10R"> Productos<br>
-                        <input type="checkbox" name="11"    value="11"    id="11R"> Propietarios<br>
-                        <input type="checkbox" name="12"    value="12"    id="12R"> Proveedores<br>
-                        <input type="checkbox" name="13"    value="13"    id="13R"> Usuarios<br>
-                        <input type="checkbox" name="14"    value="14"    id="14R"> Roles<br>
-                        <input type="checkbox" name="15"    value="15"    id="15R"> Carousel<br>
-                        <input type="checkbox" name="16"    value="16"    id="16R"> Logs<br>
-                        </div>   
-                    </div> 
+                        <input type="checkbox" name="3"     value="3"     id="3R"> Empleados<br>
+                        <input type="checkbox" name="4"     value="4"     id="4R"> Facturas<br>
+                        <input type="checkbox" name="5"     value="5"     id="5R"> Ventas<br>
+                        <input type="checkbox" name="6"     value="6"     id="6R"> Farmacias<br>
+                        <input type="checkbox" name="7"     value="7"     id="7R"> Inventario<br>
+                        <input type="checkbox" name="8"     value="8"     id="8R"> Ofertas<br>
+                        <input type="checkbox" name="9"     value="9"     id="9R"> Nomina<br>
+                        <input type="checkbox" name="10"    value="10"    id="10R"> Paises<br>
+                        <input type="checkbox" name="11"    value="11"    id="11R"> Productos<br>
+                        <input type="checkbox" name="12"    value="12"    id="12R"> Presentaciones<br>
+                        <input type="checkbox" name="13"    value="13"    id="13R"> Propietarios<br>
+                        <input type="checkbox" name="14"    value="14"    id="14R"> Proveedores<br>
+                        <input type="checkbox" name="15"    value="15"    id="15R"> Usuarios<br>
+                        <input type="checkbox" name="16"    value="16"    id="16R"> Roles<br>
+                        <input type="checkbox" name="17"    value="17"    id="17R"> Carousel<br>
+                        <input type="checkbox" name="18"    value="18"    id="18R"> Logs<br>
+                        </div>
+                    </div>
 
 					 <div class="form-group">        
                         <div class="col-sm-offset-2 col-sm-10">

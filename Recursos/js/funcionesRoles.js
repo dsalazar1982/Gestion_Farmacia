@@ -70,7 +70,7 @@ function roles(){
                         }).done(function(id_rolxpermiso){
                          if(id_rolxpermiso.respuesta == 'existe'){
                          var id_rolxpermiso = id_rolxpermiso.codigo;    
-                            for(var i=1; i <=16; i++){
+                            for(var i=1; i <=18; i++){
                              if($("#"+i+"R").prop('checked')){
                                 $.ajax({
                                     type:"get",
@@ -146,7 +146,7 @@ function roles(){
            }).done(function(id_rolxpermiso){
             if(id_rolxpermiso.respuesta == 'existe'){
                 var id_rolxpermiso = id_rolxpermiso.codigo;    
-                for(var i=1; i <=16; i++){
+                for(var i=1; i <=18; i++){
                  if($("#"+i+"P").prop('checked')){
                     $.ajax({
                         type:"get",
